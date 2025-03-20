@@ -45,17 +45,31 @@
             padding: 10px 0;
             margin-top: 20px;
         }
-        .research-areas, .engagement-areas, .agriculture-sector {
+        .research-areas, .engagement-areas, .team-profiles {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
-        .research-areas div, .engagement-areas div, .agriculture-sector div {
+        .research-areas div, .engagement-areas div, .team-profiles div {
             flex: 1 1 30%;
             margin: 10px;
             padding: 20px;
             background: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .team-profiles img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        .team-profiles ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .team-profiles ul li {
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -69,7 +83,7 @@
         <a href="#about">About Us</a>
         <a href="#mission">Our Mission</a>
         <a href="#research">Research Areas</a>
-        <a href="#agriculture">Agriculture Sector</a>
+        <a href="#team">Our Team</a>
         <a href="#engagement">Engagement</a>
         <a href="#contact">Contact Us</a>
     </nav>
@@ -78,7 +92,7 @@
         <section id="about">
             <h2>About Us</h2>
             <p>The Zimbabwe Organization for Scientific Research is dedicated to promoting scientific inquiry and innovation within Zimbabwe. Founded in <strong>2025</strong>, our organization brings together researchers, academics, and industry professionals to address the unique challenges facing our nation through collaborative research initiatives.</p>
-            We aim to collaborate with local and international partners to enhance research capabilities and foster a culture of scientific exploration. By supporting Zimbabwean scientists and providing resources for cutting-edge research, we strive to contribute to the sustainable development of our country.</p>
+            <p>We aim to collaborate with local and international partners to enhance research capabilities and foster a culture of scientific exploration. By supporting Zimbabwean scientists and providing resources for cutting-edge research, we strive to contribute to the sustainable development of our country.</p>
         </section>
 
         <section id="mission">
@@ -90,50 +104,102 @@
             <h2>Research Areas</h2>
             <div class="research-areas">
                 <div>
-                    <h3>Sustainable Agriculture</h3>
-                    <p>Developing drought-resistant crops and sustainable farming practices to ensure food security.</p>
+                    <h3>Artificial Intelligence</h3>
+                    <p>Developing AI-driven solutions for industries such as healthcare, agriculture, and finance.</p>
                 </div>
                 <div>
                     <h3>Renewable Energy</h3>
-                    <p>Researching solar, hydro, and other renewable energy sources to power rural communities.</p>
+                    <p>Researching solar, wind, and hydro energy systems to provide sustainable power solutions.</p>
                 </div>
                 <div>
-                    <h3>Public Health</h3>
-                    <p>Addressing disease prevention and improving healthcare delivery systems.</p>
+                    <h3>Biotechnology</h3>
+                    <p>Advancing genetic engineering and biopharmaceuticals to improve health and agriculture.</p>
                 </div>
                 <div>
-                    <h3>Water Management</h3>
-                    <p>Finding solutions for clean water access and conservation to combat water scarcity.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="agriculture">
-            <h2>Agriculture Sector</h2>
-            <div class="agriculture-sector">
-                <div>
-                    <h3>Crop Innovation</h3>
-                    <p>We focus on developing high-yield, drought-resistant crops to improve food security and support farmers in challenging climates.</p>
+                    <h3>Data Science</h3>
+                    <p>Leveraging big data and analytics to solve complex problems in various sectors.</p>
                 </div>
                 <div>
-                    <h3>Sustainable Practices</h3>
-                    <p>Promoting eco-friendly farming techniques such as conservation agriculture, crop rotation, and organic farming.</p>
+                    <h3>Space Science</h3>
+                    <p>Exploring satellite technology and space exploration for national development.</p>
                 </div>
                 <div>
-                    <h3>Agri-Tech Solutions</h3>
-                    <p>Leveraging technology like drones, IoT, and AI to optimize farming processes and increase productivity.</p>
+                    <h3>Environmental Science</h3>
+                    <p>Studying climate change, conservation, and sustainable resource management.</p>
                 </div>
-                <div>
-                    <h3>Farmer Training</h3>
-                    <p>Providing education and resources to farmers to enhance their skills and adopt modern agricultural practices.</p>
-                </div>
-                <div>
+                 <div>
                     <h3>Market Access</h3>
                     <p>Connecting farmers with local and international markets to ensure fair pricing and economic growth.</p>
                 </div>
                 <div>
-                    <h3>Soil Health</h3>
-                    <p>Researching soil conservation and fertility management to ensure long-term agricultural sustainability.</p>
+                    <h3>STEM Education</h3>
+                    <p>Promoting science, technology, engineering, and mathematics education at all levels.</p>
+                </div>
+                <div>
+                <div>
+                    <h3>Robotics</h3>
+                    <p>Developing robotic systems for industrial automation and healthcare applications.</p>
+                </div>
+                <div>
+                    <h3>Nanotechnology</h3>
+                    <p>Researching nanomaterials for use in medicine, electronics, and energy storage.</p>
+                </div>
+                <div>
+                    <h3>Technopreneurship Training</h3>
+                    <p>Empowering innovators with skills to transform ideas into successful tech-based businesses.</p>
+                </div>
+                <div>
+                    <h3>Software Development</h3>
+                    <p>Building scalable and innovative software solutions for local and global markets.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="team">
+            <h2>Our Team</h2>
+            <div class="team-profiles">
+                <div>
+                    <img src="funny-munkuli.jpg" alt="Funny Munkuli">
+                    <h3>Funny Munkuli</h3>
+                    <p>Director</p>
+                    <p><strong>Education:</strong></p>
+                    <ul>
+                        <li>BSc in Applied Statistics</li>
+                        <li>MSc in Mathematical Sciences</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="oscar-nyathi.jpg" alt="Oscar Nyathi">
+                    <h3>Oscar Nyathi</h3>
+                    <p>Director</p>
+                    <p><strong>Education:</strong></p>
+                    <ul>
+                        <li>MSc in Mathematical Sciences</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="profile3.jpg" alt="Mary Johnson">
+                    <h3>Mary Johnson</h3>
+                    <p>Lead Biotechnologist</p>
+                    <p>Focuses on genetic engineering and biopharmaceuticals.</p>
+                </div>
+                <div>
+                    <img src="profile4.jpg" alt="David Brown">
+                    <h3>David Brown</h3>
+                    <p>Software Development Lead</p>
+                    <p>Experienced in building scalable software solutions.</p>
+                </div>
+                <div>
+                    <img src="profile5.jpg" alt="Sarah Lee">
+                    <h3>Sarah Lee</h3>
+                    <p>Technopreneurship Trainer</p>
+                    <p>Empowers innovators to create tech-based businesses.</p>
+                </div>
+                <div>
+                    <img src="profile6.jpg" alt="Michael Green">
+                    <h3>Michael Green</h3>
+                    <p>Environmental Scientist</p>
+                    <p>Expert in climate change and conservation.</p>
                 </div>
             </div>
         </section>
