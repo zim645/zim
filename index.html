@@ -99,60 +99,202 @@
             <h2>Our Mission</h2>
             <p>Our mission is to support scientific research and innovation that addresses the unique challenges facing Zimbabwe. We strive to empower researchers and institutions to work together towards sustainable solutions for our communities.</p>
         </section>
-<section id="research">
-    <h2>Research Areas</h2>
-    <button id="showResearchButton" onclick="toggleResearch()">View Research Areas</button>
+<section id="research" class="research-section">
+    <div class="section-header">
+        <h2 class="section-title" id="researchHeading">Research Areas</h2>
+        <button id="researchToggle" class="toggle-button" aria-expanded="false" aria-controls="researchContent">
+            Hide Research Areas
+            <span class="icon">▲</span>
+        </button>
+    </div>
 
-    <div id="researchContent" style="display: none;" class="research-areas">
-        <div>
-            <h3>Artificial Intelligence</h3>
-            <p>Developing AI-driven solutions for industries such as healthcare, agriculture, and finance.</p>
+    <div id="researchContent" class="research-grid">
+        <div class="research-card">
+            <h3 class="research-title">Artificial Intelligence</h3>
+            <p class="research-description">Developing AI-driven solutions for industries such as healthcare, agriculture, and finance.</p>
         </div>
-        <div>
-            <h3>Renewable Energy</h3>
-            <p>Researching solar, wind, and hydro energy systems to provide sustainable power solutions.</p>
+        <div class="research-card">
+            <h3 class="research-title">Renewable Energy</h3>
+            <p class="research-description">Researching solar, wind, and hydro energy systems to provide sustainable power solutions.</p>
         </div>
-        <div>
-            <h3>Biotechnology</h3>
-            <p>Advancing genetic engineering and biopharmaceuticals to improve health and agriculture.</p>
+        <div class="research-card">
+            <h3 class="research-title">Biotechnology</h3>
+            <p class="research-description">Advancing genetic engineering and biopharmaceuticals to improve health and agriculture.</p>
         </div>
-        <div>
-            <h3>Data Science</h3>
-            <p>Leveraging big data and analytics to solve complex problems in various sectors.</p>
+        <div class="research-card">
+            <h3 class="research-title">Data Science</h3>
+            <p class="research-description">Leveraging big data and analytics to solve complex problems in various sectors.</p>
         </div>
-        <div>
-            <h3>Space Science</h3>
-            <p>Exploring satellite technology and space exploration for national development.</p>
+        <div class="research-card">
+            <h3 class="research-title">Space Science</h3>
+            <p class="research-description">Exploring satellite technology and space exploration for national development.</p>
         </div>
-        <div>
-            <h3>Environmental Science</h3>
-            <p>Studying climate change, conservation, and sustainable resource management.</p>
+        <div class="research-card">
+            <h3 class="research-title">Environmental Science</h3>
+            <p class="research-description">Studying climate change, conservation, and sustainable resource management.</p>
         </div>
-        <div>
-            <h3>STEM Education</h3>
-            <p>Promoting science, technology, engineering, and mathematics education at all levels.</p>
+        <div class="research-card">
+            <h3 class="research-title">STEM Education</h3>
+            <p class="research-description">Promoting science, technology, engineering, and mathematics education at all levels.</p>
         </div>
-        <div>
-            <h3>Robotics</h3>
-            <p>Developing robotic systems for industrial automation and healthcare applications.</p>
+        <div class="research-card">
+            <h3 class="research-title">Robotics</h3>
+            <p class="research-description">Developing robotic systems for industrial automation and healthcare applications.</p>
         </div>
-        <div>
-            <h3>Nanotechnology</h3>
-            <p>Researching nanomaterials for use in medicine, electronics, and energy storage.</p>
+        <div class="research-card">
+            <h3 class="research-title">Nanotechnology</h3>
+            <p class="research-description">Researching nanomaterials for use in medicine, electronics, and energy storage.</p>
         </div>
-        <div>
-            <h3>Technopreneurship Training</h3>
-            <p>Empowering innovators with skills to transform ideas into successful tech-based businesses.</p>
+        <div class="research-card">
+            <h3 class="research-title">Technopreneurship Training</h3>
+            <p class="research-description">Empowering innovators with skills to transform ideas into successful tech-based businesses.</p>
         </div>
-        <div>
-            <h3>Software Development</h3>
-            <p>Building scalable and innovative software solutions for local and global markets.</p>
+        <div class="research-card">
+            <h3 class="research-title">Software Development</h3>
+            <p class="research-description">Building scalable and innovative software solutions for local and global markets.</p>
         </div>
-        <div>
-            <h3>Quantum Technology</h3>
-            <p>Exploring quantum computing, cryptography, and communication for future innovations.</p>
+        <div class="research-card">
+            <h3 class="research-title">Quantum Technology</h3>
+            <p class="research-description">Exploring quantum computing, cryptography, and communication for future innovations.</p>
         </div>
     </div>
+</section>
+
+<style>
+    .research-section {
+        margin: 2rem 0;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .section-title {
+        color: #2c3e50;
+        margin: 0;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: color 0.2s;
+        padding: 0.5rem 0;
+    }
+    
+    .section-title:hover {
+        color: #3498db;
+    }
+    
+    .toggle-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .toggle-button:hover {
+        background-color: #2980b9;
+    }
+    
+    .toggle-button .icon {
+        font-size: 0.7rem;
+        transition: transform 0.3s;
+    }
+    
+    .research-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .research-card {
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .research-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .research-title {
+        color: #2c3e50;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+    }
+    
+    .research-description {
+        color: #7f8c8d;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    /* Animation for content */
+    .research-grid {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const researchHeading = document.getElementById('researchHeading');
+        const toggleButton = document.getElementById('researchToggle');
+        const researchContent = document.getElementById('researchContent');
+        
+        // Make heading clickable to show content
+        researchHeading.addEventListener('click', function() {
+            showResearchContent();
+        });
+        
+        // Toggle button functionality
+        toggleButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent heading click from triggering
+            toggleResearchContent();
+        });
+        
+        // Initially show content
+        showResearchContent();
+        
+        function showResearchContent() {
+            researchContent.style.display = 'grid';
+            toggleButton.setAttribute('aria-expanded', 'true');
+            toggleButton.innerHTML = 'Hide Research Areas <span class="icon">▲</span>';
+        }
+        
+        function hideResearchContent() {
+            researchContent.style.display = 'none';
+            toggleButton.setAttribute('aria-expanded', 'false');
+            toggleButton.innerHTML = 'Show Research Areas <span class="icon">▼</span>';
+        }
+        
+        function toggleResearchContent() {
+            if (researchContent.style.display === 'none') {
+                showResearchContent();
+            } else {
+                hideResearchContent();
+            }
+        }
+    });
+</script>
 </section>
 
 <style>
