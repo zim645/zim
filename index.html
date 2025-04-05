@@ -411,14 +411,12 @@
 
 </body>
 </html>
-</section>
-                <div>
-        <section id="engagement" class="engagement-section">
+<section id="engagement" class="engagement-section">
     <div class="section-header">
-        <h2 class="section-title" id="engagementHeading">Engagement</h2>
+        <h2 class="section-title" id="engagementHeading">Engagement <span class="toggle-icon">▼</span></h2>
     </div>
 
-    <div id="engagementContent" class="engagement-grid">
+    <div id="engagementContent" class="engagement-grid" style="display: none;">
         <div class="engagement-card">
             <h3 class="engagement-title">Institutions</h3>
             <p class="engagement-description">We partner with universities, research institutions, and government bodies to drive scientific progress and policy development.</p>
@@ -448,7 +446,7 @@
     }
     
     .section-header {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
     
     .section-title {
@@ -458,18 +456,25 @@
         cursor: pointer;
         transition: color 0.2s;
         padding: 0.5rem 0;
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
     }
     
     .section-title:hover {
         color: #3498db;
     }
     
+    .toggle-icon {
+        font-size: 0.8rem;
+        transition: transform 0.3s;
+    }
+    
     .engagement-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 1.5rem;
-        animation: fadeIn 0.5s ease-out;
+        margin-top: 1rem;
     }
     
     .engagement-card {
@@ -497,8 +502,13 @@
         margin: 0;
     }
 
+    .engagement-grid.show {
+        animation: fadeIn 0.3s ease-out;
+        display: grid;
+    }
+
     @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
+        from { opacity: 0; transform: translateY(-10px); }
         to { opacity: 1; transform: translateY(0); }
     }
 </style>
@@ -507,16 +517,18 @@
     document.addEventListener('DOMContentLoaded', function() {
         const engagementHeading = document.getElementById('engagementHeading');
         const engagementContent = document.getElementById('engagementContent');
-        
-        // Initially hide content
-        engagementContent.style.display = 'none';
+        const toggleIcon = engagementHeading.querySelector('.toggle-icon');
         
         // Make heading clickable to toggle content
         engagementHeading.addEventListener('click', function() {
             if (engagementContent.style.display === 'none') {
                 engagementContent.style.display = 'grid';
+                toggleIcon.textContent = '▲';
+                engagementContent.classList.add('show');
             } else {
                 engagementContent.style.display = 'none';
+                toggleIcon.textContent = '▼';
+                engagementContent.classList.remove('show');
             }
         });
     });
