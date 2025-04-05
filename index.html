@@ -1,6 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <header class="site-header">
+    <div class="logo-container">
+        <img src="LOGOO.png" alt="Zimbabwe Organisation for Scientific Research - Innovative Research Solutions" class="site-logo">
+        <div class="logo-text">
+            <h1>Zimbabwe Organisation for Scientific Research</h1>
+            <p class="tagline">INNOVATIVE RESEARCH SOLUTIONS</p>
+        </div>
+    </div>
+</header>
+
+<style>
+    .site-header {
+        background-color: #fff;
+        padding: 1.5rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+    
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .site-logo {
+        height: 100px;
+        width: auto;
+        object-fit: contain;
+    }
+    
+    .logo-text h1 {
+        color: #2c3e50;
+        margin: 0;
+        font-size: 1.8rem;
+        line-height: 1.2;
+    }
+    
+    .tagline {
+        color: #3498db;
+        margin: 0.5rem 0 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+        font-style: italic;
+    }
+    
+    @media (max-width: 768px) {
+        .logo-container {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+        }
+        
+        .site-logo {
+            height: 80px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zimbabwe Organization for Scientific Research</title>
