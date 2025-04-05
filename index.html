@@ -196,24 +196,6 @@
     </div>
 </section>
 
-<script>
-    // Get the team toggle header and the team profiles div
-    const teamToggle = document.querySelector('.team-toggle');
-    const teamProfiles = document.querySelector('.team-profiles');
-
-    // Add click event listener to the toggle header
-    teamToggle.addEventListener('click', () => {
-        // Toggle visibility of the team profiles
-        if (teamProfiles.style.display === "none" || teamProfiles.style.display === "") {
-            teamProfiles.style.display = "block"; // Show profiles
-            teamToggle.innerHTML = "Our Team ▲"; // Change the arrow to up
-        } else {
-            teamProfiles.style.display = "none"; // Hide profiles
-            teamToggle.innerHTML = "Our Team ▼"; // Change the arrow to down
-        }
-    });
-</script>
-
 </body>
 </html>
 </section>
