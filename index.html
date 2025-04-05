@@ -413,27 +413,114 @@
 </html>
 </section>
                 <div>
-        <section id="engagement">
-            <h2>Engagement</h2>
-            <div class="engagement-areas">
-                <div>
-                    <h3>Institutions</h3>
-                    <p>We partner with universities, research institutions, and government bodies to drive scientific progress and policy development.</p>
-                </div>
-                <div>
-                    <h3>Technology</h3>
-                    <p>We promote the adoption of cutting-edge technologies to solve local challenges and improve livelihoods.</p>
-                </div>
-                <div>
-                    <h3>Employment</h3>
-                    <p>We create opportunities for scientists, engineers, and innovators through research projects and collaborations.</p>
-                </div>
-                <div>
-                    <h3>Trading</h3>
-                    <p>We facilitate the commercialization of research outcomes, fostering economic growth through science-based enterprises.</p>
-                </div>
-            </div>
-        </section>
+        <section id="engagement" class="engagement-section">
+    <div class="section-header">
+        <h2 class="section-title" id="engagementHeading">Engagement</h2>
+    </div>
+
+    <div id="engagementContent" class="engagement-grid">
+        <div class="engagement-card">
+            <h3 class="engagement-title">Institutions</h3>
+            <p class="engagement-description">We partner with universities, research institutions, and government bodies to drive scientific progress and policy development.</p>
+        </div>
+        <div class="engagement-card">
+            <h3 class="engagement-title">Technology</h3>
+            <p class="engagement-description">We promote the adoption of cutting-edge technologies to solve local challenges and improve livelihoods.</p>
+        </div>
+        <div class="engagement-card">
+            <h3 class="engagement-title">Employment</h3>
+            <p class="engagement-description">We create opportunities for scientists, engineers, and innovators through research projects and collaborations.</p>
+        </div>
+        <div class="engagement-card">
+            <h3 class="engagement-title">Trading</h3>
+            <p class="engagement-description">We facilitate the commercialization of research outcomes, fostering economic growth through science-based enterprises.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .engagement-section {
+        margin: 2rem 0;
+        padding: 1rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .section-header {
+        margin-bottom: 1rem;
+    }
+    
+    .section-title {
+        color: #2c3e50;
+        margin: 0;
+        font-size: 1.8rem;
+        cursor: pointer;
+        transition: color 0.2s;
+        padding: 0.5rem 0;
+        display: inline-block;
+    }
+    
+    .section-title:hover {
+        color: #3498db;
+    }
+    
+    .engagement-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        animation: fadeIn 0.5s ease-out;
+    }
+    
+    .engagement-card {
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        padding: 1.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .engagement-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .engagement-title {
+        color: #2c3e50;
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+    }
+    
+    .engagement-description {
+        color: #7f8c8d;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const engagementHeading = document.getElementById('engagementHeading');
+        const engagementContent = document.getElementById('engagementContent');
+        
+        // Initially hide content
+        engagementContent.style.display = 'none';
+        
+        // Make heading clickable to toggle content
+        engagementHeading.addEventListener('click', function() {
+            if (engagementContent.style.display === 'none') {
+                engagementContent.style.display = 'grid';
+            } else {
+                engagementContent.style.display = 'none';
+            }
+        });
+    });
+</script>
 
         <section id="contact">
             <h2>Contact Us</h2>
