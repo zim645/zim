@@ -171,6 +171,33 @@
 </head>
 <body>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Set font for the body */
+            margin: 20px;
+        }
+        .team-profiles {
+            display: none; /* Initially hide team profiles */
+            margin-top: 15px; /* Space above profiles */
+        }
+        .team-toggle {
+            cursor: pointer; /* Change cursor to pointer for clickable effect */
+            font-size: 1.5em; /* Larger font size for visibility */
+            color: #007BFF; /* Change color to blue */
+        }
+        .team-toggle:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+<body>
+
 <section id="team">
     <h2 class="team-toggle">Our Team ▼</h2>
     <div class="team-profiles">
@@ -194,6 +221,28 @@
             </ul>
         </div>
     </div>
+</section>
+
+<script>
+    // Get the team toggle header and the team profiles div
+    const teamToggle = document.querySelector('.team-toggle');
+    const teamProfiles = document.querySelector('.team-profiles');
+
+    // Add click event listener to the toggle header
+    teamToggle.addEventListener('click', () => {
+        // Toggle visibility of the team profiles
+        if (teamProfiles.style.display === "none" || teamProfiles.style.display === "") {
+            teamProfiles.style.display = "block"; // Show profiles
+            teamToggle.innerHTML = "Our Team ▲"; // Change the arrow to up
+        } else {
+            teamProfiles.style.display = "none"; // Hide profiles
+            teamToggle.innerHTML = "Our Team ▼"; // Change the arrow to down
+        }
+    });
+</script>
+
+</body>
+</html>
 </section>
 
 </body>
