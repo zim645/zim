@@ -99,59 +99,81 @@
             <h2>Our Mission</h2>
             <p>Our mission is to support scientific research and innovation that addresses the unique challenges facing Zimbabwe. We strive to empower researchers and institutions to work together towards sustainable solutions for our communities.</p>
         </section>
+<section id="research">
+    <h2>Research Areas</h2>
+    <button id="showResearchButton" onclick="toggleResearch()">View Research Areas</button>
 
-        <section id="research">
-           </Li> Research Areas</h2>
-            <div class="research-areas">
-                <div>
-                    <h3>Artificial Intelligence</h3>
-                    <p>Developing AI-driven solutions for industries such as healthcare, agriculture, and finance.</p>
-                </div>
-                <div>
-                    <h3>Renewable Energy</h3>
-                    <p>Researching solar, wind, and hydro energy systems to provide sustainable power solutions.</p>
-                </div>
-                <div>
-                    <h3>Biotechnology</h3>
-                    <p>Advancing genetic engineering and biopharmaceuticals to improve health and agriculture.</p>
-                </div>
-                <div>
-                    <h3>Data Science</h3>
-                    <p>Leveraging big data and analytics to solve complex problems in various sectors.</p>
-                </div>
-                <div>
-                    <h3>Space Science</h3>
-                    <p>Exploring satellite technology and space exploration for national development.</p>
-                </div>
-                <div>
-                    <h3>Environmental Science</h3>
-                    <p>Studying climate change, conservation, and sustainable resource management.</p>
-                </div>
-                <div>
-                    <h3>STEM Education</h3>
-                    <p>Promoting science, technology, engineering, and mathematics education at all levels.</p>
-                </div>
-                <div>
-                    <h3>Robotics</h3>
-                    <p>Developing robotic systems for industrial automation and healthcare applications.</p>
-                </div>
-                <div>
-                    <h3>Nanotechnology</h3>
-                    <p>Researching nanomaterials for use in medicine, electronics, and energy storage.</p>
-                </div>
-                <div>
-                    <h3>Technopreneurship Training</h3>
-                    <p>Empowering innovators with skills to transform ideas into successful tech-based businesses.</p>
-                </div>
-                <div>
-                    <h3>Software Development</h3>
-                    <p>Building scalable and innovative software solutions for local and global markets.</p>
-                </div>
-                <div>
-                    <h3>Quantum Technology</h3>
-                    <p>Exploring quantum computing, cryptography, and communication for future innovations.</p>
-                </div>
-            </div>
+    <div id="researchContent" style="display: none;" class="research-areas">
+        <div>
+            <h3>Artificial Intelligence</h3>
+            <p>Developing AI-driven solutions for industries such as healthcare, agriculture, and finance.</p>
+        </div>
+        <div>
+            <h3>Renewable Energy</h3>
+            <p>Researching solar, wind, and hydro energy systems to provide sustainable power solutions.</p>
+        </div>
+        <div>
+            <h3>Biotechnology</h3>
+            <p>Advancing genetic engineering and biopharmaceuticals to improve health and agriculture.</p>
+        </div>
+        <div>
+            <h3>Data Science</h3>
+            <p>Leveraging big data and analytics to solve complex problems in various sectors.</p>
+        </div>
+        <div>
+            <h3>Space Science</h3>
+            <p>Exploring satellite technology and space exploration for national development.</p>
+        </div>
+        <div>
+            <h3>Environmental Science</h3>
+            <p>Studying climate change, conservation, and sustainable resource management.</p>
+        </div>
+        <div>
+            <h3>STEM Education</h3>
+            <p>Promoting science, technology, engineering, and mathematics education at all levels.</p>
+        </div>
+        <div>
+            <h3>Robotics</h3>
+            <p>Developing robotic systems for industrial automation and healthcare applications.</p>
+        </div>
+        <div>
+            <h3>Nanotechnology</h3>
+            <p>Researching nanomaterials for use in medicine, electronics, and energy storage.</p>
+        </div>
+        <div>
+            <h3>Technopreneurship Training</h3>
+            <p>Empowering innovators with skills to transform ideas into successful tech-based businesses.</p>
+        </div>
+        <div>
+            <h3>Software Development</h3>
+            <p>Building scalable and innovative software solutions for local and global markets.</p>
+        </div>
+        <div>
+            <h3>Quantum Technology</h3>
+            <p>Exploring quantum computing, cryptography, and communication for future innovations.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    #researchContent {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+</style>
+
+<script>
+    function toggleResearch() {
+        var content = document.getElementById("researchContent");
+        if (content.style.display === "none") {
+            content.style.display = "block"; // Show content
+        } else {
+            content.style.display = "none"; // Hide content
+        }
+    }
+</script>
         </section>
 
        <!DOCTYPE html>
