@@ -1,480 +1,808 @@
 <!DOCTYPE html>
 <html lang="en">
-    <nav>
-        <a href="#about">About Us</a>
-        <a href="#mission">Our Mission</a>
-        <a href="#research">Research Areas</a>
-        <a href="#team">Our Team</a>
-        <a href="#engagement">Engagement</a>
-        <a href="#contact">Contact Us</a>
-    </nav>
-
-    <div class="container">
-        <section id="about">
-            <h2>About Us</h2>
-            <p>The Zimbabwe Organization for Scientific Research is dedicated to promoting scientific inquiry and innovation within Zimbabwe. Founded in <strong>2025</strong>, our organization brings together researchers, academics, and industry professionals to address the unique challenges facing our nation through collaborative research initiatives.</p>
-            <p>We aim to collaborate with local and international partners to enhance research capabilities and foster a culture of scientific exploration. By supporting Zimbabwean scientists and providing resources for cutting-edge research, we strive to contribute to the sustainable development of our country.</p>
-        </section>
-
-        <section id="mission">
-            <h2>Our Mission</h2>
-            <p>Our mission is to support scientific research and innovation that addresses the unique challenges facing Zimbabwe. We strive to empower researchers and institutions to work together towards sustainable solutions for our communities.</p>
-        </section>
-<section id="research" class="research-section">
-    <div class="section-header">
-        <h2 class="section-title" id="researchHeading">Research Areas</h2>
-        <button id="researchToggle" class="toggle-button" aria-expanded="false" aria-controls="researchContent">
-            Hide Research Areas
-            <span class="icon">▲</span>
-        </button>
-    </div>
-
-    <div id="researchContent" class="research-grid">
-        <div class="research-card">
-            <h3 class="research-title">Artificial Intelligence</h3>
-            <p class="research-description">Developing AI-driven solutions for industries such as healthcare, agriculture, and finance.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Renewable Energy</h3>
-            <p class="research-description">Researching solar, wind, and hydro energy systems to provide sustainable power solutions.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Biotechnology</h3>
-            <p class="research-description">Advancing genetic engineering and biopharmaceuticals to improve health and agriculture.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Data Science</h3>
-            <p class="research-description">Leveraging big data and analytics to solve complex problems in various sectors.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Space Science</h3>
-            <p class="research-description">Exploring satellite technology and space exploration for national development.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Environmental Science</h3>
-            <p class="research-description">Studying climate change, conservation, and sustainable resource management.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">STEM Education</h3>
-            <p class="research-description">Promoting science, technology, engineering, and mathematics education at all levels.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Robotics</h3>
-            <p class="research-description">Developing robotic systems for industrial automation and healthcare applications.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Nanotechnology</h3>
-            <p class="research-description">Researching nanomaterials for use in medicine, electronics, and energy storage.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Technopreneurship Training</h3>
-            <p class="research-description">Empowering innovators with skills to transform ideas into successful tech-based businesses.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Software Development</h3>
-            <p class="research-description">Building scalable and innovative software solutions for local and global markets.</p>
-        </div>
-        <div class="research-card">
-            <h3 class="research-title">Quantum Technology</h3>
-            <p class="research-description">Exploring quantum computing, cryptography, and communication for future innovations.</p>
-        </div>
-    </div>
-</section>
-
-<style>
-    .research-section {
-        margin: 2rem 0;
-        padding: 1rem;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-    
-    .section-title {
-        color: #2c3e50;
-        margin: 0;
-        font-size: 1.8rem;
-        cursor: pointer;
-        transition: color 0.2s;
-        padding: 0.5rem 0;
-    }
-    
-    .section-title:hover {
-        color: #3498db;
-    }
-    
-    .toggle-button {
-        background-color: #3498db;
-        color: white;
-        border: none;
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .toggle-button:hover {
-        background-color: #2980b9;
-    }
-    
-    .toggle-button .icon {
-        font-size: 0.7rem;
-        transition: transform 0.3s;
-    }
-    
-    .research-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-    }
-    
-    .research-card {
-        background-color: #f8f9fa;
-        border-radius: 6px;
-        padding: 1.5rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    
-    .research-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
-    .research-title {
-        color: #2c3e50;
-        margin-bottom: 0.8rem;
-        font-size: 1.2rem;
-    }
-    
-    .research-description {
-        color: #7f8c8d;
-        line-height: 1.5;
-        margin: 0;
-    }
-
-    /* Animation for content */
-    .research-grid {
-        animation: fadeIn 0.5s ease-out;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const researchHeading = document.getElementById('researchHeading');
-        const toggleButton = document.getElementById('researchToggle');
-        const researchContent = document.getElementById('researchContent');
-        
-        // Make heading clickable to show content
-        researchHeading.addEventListener('click', function() {
-            showResearchContent();
-        });
-        
-        // Toggle button functionality
-        toggleButton.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent heading click from triggering
-            toggleResearchContent();
-        });
-        
-        // Initially show content
-        showResearchContent();
-        
-        function showResearchContent() {
-            researchContent.style.display = 'grid';
-            toggleButton.setAttribute('aria-expanded', 'true');
-            toggleButton.innerHTML = 'Hide Research Areas <span class="icon">▲</span>';
-        }
-        
-        function hideResearchContent() {
-            researchContent.style.display = 'none';
-            toggleButton.setAttribute('aria-expanded', 'false');
-            toggleButton.innerHTML = 'Show Research Areas <span class="icon">▼</span>';
-        }
-        
-        function toggleResearchContent() {
-            if (researchContent.style.display === 'none') {
-                showResearchContent();
-            } else {
-                hideResearchContent();
-            }
-        }
-    });
-</script>
-</section>
-
-<style>
-    #researchContent {
-        margin-top: 20px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        background-color: #f9f9f9;
-    }
-</style>
-
-<script>
-    function toggleResearch() {
-        var content = document.getElementById("researchContent");
-        if (content.style.display === "none") {
-            content.style.display = "block"; // Show content
-        } else {
-            content.style.display = "none"; // Hide content
-        }
-    }
-</script>
-        </section>
-
-       <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team</title>
-    <style>
-        .team-profiles {
-            display: none; /* Initially hide team profiles */
-        }
-        .team-toggle {
-            cursor: pointer; /* Change cursor to pointer for clickable effect */
-        }
-    </style>
-</head>
-<body>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team</title>
+    <title>Travel Vic</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif; /* Set font for the body */
-            margin: 20px;
+            font-family: 'Inter', sans-serif;
         }
-        .team-profiles {
-            display: none; /* Initially hide team profiles */
-            margin-top: 15px; /* Space above profiles */
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .team-toggle {
-            cursor: pointer; /* Change cursor to pointer for clickable effect */
-            font-size: 1.5em; /* Larger font size for visibility */
-            color: #007BFF; /* Change color to blue */
+        .btn-primary {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
         }
-        .team-toggle:hover {
-            text-decoration: underline; /* Underline on hover */
+        .btn-primary:hover {
+            background-color: #4338ca;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        .login-tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        .login-tab.active {
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .driver-marker {
+            background-color: #4f46e5;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: block;
+        }
+        .available-driver {
+            background-color: #10b981;
+        }
+        .unavailable-driver {
+            background-color: #ef4444;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-100">
+    <div id="app" class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="w-full max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl p-6">
+            <header class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Victoria Falls Transit Planner</h1>
+                <p class="text-gray-600 mt-2">Your guide to getting around in Vic Falls, Zimbabwe.</p>
+            </header>
 
-<section id="team">
-    <h2 class="team-toggle">Our Team ▼</h2>
-    <div class="team-profiles">
-        <div class="profile">
-            <h3>Funny Munkuli</h3>
-            <p>Director</p>
-            <p><strong>Education:</strong></p>
-            <ul>
-                <li>BSc in Applied Statistics</li>
-                <li>MSc in Mathematical Sciences</li>
-                <li>Email: fmunkuli45@gmail.com
-            </ul>
-        </div>
-        <div class="profile">
-            <h3>Oscar Nyathi</h3>
-            <p>Director</p>
-            <p><strong>Education:</strong></p>
-            <ul>
-                <li>BSc in Agricultural Economics</li>
-                <li>MSc in Food Security and Sustainable Agriculture</li>
-                <li>Diploma in Project Design, M&E</li>
-            </ul>
-        </div>
-         <div class="profile">
-            <h3>Manlow Charumbira</h3>
-            <p>Director</p>
-            <p><strong>Education:</strong></p>
-            <ul>
-                <li>Bsc Applied Mathematics and Computational SCiences</li>
-                </li>email:charumbiramanlow20@gmail.com
-            </ul>
+            <div id="auth-section" class="mb-6">
+                <div class="flex justify-center space-x-4 mb-4">
+                    <div class="login-tab active" data-tab="passenger">Passenger</div>
+                    <div class="login-tab" data-tab="admin">Admin</div>
+                    <div class="login-tab" data-tab="driver">Driver</div>
+                </div>
+
+                <!-- Passenger Login -->
+                <div id="passenger-login" class="auth-form">
+                    <h2 class="text-xl font-bold mb-4">Passenger Login</h2>
+                    <input type="email" id="passengerEmail" placeholder="Email" class="border p-2 w-full mb-2">
+                    <input type="password" id="passengerPassword" placeholder="Password" class="border p-2 w-full mb-4">
+                    <button id="passengerLoginBtn" class="btn-primary w-full">Login as Passenger</button>
+                    <p class="text-center mt-2">Don't have an account? <a href="#" id="showPassengerSignup" class="text-blue-600">Sign up</a></p>
+                </div>
+
+                <!-- Passenger Signup -->
+                <div id="passenger-signup" class="auth-form hidden">
+                    <h2 class="text-xl font-bold mb-4">Passenger Sign Up</h2>
+                    <input type="text" id="passengerName" placeholder="Full Name" class="border p-2 w-full mb-2">
+                    <input type="email" id="passengerSignupEmail" placeholder="Email" class="border p-2 w-full mb-2">
+                    <input type="password" id="passengerSignupPassword" placeholder="Password" class="border p-2 w-full mb-4">
+                    <button id="passengerSignupBtn" class="btn-primary w-full">Create Account</button>
+                    <p class="text-center mt-2">Already have an account? <a href="#" id="showPassengerLogin" class="text-blue-600">Login</a></p>
+                </div>
+
+                <!-- Admin Login -->
+                <div id="admin-login" class="auth-form hidden">
+                    <h2 class="text-xl font-bold mb-4">Admin Login</h2>
+                    <input type="email" id="adminEmail" placeholder="Email" class="border p-2 w-full mb-2">
+                    <input type="password" id="adminPassword" placeholder="Password" class="border p-2 w-full mb-4">
+                    <button id="adminLoginBtn" class="btn-primary w-full">Login as Admin</button>
+                </div>
+
+                <!-- Driver Login -->
+                <div id="driver-login" class="auth-form hidden">
+                    <h2 class="text-xl font-bold mb-4">Driver Login</h2>
+                    <input type="email" id="driverEmail" placeholder="Email" class="border p-2 w-full mb-2">
+                    <input type="password" id="driverPassword" placeholder="Password" class="border p-2 w-full mb-4">
+                    <button id="driverLoginBtn" class="btn-primary w-full">Login as Driver</button>
+                    <p class="text-center mt-2">Don't have an account? <a href="#" id="showDriverSignup" class="text-blue-600">Register</a></p>
+                </div>
+            </div>
+
+            <div id="driver-registration" class="mb-6 hidden">
+                <button id="backToLoginAdmin" class="btn-primary mb-4">Back to Login</button>
+                <h2 class="text-xl font-bold">Driver Registration</h2>
+                <input type="text" id="driverName" placeholder="Driver Name" class="border p-2 w-full mb-2">
+                <input type="email" id="driverRegEmail" placeholder="Email" class="border p-2 w-full mb-2">
+                <input type="password" id="driverRegPassword" placeholder="Password" class="border p-2 w-full mb-2">
+                <input type="text" id="driverPhone" placeholder="Phone Number" class="border p-2 w-full mb-2">
+                <input type="text" id="driverCarReg" placeholder="Car Registration Number" class="border p-2 w-full mb-2">
+                <input type="number" id="driverCapacity" placeholder="Passenger Capacity" class="border p-2 w-full mb-2">
+                <button id="registerDriverBtn" class="btn-primary w-full">Register Driver</button>
+                <p class="text-center mt-2">Already have an account? <a href="#" id="showDriverLoginFromReg" class="text-blue-600">Login</a></p>
+            </div>
+
+            <div id="driver-app" class="hidden">
+                <button id="driverLogoutBtn" class="btn-primary mb-4">Logout</button>
+                <h2 class="text-xl font-bold mb-4">Driver Dashboard</h2>
+                <div class="card p-4 mb-4">
+                    <h3 class="font-bold mb-2">Your Status</h3>
+                    <div class="flex items-center mb-4">
+                        <span class="mr-2">Availability:</span>
+                        <label class="switch mr-2">
+                            <input type="checkbox" id="driverAvailabilityToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span id="driverStatusText">Available</span>
+                    </div>
+                    <div id="currentBooking" class="hidden">
+                        <h3 class="font-bold mb-2">Current Booking</h3>
+                        <div id="bookingDetails" class="p-3 bg-gray-100 rounded"></div>
+                        <button id="completeBookingBtn" class="btn-primary mt-2">Complete Booking</button>
+                    </div>
+                </div>
+                <div id="driverMapContainer">
+                    <h3 class="font-bold mb-2">Your Location</h3>
+                    <div id="driverMap" class="h-64 w-full mb-4"></div>
+                </div>
+            </div>
+
+            <div id="main-app" class="hidden">
+                <button id="logoutBtn" class="btn-primary mb-4">Logout</button>
+                <h2 class="text-xl font-bold">Plan Your Trip</h2>
+                <div class="flex items-center justify-between mb-6">
+                    <select id="startLocation" class="border p-2 w-1/2"></select>
+                    <button id="swapLocations" class="btn-primary">Swap</button>
+                    <select id="endLocation" class="border p-2 w-1/2"></select>
+                </div>
+                <input type="number" id="passengerCount" placeholder="Number of Passengers" class="border p-2 w-full mb-4">
+                <button id="planTripBtn" class="btn-primary w-full">Plan My Trip</button>
+
+                <div id="paymentOptions" class="hidden mt-4">
+                    <h2>Select Payment Method</h2>
+                    <select id="paymentMethod" class="border p-2 w-full mb-4">
+                        <option value="cash">Cash</option>
+                        <option value="transfer">Bank Transfer</option>
+                    </select>
+                    <button id="confirmPaymentBtn" class="btn-primary w-full">Confirm Payment</button>
+                </div>
+
+                <div id="results" class="hidden mt-4">
+                    <h2>Your Trip Options</h2>
+                    <div id="results-container" class="mt-4"></div>
+                </div>
+
+                <div id="ride-history" class="hidden mt-4">
+                    <h2>Your Ride History</h2>
+                    <div id="history-container" class="mt-4"></div>
+                </div>
+
+                <div id="map" class="hidden mt-4"></div>
+            </div>
         </div>
     </div>
-</section>
 
-<script>
-    // Get the team toggle header and the team profiles div
-    const teamToggle = document.querySelector('.team-toggle');
-    const teamProfiles = document.querySelector('.team-profiles');
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
-    // Add click event listener to the toggle header
-    teamToggle.addEventListener('click', () => {
-        // Toggle visibility of the team profiles
-        if (teamProfiles.style.display === "none" || teamProfiles.style.display === "") {
-            teamProfiles.style.display = "block"; // Show profiles
-            teamToggle.innerHTML = "Our Team ▲"; // Change the arrow to up
-        } else {
-            teamProfiles.style.display = "none"; // Hide profiles
-            teamToggle.innerHTML = "Our Team ▼"; // Change the arrow to down
-        }
-    });
-</script>
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
 
-</body>
-</html>
-</section>
-
-</body>
-</html>
-<section id="engagement" class="engagement-section">
-    <div class="section-header">
-        <h2 class="section-title" id="engagementHeading">Engagement <span class="toggle-icon">▼</span></h2>
-    </div>
-
-    <div id="engagementContent" class="engagement-grid" style="display: none;">
-        <div class="engagement-card">
-            <h3 class="engagement-title">Institutions</h3>
-            <p class="engagement-description">We partner with universities, research institutions, and government bodies to drive scientific progress and policy development.</p>
-        </div>
-        <div class="engagement-card">
-            <h3 class="engagement-title">Technology</h3>
-            <p class="engagement-description">We promote the adoption of cutting-edge technologies to solve local challenges and improve livelihoods.</p>
-        </div>
-        <div class="engagement-card">
-            <h3 class="engagement-title">Employment</h3>
-            <p class="engagement-description">We create opportunities for scientists, engineers, and innovators through research projects and collaborations.</p>
-        </div>
-        <div class="engagement-card">
-            <h3 class="engagement-title">Trading</h3>
-            <p class="engagement-description">We facilitate the commercialization of research outcomes, fostering economic growth through science-based enterprises.</p>
-        </div>
-    </div>
-</section>
-
-<style>
-    .engagement-section {
-        margin: 2rem 0;
-        padding: 1rem;
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    
-    .section-header {
-        margin-bottom: 0.5rem;
-    }
-    
-    .section-title {
-        color: #2c3e50;
-        margin: 0;
-        font-size: 1.8rem;
-        cursor: pointer;
-        transition: color 0.2s;
-        padding: 0.5rem 0;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .section-title:hover {
-        color: #3498db;
-    }
-    
-    .toggle-icon {
-        font-size: 0.8rem;
-        transition: transform 0.3s;
-    }
-    
-    .engagement-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1rem;
-    }
-    
-    .engagement-card {
-        background-color: #f8f9fa;
-        border-radius: 6px;
-        padding: 1.5rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    
-    .engagement-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    
-    .engagement-title {
-        color: #2c3e50;
-        margin-bottom: 0.8rem;
-        font-size: 1.2rem;
-    }
-    
-    .engagement-description {
-        color: #7f8c8d;
-        line-height: 1.5;
-        margin: 0;
-    }
-
-    .engagement-grid.show {
-        animation: fadeIn 0.3s ease-out;
-        display: grid;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const engagementHeading = document.getElementById('engagementHeading');
-        const engagementContent = document.getElementById('engagementContent');
-        const toggleIcon = engagementHeading.querySelector('.toggle-icon');
-        
-        // Make heading clickable to toggle content
-        engagementHeading.addEventListener('click', function() {
-            if (engagementContent.style.display === 'none') {
-                engagementContent.style.display = 'grid';
-                toggleIcon.textContent = '▲';
-                engagementContent.classList.add('show');
-            } else {
-                engagementContent.style.display = 'none';
-                toggleIcon.textContent = '▼';
-                engagementContent.classList.remove('show');
-            }
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            initApp();
         });
-    });
-</script>
 
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or would like to collaborate with us, please reach out via email or fill out the contact form below:</p>
-            <p>Email: <a href="mailto:info@zimsci.org">info@zimsci.org</a></p>
-            <p>Address: Bulawayo, Zimbabwe</p>
-        </section>
-    </div>
+        function initApp() {
+            // Check auth state
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    // User is signed in
+                    const isAdmin = user.email === 'admin@travelvic.com'; // Replace with your admin email
+                    const isDriver = user.email.endsWith('@driver.travelvic.com'); // Example driver email pattern
+                    
+                    if (isAdmin) {
+                        showAdminSection();
+                    } else if (isDriver) {
+                        showDriverApp();
+                        initDriverLocationUpdates(user.uid);
+                    } else {
+                        showMainApp();
+                        loadUserData(user.uid);
+                    }
+                } else {
+                    // No user is signed in
+                    showAuthSection();
+                }
+            });
 
-    <footer>
-        <p>&copy; 2025 Zimbabwe Organization for Scientific Research. All rights reserved.</p>
-    </footer>
+            setupEventListeners();
+            populateLocations();
+        }
+
+        function setupEventListeners() {
+            // Auth section tabs
+            document.querySelectorAll('.login-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    document.getElementById('passenger-login').classList.add('hidden');
+                    document.getElementById('passenger-signup').classList.add('hidden');
+                    document.getElementById('admin-login').classList.add('hidden');
+                    document.getElementById('driver-login').classList.add('hidden');
+                    
+                    if (this.dataset.tab === 'passenger') {
+                        document.getElementById('passenger-login').classList.remove('hidden');
+                    } else if (this.dataset.tab === 'admin') {
+                        document.getElementById('admin-login').classList.remove('hidden');
+                    } else if (this.dataset.tab === 'driver') {
+                        document.getElementById('driver-login').classList.remove('hidden');
+                    }
+                });
+            });
+
+            // Passenger auth
+            document.getElementById('passengerLoginBtn').addEventListener('click', passengerLogin);
+            document.getElementById('passengerSignupBtn').addEventListener('click', passengerSignup);
+            document.getElementById('showPassengerSignup').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('passenger-login').classList.add('hidden');
+                document.getElementById('passenger-signup').classList.remove('hidden');
+            });
+            document.getElementById('showPassengerLogin').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('passenger-signup').classList.add('hidden');
+                document.getElementById('passenger-login').classList.remove('hidden');
+            });
+
+            // Admin auth
+            document.getElementById('adminLoginBtn').addEventListener('click', adminLogin);
+
+            // Driver auth
+            document.getElementById('driverLoginBtn').addEventListener('click', driverLogin);
+            document.getElementById('showDriverSignup').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('driver-login').classList.add('hidden');
+                document.getElementById('driver-registration').classList.remove('hidden');
+            });
+            document.getElementById('showDriverLoginFromReg').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('driver-registration').classList.add('hidden');
+                document.getElementById('driver-login').classList.remove('hidden');
+            });
+            document.getElementById('registerDriverBtn').addEventListener('click', registerDriver);
+            document.getElementById('backToLoginAdmin').addEventListener('click', () => {
+                document.getElementById('driver-registration').classList.add('hidden');
+                document.getElementById('auth-section').classList.remove('hidden');
+            });
+
+            // Main app
+            document.getElementById('planTripBtn').addEventListener('click', planTrip);
+            document.getElementById('swapLocations').addEventListener('click', swapLocations);
+            document.getElementById('logoutBtn').addEventListener('click', () => auth.signOut());
+
+            // Driver app
+            document.getElementById('driverAvailabilityToggle').addEventListener('change', updateDriverAvailability);
+            document.getElementById('driverLogoutBtn').addEventListener('click', () => auth.signOut());
+            document.getElementById('completeBookingBtn').addEventListener('click', completeBooking);
+        }
+
+        // Show different sections of the app
+        function showAuthSection() {
+            document.getElementById('auth-section').classList.remove('hidden');
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('driver-app').classList.add('hidden');
+            document.getElementById('driver-registration').classList.add('hidden');
+        }
+
+        function showMainApp() {
+            document.getElementById('auth-section').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            document.getElementById('driver-app').classList.add('hidden');
+            document.getElementById('driver-registration').classList.add('hidden');
+        }
+
+        function showAdminSection() {
+            document.getElementById('auth-section').classList.add('hidden');
+            document.getElementById('driver-registration').classList.remove('hidden');
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('driver-app').classList.add('hidden');
+        }
+
+        function showDriverApp() {
+            document.getElementById('auth-section').classList.add('hidden');
+            document.getElementById('driver-app').classList.remove('hidden');
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('driver-registration').classList.add('hidden');
+        }
+
+        // Auth functions
+        async function passengerLogin() {
+            const email = document.getElementById('passengerEmail').value;
+            const password = document.getElementById('passengerPassword').value;
+            
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (error) {
+                alert('Login failed: ' + error.message);
+            }
+        }
+
+        async function passengerSignup() {
+            const name = document.getElementById('passengerName').value;
+            const email = document.getElementById('passengerSignupEmail').value;
+            const password = document.getElementById('passengerSignupPassword').value;
+            
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                await db.collection('passengers').doc(userCredential.user.uid).set({
+                    name,
+                    email,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            } catch (error) {
+                alert('Signup failed: ' + error.message);
+            }
+        }
+
+        async function adminLogin() {
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (error) {
+                alert('Admin login failed: ' + error.message);
+            }
+        }
+
+        async function driverLogin() {
+            const email = document.getElementById('driverEmail').value;
+            const password = document.getElementById('driverPassword').value;
+            
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (error) {
+                alert('Driver login failed: ' + error.message);
+            }
+        }
+
+        async function registerDriver() {
+            const name = document.getElementById('driverName').value;
+            const email = document.getElementById('driverRegEmail').value;
+            const password = document.getElementById('driverRegPassword').value;
+            const phone = document.getElementById('driverPhone').value;
+            const carReg = document.getElementById('driverCarReg').value;
+            const capacity = document.getElementById('driverCapacity').value;
+            
+            try {
+                // Create auth account
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                
+                // Add driver to Firestore
+                await db.collection('drivers').doc(userCredential.user.uid).set({
+                    name,
+                    email,
+                    phone,
+                    carReg,
+                    capacity: parseInt(capacity),
+                    isAvailable: true,
+                    coords: null,
+                    lastUpdated: null,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                alert('Driver registered successfully!');
+                showDriverApp();
+                initDriverLocationUpdates(userCredential.user.uid);
+            } catch (error) {
+                alert('Registration failed: ' + error.message);
+            }
+        }
+
+        // Driver functions
+        let driverMap;
+        let driverMarker;
+        let driverWatchId;
+        let currentDriverId;
+
+        function initDriverLocationUpdates(driverId) {
+            currentDriverId = driverId;
+            
+            // Initialize driver map
+            driverMap = L.map('driverMap').setView([-17.9319, 25.8306], 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(driverMap);
+            
+            // Start tracking driver's location
+            if (navigator.geolocation) {
+                driverWatchId = navigator.geolocation.watchPosition(
+                    position => {
+                        const coords = [position.coords.latitude, position.coords.longitude];
+                        
+                        // Update driver's location in Firestore
+                        db.collection('drivers').doc(driverId).update({
+                            coords,
+                            lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+                        });
+                        
+                        // Update map marker
+                        if (driverMarker) {
+                            driverMarker.setLatLng(coords);
+                        } else {
+                            driverMarker = L.marker(coords).addTo(driverMap)
+                                .bindPopup("Your Location")
+                                .openPopup();
+                        }
+                        
+                        driverMap.setView(coords, 14);
+                    },
+                    error => {
+                        console.error('Geolocation error:', error);
+                    },
+                    { enableHighAccuracy: true }
+                );
+            } else {
+                alert('Geolocation is not supported by your browser');
+            }
+            
+            // Listen for bookings
+            db.collection('bookings')
+                .where('driverId', '==', driverId)
+                .where('status', '==', 'assigned')
+                .onSnapshot(snapshot => {
+                    snapshot.docChanges().forEach(change => {
+                        if (change.type === 'added') {
+                            displayCurrentBooking(change.doc.data(), change.doc.id);
+                        }
+                    });
+                });
+        }
+
+        async function updateDriverAvailability() {
+            const isAvailable = document.getElementById('driverAvailabilityToggle').checked;
+            document.getElementById('driverStatusText').textContent = isAvailable ? 'Available' : 'Unavailable';
+            
+            try {
+                await db.collection('drivers').doc(currentDriverId).update({
+                    isAvailable
+                });
+            } catch (error) {
+                console.error('Error updating availability:', error);
+            }
+        }
+
+        function displayCurrentBooking(booking, bookingId) {
+            const bookingDetails = document.getElementById('bookingDetails');
+            bookingDetails.innerHTML = `
+                <p><strong>From:</strong> ${booking.pickupLocation}</p>
+                <p><strong>To:</strong> ${booking.destination}</p>
+                <p><strong>Passengers:</strong> ${booking.passengerCount}</p>
+                <p><strong>Fare:</strong> $${booking.fare}</p>
+                <p><strong>Payment Method:</strong> ${booking.paymentMethod}</p>
+            `;
+            document.getElementById('currentBooking').classList.remove('hidden');
+            
+            // Store booking ID for completion
+            document.getElementById('completeBookingBtn').dataset.bookingId = bookingId;
+        }
+
+        async function completeBooking() {
+            const bookingId = document.getElementById('completeBookingBtn').dataset.bookingId;
+            
+            try {
+                await db.collection('bookings').doc(bookingId).update({
+                    status: 'completed',
+                    completedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                document.getElementById('currentBooking').classList.add('hidden');
+                alert('Booking marked as completed!');
+            } catch (error) {
+                console.error('Error completing booking:', error);
+            }
+        }
+
+        // Main app functions
+        const localTransportData = {
+            "Victoria Falls Hotel": { arrival_time: "10 min", icon: "🏨", coords: [-17.9333, 25.8267] },
+            "Zambezi National Park": { arrival_time: "15 min", icon: "🐘", coords: [-17.8833, 25.6167] },
+            "Town Center": { arrival_time: "5 min", icon: "🏙️", coords: [-17.9319, 25.8306] },
+            "Victoria Falls Airport": { arrival_time: "20 min", icon: "✈️", coords: [-18.0956, 25.8392] },
+            "Curio Market": { arrival_time: "7 min", icon: "🛍️", coords: [-17.9325, 25.8328] },
+            "The Lookout Cafe": { arrival_time: "12 min", icon: "☕", coords: [-17.9286, 25.8425] },
+            "Elephant's Walk Shopping Village": { arrival_time: "8 min", icon: "🐘", coords: [-17.9147, 25.8183] },
+            "Boma Dinner & Drum Show": { arrival_time: "18 min", icon: "🥁", coords: [-17.9069, 25.8236] },
+            "Victoria Falls Bridge": { arrival_time: "15 min", icon: "🌉", coords: [-17.9310, 25.8267] },
+            "Rainbow Falls": { arrival_time: "25 min", icon: "🌈", coords: [-17.9267, 25.8536] },
+            "Devil's Pool": { arrival_time: "30 min", icon: "😈", coords: [-17.9278, 25.8542] },
+            "Livingstone Island": { arrival_time: "35 min", icon: "🏝️", coords: [-17.9283, 25.8550] },
+            "Victoria Falls National Park": { arrival_time: "12 min", icon: "🌳", coords: [-17.9281, 25.8408] },
+            "Chinotimba Township": { arrival_time: "10 min", icon: "🏘️", coords: [-17.9236, 25.8167] },
+            "Victoria Falls CBD": { arrival_time: "5 min", icon: "🏙️", coords: [-17.9333, 25.8333] }
+        };
+
+        let map;
+        let userMarker;
+        let rideHistory = [];
+        let currentUser = null;
+
+        function loadUserData(userId) {
+            currentUser = userId;
+            
+            // Load ride history
+            db.collection('bookings')
+                .where('userId', '==', userId)
+                .orderBy('createdAt', 'desc')
+                .limit(5)
+                .get()
+                .then(snapshot => {
+                    rideHistory = [];
+                    snapshot.forEach(doc => {
+                        rideHistory.push(doc.data());
+                    });
+                    displayRideHistory();
+                });
+        }
+
+        function populateLocations() {
+            const startLocationSelect = document.getElementById('startLocation');
+            const endLocationSelect = document.getElementById('endLocation');
+            
+            // Clear existing options
+            startLocationSelect.innerHTML = '';
+            endLocationSelect.innerHTML = '';
+            
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select a location';
+            startLocationSelect.appendChild(defaultOption.cloneNode(true));
+            endLocationSelect.appendChild(defaultOption.cloneNode(true));
+            
+            // Add locations
+            Object.keys(localTransportData).forEach(location => {
+                const option = document.createElement('option');
+                option.value = location;
+                option.textContent = location;
+                startLocationSelect.appendChild(option.cloneNode(true));
+                endLocationSelect.appendChild(option);
+            });
+        }
+
+        function swapLocations() {
+            const startLocation = document.getElementById('startLocation');
+            const endLocation = document.getElementById('endLocation');
+            const temp = startLocation.value;
+            startLocation.value = endLocation.value;
+            endLocation.value = temp;
+        }
+
+        function haversineDistance(coords1, coords2) {
+            const R = 6371; // Radius of the Earth in km
+            const dLat = (coords2[0] - coords1[0]) * Math.PI / 180;
+            const dLon = (coords2[1] - coords1[1]) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(coords1[0] * Math.PI / 180) * Math.cos(coords2[0] * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c; // Distance in km
+        }
+
+        function calculateFare(startCoords, endCoords) {
+            const distance = haversineDistance(startCoords, endCoords);
+            const baseFare = 3.00;
+            const perKmRate = 0.80;
+            const minimumFare = 5.00;
+            
+            let fare = baseFare + (distance * perKmRate);
+            fare = Math.max(fare, minimumFare);
+            
+            // Round to nearest 0.50 for cash convenience
+            fare = Math.ceil(fare * 2) / 2;
+            
+            return fare.toFixed(2);
+        }
+
+        async function planTrip() {
+            const startLocation = document.getElementById('startLocation').value;
+            const endLocation = document.getElementById('endLocation').value;
+            const passengerCount = parseInt(document.getElementById('passengerCount').value);
+            
+            if (!startLocation || !endLocation) {
+                alert('Please select both start and end locations');
+                return;
+            }
+            
+            if (startLocation === endLocation) {
+                alert('Start and destination cannot be the same');
+                return;
+            }
+            
+            if (!passengerCount || passengerCount < 1) {
+                alert('Please enter a valid number of passengers');
+                return;
+            }
+            
+            const startCoords = localTransportData[startLocation].coords;
+            const endCoords = localTransportData[endLocation].coords;
+            const fare = calculateFare(startCoords, endCoords);
+            
+            // Find available drivers
+            const querySnapshot = await db.collection('drivers')
+                .where('isAvailable', '==', true)
+                .where('capacity', '>=', passengerCount)
+                .orderBy('lastUpdated', 'desc')
+                .limit(3)
+                .get();
+            
+            const availableDrivers = [];
+            querySnapshot.forEach(doc => {
+                availableDrivers.push({ id: doc.id, ...doc.data() });
+            });
+            
+            displayTripOptions(availableDrivers, endLocation, fare);
+        }
+
+        function displayTripOptions(drivers, destination, fare) {
+            const resultsContainer = document.getElementById('results-container');
+            resultsContainer.innerHTML = '';
+            
+            if (drivers.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="card p-4 mb-4">
+                        <h3>No available drivers found for your request</h3>
+                        <p>Please try again later or adjust your passenger count</p>
+                    </div>
+                `;
+            } else {
+                drivers.forEach(driver => {
+                    const destinationInfo = localTransportData[destination];
+                    resultsContainer.innerHTML += `
+                        <div class="card p-4 mb-4">
+                            <h3>${destinationInfo.icon} ${destination}</h3>
+                            <p>Arrival Time: ${destinationInfo.arrival_time}</p>
+                            <p>Driver: ${driver.name}</p>
+                            <p>Phone: <a href="tel:${driver.phone}">${driver.phone}</a></p>
+                            <p>Car Reg: ${driver.carReg}</p>
+                            <p>Capacity: ${driver.capacity}</p>
+                            <p>Estimated Fare: $${fare}</p>
+                            <button class="btn-primary" onclick="confirmRide('${driver.id}', '${destination}', ${fare})">Book This Ride</button>
+                        </div>
+                    `;
+                });
+            }
+            
+            document.getElementById('results').classList.remove('hidden');
+            initMap(localTransportData[destination].coords, drivers);
+        }
+
+        async function confirmRide(driverId, destination, fare) {
+            const paymentMethod = prompt('Enter payment method (cash or transfer):', 'cash');
+            
+            if (!paymentMethod) return;
+            
+            try {
+                // Create booking
+                const bookingRef = await db.collection('bookings').add({
+                    userId: currentUser,
+                    driverId,
+                    pickupLocation: document.getElementById('startLocation').value,
+                    destination,
+                    passengerCount: parseInt(document.getElementById('passengerCount').value),
+                    fare,
+                    paymentMethod,
+                    status: 'assigned',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                // Update driver availability
+                await db.collection('drivers').doc(driverId).update({
+                    isAvailable: false
+                });
+                
+                // Add to ride history
+                rideHistory.unshift({
+                    destination,
+                    fare,
+                    driverId,
+                    createdAt: new Date().toISOString()
+                });
+                
+                displayRideHistory();
+                alert('Ride booked successfully! Driver has been notified.');
+            } catch (error) {
+                console.error('Error booking ride:', error);
+                alert('Failed to book ride. Please try again.');
+            }
+        }
+
+        function displayRideHistory() {
+            const historyContainer = document.getElementById('history-container');
+            historyContainer.innerHTML = '';
+            
+            if (rideHistory.length === 0) {
+                historyContainer.innerHTML = '<p>No ride history yet</p>';
+                return;
+            }
+            
+            rideHistory.forEach(ride => {
+                historyContainer.innerHTML += `
+                    <div class="card p-4 mb-4">
+                        <p><strong>To:</strong> ${ride.destination}</p>
+                        <p><strong>Fare:</strong> $${ride.fare}</p>
+                        <p><strong>Date:</strong> ${new Date(ride.createdAt).toLocaleString()}</p>
+                        <p><strong>Status:</strong> ${ride.status || 'completed'}</p>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('ride-history').classList.remove('hidden');
+        }
+
+        function initMap(destinationCoords, drivers) {
+            const mapElement = document.getElementById('map');
+            
+            if (map) {
+                map.remove();
+            }
+            
+            map = L.map('map').setView(destinationCoords, 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+            
+            // Destination marker
+            L.marker(destinationCoords).addTo(map)
+                .bindPopup("Destination")
+                .openPopup();
+            
+            // Driver markers
+            drivers.forEach(driver => {
+                if (driver.coords) {
+                    const driverIcon = L.divIcon({
+                        className: `driver-marker ${driver.isAvailable ? 'available-driver' : 'unavailable-driver'}`,
+                        html: ''
+                    });
+                    
+                    L.marker(driver.coords, { icon: driverIcon }).addTo(map)
+                        .bindPopup(`Driver: ${driver.name}<br>Car: ${driver.carReg}`);
+                }
+            });
+            
+            // User's location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const userCoords = [position.coords.latitude, position.coords.longitude];
+                    
+                    userMarker = L.marker(userCoords).addTo(map)
+                        .bindPopup("Your Location")
+                        .openPopup();
+                    
+                    map.setView(userCoords, 14);
+                }, () => {
+                    console.log('Unable to retrieve your location');
+                });
+            }
+            
+            mapElement.classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
