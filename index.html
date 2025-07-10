@@ -3,806 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Vic</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <title>Tendy Three Investments - Your City Parking Solution in Bulawayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
+        /* Basic Reset & Typography */
         body {
-            font-family: 'Inter', sans-serif;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
         }
-        .card {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .btn-primary {
-            background-color: #4f46e5;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
+
+        h1, h2, h3 {
+            color: #0056b3; /* A strong blue for headings */
+            font-weight: 700;
+            margin-bottom: 20px;
         }
-        .btn-primary:hover {
-            background-color: #4338ca;
+
+        p {
+            margin-bottom: 15px;
         }
-        #map {
-            height: 400px;
-            width: 100%;
+
+        a {
+            color: #007bff;
+            text-decoration: none;
         }
-        .login-tab {
-            padding: 0.5rem 1rem;
-            cursor: pointer;
+
+        a:hover {
+            text-decoration: underline;
         }
-        .login-tab.active {
-            border-bottom: 2px solid #4f46e5;
-            color: #4f46e5;
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #555;
             font-weight: 600;
+            transition: color 0.3s ease;
         }
-        .driver-marker {
-            background-color: #4f46e5;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: block;
+
+        nav ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
         }
-        .available-driver {
-            background-color: #10b981;
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #0056b3;
         }
-        .unavailable-driver {
-            background-color: #ef4444;
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn.secondary {
+            background-color: #eee;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn.secondary:hover {
+            background-color: #ddd;
+            color: #0056b3;
+        }
+
+        /* Hero Section */
+        .hero {
+            /* Placeholder image, replace with a relevant Bulawayo parking image */
+            background: url('https://via.placeholder.com/1920x600/0056b3/ffffff?text=Tendy+Three+Parking+in+Bulawayo') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero::before { /* Overlay for better text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta .btn {
+            margin: 0 10px;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item i {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Map Snippet Section */
+        .map-snippet {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .map-snippet h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .map-placeholder {
+            background-color: #e0e0e0;
+            height: 400px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure iframe fits */
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links ul li {
+            margin: 0 15px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        .footer-links ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav {
+                order: 3; /* Move nav below logo and toggle */
+                width: 100%;
+                display: none; /* Hidden by default for mobile */
+                flex-direction: column;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            nav.active {
+                display: flex; /* Show when active */
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .logo {
+                flex-grow: 1; /* Allow logo to take space */
+                text-align: center; /* Center logo on smaller screens */
+            }
+
+            .hero {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-cta .btn {
+                margin: 0; /* Remove horizontal margin */
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    <div id="app" class="min-h-screen flex flex-col items-center justify-center p-4">
-        <div class="w-full max-w-3xl mx-auto bg-white rounded-2xl shadow-2xl p-6">
-            <header class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-800">Victoria Falls Transit Planner</h1>
-                <p class="text-gray-600 mt-2">Your guide to getting around in Vic Falls, Zimbabwe.</p>
-            </header>
-
-            <div id="auth-section" class="mb-6">
-                <div class="flex justify-center space-x-4 mb-4">
-                    <div class="login-tab active" data-tab="passenger">Passenger</div>
-                    <div class="login-tab" data-tab="admin">Admin</div>
-                    <div class="login-tab" data-tab="driver">Driver</div>
-                </div>
-
-                <!-- Passenger Login -->
-                <div id="passenger-login" class="auth-form">
-                    <h2 class="text-xl font-bold mb-4">Passenger Login</h2>
-                    <input type="email" id="passengerEmail" placeholder="Email" class="border p-2 w-full mb-2">
-                    <input type="password" id="passengerPassword" placeholder="Password" class="border p-2 w-full mb-4">
-                    <button id="passengerLoginBtn" class="btn-primary w-full">Login as Passenger</button>
-                    <p class="text-center mt-2">Don't have an account? <a href="#" id="showPassengerSignup" class="text-blue-600">Sign up</a></p>
-                </div>
-
-                <!-- Passenger Signup -->
-                <div id="passenger-signup" class="auth-form hidden">
-                    <h2 class="text-xl font-bold mb-4">Passenger Sign Up</h2>
-                    <input type="text" id="passengerName" placeholder="Full Name" class="border p-2 w-full mb-2">
-                    <input type="email" id="passengerSignupEmail" placeholder="Email" class="border p-2 w-full mb-2">
-                    <input type="password" id="passengerSignupPassword" placeholder="Password" class="border p-2 w-full mb-4">
-                    <button id="passengerSignupBtn" class="btn-primary w-full">Create Account</button>
-                    <p class="text-center mt-2">Already have an account? <a href="#" id="showPassengerLogin" class="text-blue-600">Login</a></p>
-                </div>
-
-                <!-- Admin Login -->
-                <div id="admin-login" class="auth-form hidden">
-                    <h2 class="text-xl font-bold mb-4">Admin Login</h2>
-                    <input type="email" id="adminEmail" placeholder="Email" class="border p-2 w-full mb-2">
-                    <input type="password" id="adminPassword" placeholder="Password" class="border p-2 w-full mb-4">
-                    <button id="adminLoginBtn" class="btn-primary w-full">Login as Admin</button>
-                </div>
-
-                <!-- Driver Login -->
-                <div id="driver-login" class="auth-form hidden">
-                    <h2 class="text-xl font-bold mb-4">Driver Login</h2>
-                    <input type="email" id="driverEmail" placeholder="Email" class="border p-2 w-full mb-2">
-                    <input type="password" id="driverPassword" placeholder="Password" class="border p-2 w-full mb-4">
-                    <button id="driverLoginBtn" class="btn-primary w-full">Login as Driver</button>
-                    <p class="text-center mt-2">Don't have an account? <a href="#" id="showDriverSignup" class="text-blue-600">Register</a></p>
-                </div>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Tendy Three Investments</a>
             </div>
-
-            <div id="driver-registration" class="mb-6 hidden">
-                <button id="backToLoginAdmin" class="btn-primary mb-4">Back to Login</button>
-                <h2 class="text-xl font-bold">Driver Registration</h2>
-                <input type="text" id="driverName" placeholder="Driver Name" class="border p-2 w-full mb-2">
-                <input type="email" id="driverRegEmail" placeholder="Email" class="border p-2 w-full mb-2">
-                <input type="password" id="driverRegPassword" placeholder="Password" class="border p-2 w-full mb-2">
-                <input type="text" id="driverPhone" placeholder="Phone Number" class="border p-2 w-full mb-2">
-                <input type="text" id="driverCarReg" placeholder="Car Registration Number" class="border p-2 w-full mb-2">
-                <input type="number" id="driverCapacity" placeholder="Passenger Capacity" class="border p-2 w-full mb-2">
-                <button id="registerDriverBtn" class="btn-primary w-full">Register Driver</button>
-                <p class="text-center mt-2">Already have an account? <a href="#" id="showDriverLoginFromReg" class="text-blue-600">Login</a></p>
-            </div>
-
-            <div id="driver-app" class="hidden">
-                <button id="driverLogoutBtn" class="btn-primary mb-4">Logout</button>
-                <h2 class="text-xl font-bold mb-4">Driver Dashboard</h2>
-                <div class="card p-4 mb-4">
-                    <h3 class="font-bold mb-2">Your Status</h3>
-                    <div class="flex items-center mb-4">
-                        <span class="mr-2">Availability:</span>
-                        <label class="switch mr-2">
-                            <input type="checkbox" id="driverAvailabilityToggle" checked>
-                            <span class="slider round"></span>
-                        </label>
-                        <span id="driverStatusText">Available</span>
-                    </div>
-                    <div id="currentBooking" class="hidden">
-                        <h3 class="font-bold mb-2">Current Booking</h3>
-                        <div id="bookingDetails" class="p-3 bg-gray-100 rounded"></div>
-                        <button id="completeBookingBtn" class="btn-primary mt-2">Complete Booking</button>
-                    </div>
-                </div>
-                <div id="driverMapContainer">
-                    <h3 class="font-bold mb-2">Your Location</h3>
-                    <div id="driverMap" class="h-64 w-full mb-4"></div>
-                </div>
-            </div>
-
-            <div id="main-app" class="hidden">
-                <button id="logoutBtn" class="btn-primary mb-4">Logout</button>
-                <h2 class="text-xl font-bold">Plan Your Trip</h2>
-                <div class="flex items-center justify-between mb-6">
-                    <select id="startLocation" class="border p-2 w-1/2"></select>
-                    <button id="swapLocations" class="btn-primary">Swap</button>
-                    <select id="endLocation" class="border p-2 w-1/2"></select>
-                </div>
-                <input type="number" id="passengerCount" placeholder="Number of Passengers" class="border p-2 w-full mb-4">
-                <button id="planTripBtn" class="btn-primary w-full">Plan My Trip</button>
-
-                <div id="paymentOptions" class="hidden mt-4">
-                    <h2>Select Payment Method</h2>
-                    <select id="paymentMethod" class="border p-2 w-full mb-4">
-                        <option value="cash">Cash</option>
-                        <option value="transfer">Bank Transfer</option>
-                    </select>
-                    <button id="confirmPaymentBtn" class="btn-primary w-full">Confirm Payment</button>
-                </div>
-
-                <div id="results" class="hidden mt-4">
-                    <h2>Your Trip Options</h2>
-                    <div id="results-container" class="mt-4"></div>
-                </div>
-
-                <div id="ride-history" class="hidden mt-4">
-                    <h2>Your Ride History</h2>
-                    <div id="history-container" class="mt-4"></div>
-                </div>
-
-                <div id="map" class="hidden mt-4"></div>
-            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Parking Services</a></li>
+                    <li><a href="rates.html">Rates & Passes</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
         </div>
-    </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Stress-Free Parking in Bulawayo City Centre.</h1>
+                <p>Find, Reserve, and Pay for your parking with Tendy Three – Easy, Secure, and Affordable.</p>
+                <div class="hero-cta">
+                    <a href="locations.html" class="btn primary">Find Parking Now</a>
+                    <a href="services.html" class="btn secondary">Learn More About Our Services</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <div class="container">
+                <h2>Why Choose Tendy Three?</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Convenience</h3>
+                        <p>Easy Mobile Payments & Extensions right from your phone.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Security</h3>
+                        <p>Secure & Monitored Facilities for your peace of mind.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-tags"></i>
+                        <h3>Affordability</h3>
+                        <p>Transparent Rates & Flexible Passes to suit your needs.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Local Experts</h3>
+                        <p>Bulawayo's Trusted Parking Partner, understanding your city.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-snippet">
+            <div class="container">
+                <h2>Our Locations</h2>
+                <div class="map-placeholder">
+                    <iframe src="https://maps.google.com/maps?q=Bulawayo%20City%20Centre&t=&z=13&ie=UTF8&iwloc=&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <a href="locations.html" class="btn primary">View All Locations</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            <p>© 2025 Tendy Three Investments. All rights reserved.</p>
+            <p>Your Convenient Parking Solution in Bulawayo.</p>
+        </div>
+    </footer>
 
     <script>
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
-
-        // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
-            initApp();
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
         });
-
-        function initApp() {
-            // Check auth state
-            auth.onAuthStateChanged(user => {
-                if (user) {
-                    // User is signed in
-                    const isAdmin = user.email === 'admin@travelvic.com'; // Replace with your admin email
-                    const isDriver = user.email.endsWith('@driver.travelvic.com'); // Example driver email pattern
-                    
-                    if (isAdmin) {
-                        showAdminSection();
-                    } else if (isDriver) {
-                        showDriverApp();
-                        initDriverLocationUpdates(user.uid);
-                    } else {
-                        showMainApp();
-                        loadUserData(user.uid);
-                    }
-                } else {
-                    // No user is signed in
-                    showAuthSection();
-                }
-            });
-
-            setupEventListeners();
-            populateLocations();
-        }
-
-        function setupEventListeners() {
-            // Auth section tabs
-            document.querySelectorAll('.login-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    document.getElementById('passenger-login').classList.add('hidden');
-                    document.getElementById('passenger-signup').classList.add('hidden');
-                    document.getElementById('admin-login').classList.add('hidden');
-                    document.getElementById('driver-login').classList.add('hidden');
-                    
-                    if (this.dataset.tab === 'passenger') {
-                        document.getElementById('passenger-login').classList.remove('hidden');
-                    } else if (this.dataset.tab === 'admin') {
-                        document.getElementById('admin-login').classList.remove('hidden');
-                    } else if (this.dataset.tab === 'driver') {
-                        document.getElementById('driver-login').classList.remove('hidden');
-                    }
-                });
-            });
-
-            // Passenger auth
-            document.getElementById('passengerLoginBtn').addEventListener('click', passengerLogin);
-            document.getElementById('passengerSignupBtn').addEventListener('click', passengerSignup);
-            document.getElementById('showPassengerSignup').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('passenger-login').classList.add('hidden');
-                document.getElementById('passenger-signup').classList.remove('hidden');
-            });
-            document.getElementById('showPassengerLogin').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('passenger-signup').classList.add('hidden');
-                document.getElementById('passenger-login').classList.remove('hidden');
-            });
-
-            // Admin auth
-            document.getElementById('adminLoginBtn').addEventListener('click', adminLogin);
-
-            // Driver auth
-            document.getElementById('driverLoginBtn').addEventListener('click', driverLogin);
-            document.getElementById('showDriverSignup').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('driver-login').classList.add('hidden');
-                document.getElementById('driver-registration').classList.remove('hidden');
-            });
-            document.getElementById('showDriverLoginFromReg').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('driver-registration').classList.add('hidden');
-                document.getElementById('driver-login').classList.remove('hidden');
-            });
-            document.getElementById('registerDriverBtn').addEventListener('click', registerDriver);
-            document.getElementById('backToLoginAdmin').addEventListener('click', () => {
-                document.getElementById('driver-registration').classList.add('hidden');
-                document.getElementById('auth-section').classList.remove('hidden');
-            });
-
-            // Main app
-            document.getElementById('planTripBtn').addEventListener('click', planTrip);
-            document.getElementById('swapLocations').addEventListener('click', swapLocations);
-            document.getElementById('logoutBtn').addEventListener('click', () => auth.signOut());
-
-            // Driver app
-            document.getElementById('driverAvailabilityToggle').addEventListener('change', updateDriverAvailability);
-            document.getElementById('driverLogoutBtn').addEventListener('click', () => auth.signOut());
-            document.getElementById('completeBookingBtn').addEventListener('click', completeBooking);
-        }
-
-        // Show different sections of the app
-        function showAuthSection() {
-            document.getElementById('auth-section').classList.remove('hidden');
-            document.getElementById('main-app').classList.add('hidden');
-            document.getElementById('driver-app').classList.add('hidden');
-            document.getElementById('driver-registration').classList.add('hidden');
-        }
-
-        function showMainApp() {
-            document.getElementById('auth-section').classList.add('hidden');
-            document.getElementById('main-app').classList.remove('hidden');
-            document.getElementById('driver-app').classList.add('hidden');
-            document.getElementById('driver-registration').classList.add('hidden');
-        }
-
-        function showAdminSection() {
-            document.getElementById('auth-section').classList.add('hidden');
-            document.getElementById('driver-registration').classList.remove('hidden');
-            document.getElementById('main-app').classList.add('hidden');
-            document.getElementById('driver-app').classList.add('hidden');
-        }
-
-        function showDriverApp() {
-            document.getElementById('auth-section').classList.add('hidden');
-            document.getElementById('driver-app').classList.remove('hidden');
-            document.getElementById('main-app').classList.add('hidden');
-            document.getElementById('driver-registration').classList.add('hidden');
-        }
-
-        // Auth functions
-        async function passengerLogin() {
-            const email = document.getElementById('passengerEmail').value;
-            const password = document.getElementById('passengerPassword').value;
-            
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-            } catch (error) {
-                alert('Login failed: ' + error.message);
-            }
-        }
-
-        async function passengerSignup() {
-            const name = document.getElementById('passengerName').value;
-            const email = document.getElementById('passengerSignupEmail').value;
-            const password = document.getElementById('passengerSignupPassword').value;
-            
-            try {
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                await db.collection('passengers').doc(userCredential.user.uid).set({
-                    name,
-                    email,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-            } catch (error) {
-                alert('Signup failed: ' + error.message);
-            }
-        }
-
-        async function adminLogin() {
-            const email = document.getElementById('adminEmail').value;
-            const password = document.getElementById('adminPassword').value;
-            
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-            } catch (error) {
-                alert('Admin login failed: ' + error.message);
-            }
-        }
-
-        async function driverLogin() {
-            const email = document.getElementById('driverEmail').value;
-            const password = document.getElementById('driverPassword').value;
-            
-            try {
-                await auth.signInWithEmailAndPassword(email, password);
-            } catch (error) {
-                alert('Driver login failed: ' + error.message);
-            }
-        }
-
-        async function registerDriver() {
-            const name = document.getElementById('driverName').value;
-            const email = document.getElementById('driverRegEmail').value;
-            const password = document.getElementById('driverRegPassword').value;
-            const phone = document.getElementById('driverPhone').value;
-            const carReg = document.getElementById('driverCarReg').value;
-            const capacity = document.getElementById('driverCapacity').value;
-            
-            try {
-                // Create auth account
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                
-                // Add driver to Firestore
-                await db.collection('drivers').doc(userCredential.user.uid).set({
-                    name,
-                    email,
-                    phone,
-                    carReg,
-                    capacity: parseInt(capacity),
-                    isAvailable: true,
-                    coords: null,
-                    lastUpdated: null,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                alert('Driver registered successfully!');
-                showDriverApp();
-                initDriverLocationUpdates(userCredential.user.uid);
-            } catch (error) {
-                alert('Registration failed: ' + error.message);
-            }
-        }
-
-        // Driver functions
-        let driverMap;
-        let driverMarker;
-        let driverWatchId;
-        let currentDriverId;
-
-        function initDriverLocationUpdates(driverId) {
-            currentDriverId = driverId;
-            
-            // Initialize driver map
-            driverMap = L.map('driverMap').setView([-17.9319, 25.8306], 14);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(driverMap);
-            
-            // Start tracking driver's location
-            if (navigator.geolocation) {
-                driverWatchId = navigator.geolocation.watchPosition(
-                    position => {
-                        const coords = [position.coords.latitude, position.coords.longitude];
-                        
-                        // Update driver's location in Firestore
-                        db.collection('drivers').doc(driverId).update({
-                            coords,
-                            lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
-                        });
-                        
-                        // Update map marker
-                        if (driverMarker) {
-                            driverMarker.setLatLng(coords);
-                        } else {
-                            driverMarker = L.marker(coords).addTo(driverMap)
-                                .bindPopup("Your Location")
-                                .openPopup();
-                        }
-                        
-                        driverMap.setView(coords, 14);
-                    },
-                    error => {
-                        console.error('Geolocation error:', error);
-                    },
-                    { enableHighAccuracy: true }
-                );
-            } else {
-                alert('Geolocation is not supported by your browser');
-            }
-            
-            // Listen for bookings
-            db.collection('bookings')
-                .where('driverId', '==', driverId)
-                .where('status', '==', 'assigned')
-                .onSnapshot(snapshot => {
-                    snapshot.docChanges().forEach(change => {
-                        if (change.type === 'added') {
-                            displayCurrentBooking(change.doc.data(), change.doc.id);
-                        }
-                    });
-                });
-        }
-
-        async function updateDriverAvailability() {
-            const isAvailable = document.getElementById('driverAvailabilityToggle').checked;
-            document.getElementById('driverStatusText').textContent = isAvailable ? 'Available' : 'Unavailable';
-            
-            try {
-                await db.collection('drivers').doc(currentDriverId).update({
-                    isAvailable
-                });
-            } catch (error) {
-                console.error('Error updating availability:', error);
-            }
-        }
-
-        function displayCurrentBooking(booking, bookingId) {
-            const bookingDetails = document.getElementById('bookingDetails');
-            bookingDetails.innerHTML = `
-                <p><strong>From:</strong> ${booking.pickupLocation}</p>
-                <p><strong>To:</strong> ${booking.destination}</p>
-                <p><strong>Passengers:</strong> ${booking.passengerCount}</p>
-                <p><strong>Fare:</strong> $${booking.fare}</p>
-                <p><strong>Payment Method:</strong> ${booking.paymentMethod}</p>
-            `;
-            document.getElementById('currentBooking').classList.remove('hidden');
-            
-            // Store booking ID for completion
-            document.getElementById('completeBookingBtn').dataset.bookingId = bookingId;
-        }
-
-        async function completeBooking() {
-            const bookingId = document.getElementById('completeBookingBtn').dataset.bookingId;
-            
-            try {
-                await db.collection('bookings').doc(bookingId).update({
-                    status: 'completed',
-                    completedAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                document.getElementById('currentBooking').classList.add('hidden');
-                alert('Booking marked as completed!');
-            } catch (error) {
-                console.error('Error completing booking:', error);
-            }
-        }
-
-        // Main app functions
-        const localTransportData = {
-            "Victoria Falls Hotel": { arrival_time: "10 min", icon: "🏨", coords: [-17.9333, 25.8267] },
-            "Zambezi National Park": { arrival_time: "15 min", icon: "🐘", coords: [-17.8833, 25.6167] },
-            "Town Center": { arrival_time: "5 min", icon: "🏙️", coords: [-17.9319, 25.8306] },
-            "Victoria Falls Airport": { arrival_time: "20 min", icon: "✈️", coords: [-18.0956, 25.8392] },
-            "Curio Market": { arrival_time: "7 min", icon: "🛍️", coords: [-17.9325, 25.8328] },
-            "The Lookout Cafe": { arrival_time: "12 min", icon: "☕", coords: [-17.9286, 25.8425] },
-            "Elephant's Walk Shopping Village": { arrival_time: "8 min", icon: "🐘", coords: [-17.9147, 25.8183] },
-            "Boma Dinner & Drum Show": { arrival_time: "18 min", icon: "🥁", coords: [-17.9069, 25.8236] },
-            "Victoria Falls Bridge": { arrival_time: "15 min", icon: "🌉", coords: [-17.9310, 25.8267] },
-            "Rainbow Falls": { arrival_time: "25 min", icon: "🌈", coords: [-17.9267, 25.8536] },
-            "Devil's Pool": { arrival_time: "30 min", icon: "😈", coords: [-17.9278, 25.8542] },
-            "Livingstone Island": { arrival_time: "35 min", icon: "🏝️", coords: [-17.9283, 25.8550] },
-            "Victoria Falls National Park": { arrival_time: "12 min", icon: "🌳", coords: [-17.9281, 25.8408] },
-            "Chinotimba Township": { arrival_time: "10 min", icon: "🏘️", coords: [-17.9236, 25.8167] },
-            "Victoria Falls CBD": { arrival_time: "5 min", icon: "🏙️", coords: [-17.9333, 25.8333] }
-        };
-
-        let map;
-        let userMarker;
-        let rideHistory = [];
-        let currentUser = null;
-
-        function loadUserData(userId) {
-            currentUser = userId;
-            
-            // Load ride history
-            db.collection('bookings')
-                .where('userId', '==', userId)
-                .orderBy('createdAt', 'desc')
-                .limit(5)
-                .get()
-                .then(snapshot => {
-                    rideHistory = [];
-                    snapshot.forEach(doc => {
-                        rideHistory.push(doc.data());
-                    });
-                    displayRideHistory();
-                });
-        }
-
-        function populateLocations() {
-            const startLocationSelect = document.getElementById('startLocation');
-            const endLocationSelect = document.getElementById('endLocation');
-            
-            // Clear existing options
-            startLocationSelect.innerHTML = '';
-            endLocationSelect.innerHTML = '';
-            
-            // Add default option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = 'Select a location';
-            startLocationSelect.appendChild(defaultOption.cloneNode(true));
-            endLocationSelect.appendChild(defaultOption.cloneNode(true));
-            
-            // Add locations
-            Object.keys(localTransportData).forEach(location => {
-                const option = document.createElement('option');
-                option.value = location;
-                option.textContent = location;
-                startLocationSelect.appendChild(option.cloneNode(true));
-                endLocationSelect.appendChild(option);
-            });
-        }
-
-        function swapLocations() {
-            const startLocation = document.getElementById('startLocation');
-            const endLocation = document.getElementById('endLocation');
-            const temp = startLocation.value;
-            startLocation.value = endLocation.value;
-            endLocation.value = temp;
-        }
-
-        function haversineDistance(coords1, coords2) {
-            const R = 6371; // Radius of the Earth in km
-            const dLat = (coords2[0] - coords1[0]) * Math.PI / 180;
-            const dLon = (coords2[1] - coords1[1]) * Math.PI / 180;
-            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                      Math.cos(coords1[0] * Math.PI / 180) * Math.cos(coords2[0] * Math.PI / 180) *
-                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return R * c; // Distance in km
-        }
-
-        function calculateFare(startCoords, endCoords) {
-            const distance = haversineDistance(startCoords, endCoords);
-            const baseFare = 3.00;
-            const perKmRate = 0.80;
-            const minimumFare = 5.00;
-            
-            let fare = baseFare + (distance * perKmRate);
-            fare = Math.max(fare, minimumFare);
-            
-            // Round to nearest 0.50 for cash convenience
-            fare = Math.ceil(fare * 2) / 2;
-            
-            return fare.toFixed(2);
-        }
-
-        async function planTrip() {
-            const startLocation = document.getElementById('startLocation').value;
-            const endLocation = document.getElementById('endLocation').value;
-            const passengerCount = parseInt(document.getElementById('passengerCount').value);
-            
-            if (!startLocation || !endLocation) {
-                alert('Please select both start and end locations');
-                return;
-            }
-            
-            if (startLocation === endLocation) {
-                alert('Start and destination cannot be the same');
-                return;
-            }
-            
-            if (!passengerCount || passengerCount < 1) {
-                alert('Please enter a valid number of passengers');
-                return;
-            }
-            
-            const startCoords = localTransportData[startLocation].coords;
-            const endCoords = localTransportData[endLocation].coords;
-            const fare = calculateFare(startCoords, endCoords);
-            
-            // Find available drivers
-            const querySnapshot = await db.collection('drivers')
-                .where('isAvailable', '==', true)
-                .where('capacity', '>=', passengerCount)
-                .orderBy('lastUpdated', 'desc')
-                .limit(3)
-                .get();
-            
-            const availableDrivers = [];
-            querySnapshot.forEach(doc => {
-                availableDrivers.push({ id: doc.id, ...doc.data() });
-            });
-            
-            displayTripOptions(availableDrivers, endLocation, fare);
-        }
-
-        function displayTripOptions(drivers, destination, fare) {
-            const resultsContainer = document.getElementById('results-container');
-            resultsContainer.innerHTML = '';
-            
-            if (drivers.length === 0) {
-                resultsContainer.innerHTML = `
-                    <div class="card p-4 mb-4">
-                        <h3>No available drivers found for your request</h3>
-                        <p>Please try again later or adjust your passenger count</p>
-                    </div>
-                `;
-            } else {
-                drivers.forEach(driver => {
-                    const destinationInfo = localTransportData[destination];
-                    resultsContainer.innerHTML += `
-                        <div class="card p-4 mb-4">
-                            <h3>${destinationInfo.icon} ${destination}</h3>
-                            <p>Arrival Time: ${destinationInfo.arrival_time}</p>
-                            <p>Driver: ${driver.name}</p>
-                            <p>Phone: <a href="tel:${driver.phone}">${driver.phone}</a></p>
-                            <p>Car Reg: ${driver.carReg}</p>
-                            <p>Capacity: ${driver.capacity}</p>
-                            <p>Estimated Fare: $${fare}</p>
-                            <button class="btn-primary" onclick="confirmRide('${driver.id}', '${destination}', ${fare})">Book This Ride</button>
-                        </div>
-                    `;
-                });
-            }
-            
-            document.getElementById('results').classList.remove('hidden');
-            initMap(localTransportData[destination].coords, drivers);
-        }
-
-        async function confirmRide(driverId, destination, fare) {
-            const paymentMethod = prompt('Enter payment method (cash or transfer):', 'cash');
-            
-            if (!paymentMethod) return;
-            
-            try {
-                // Create booking
-                const bookingRef = await db.collection('bookings').add({
-                    userId: currentUser,
-                    driverId,
-                    pickupLocation: document.getElementById('startLocation').value,
-                    destination,
-                    passengerCount: parseInt(document.getElementById('passengerCount').value),
-                    fare,
-                    paymentMethod,
-                    status: 'assigned',
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                
-                // Update driver availability
-                await db.collection('drivers').doc(driverId).update({
-                    isAvailable: false
-                });
-                
-                // Add to ride history
-                rideHistory.unshift({
-                    destination,
-                    fare,
-                    driverId,
-                    createdAt: new Date().toISOString()
-                });
-                
-                displayRideHistory();
-                alert('Ride booked successfully! Driver has been notified.');
-            } catch (error) {
-                console.error('Error booking ride:', error);
-                alert('Failed to book ride. Please try again.');
-            }
-        }
-
-        function displayRideHistory() {
-            const historyContainer = document.getElementById('history-container');
-            historyContainer.innerHTML = '';
-            
-            if (rideHistory.length === 0) {
-                historyContainer.innerHTML = '<p>No ride history yet</p>';
-                return;
-            }
-            
-            rideHistory.forEach(ride => {
-                historyContainer.innerHTML += `
-                    <div class="card p-4 mb-4">
-                        <p><strong>To:</strong> ${ride.destination}</p>
-                        <p><strong>Fare:</strong> $${ride.fare}</p>
-                        <p><strong>Date:</strong> ${new Date(ride.createdAt).toLocaleString()}</p>
-                        <p><strong>Status:</strong> ${ride.status || 'completed'}</p>
-                    </div>
-                `;
-            });
-            
-            document.getElementById('ride-history').classList.remove('hidden');
-        }
-
-        function initMap(destinationCoords, drivers) {
-            const mapElement = document.getElementById('map');
-            
-            if (map) {
-                map.remove();
-            }
-            
-            map = L.map('map').setView(destinationCoords, 14);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
-            
-            // Destination marker
-            L.marker(destinationCoords).addTo(map)
-                .bindPopup("Destination")
-                .openPopup();
-            
-            // Driver markers
-            drivers.forEach(driver => {
-                if (driver.coords) {
-                    const driverIcon = L.divIcon({
-                        className: `driver-marker ${driver.isAvailable ? 'available-driver' : 'unavailable-driver'}`,
-                        html: ''
-                    });
-                    
-                    L.marker(driver.coords, { icon: driverIcon }).addTo(map)
-                        .bindPopup(`Driver: ${driver.name}<br>Car: ${driver.carReg}`);
-                }
-            });
-            
-            // User's location
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    const userCoords = [position.coords.latitude, position.coords.longitude];
-                    
-                    userMarker = L.marker(userCoords).addTo(map)
-                        .bindPopup("Your Location")
-                        .openPopup();
-                    
-                    map.setView(userCoords, 14);
-                }, () => {
-                    console.log('Unable to retrieve your location');
-                });
-            }
-            
-            mapElement.classList.remove('hidden');
-        }
     </script>
 </body>
 </html>
