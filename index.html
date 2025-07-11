@@ -3,13 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tendy Three Investments Parking Solutions - Your City Parking Solution in Bulawayo
-    </title> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Tendy Three Investments Parking Solutions - Your City Parking Solution in Bulawayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        /* ... (Your existing CSS here) ... */
+        /* Basic Reset & Typography */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
 
-        /* Added Styles for New Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3; /* A strong blue for headings */
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #0056b3;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn.secondary {
+            background-color: #eee;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn.secondary:hover {
+            background-color: #ddd;
+            color: #0056b3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1920x600/0056b3/ffffff?text=Tendy+Three+Parking+in+Bulawayo') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero::before { /* Overlay for better text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta .btn {
+            margin: 0 10px;
+        }
+
+        /* Why Choose Us Section - Redesigned */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .features-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .feature-tab-title {
+            background-color: #fff;
+            color: #0056b3;
+            font-weight: 600;
+            padding: 15px 30px;
+            margin: 5px; /* Add a small margin for spacing */
+            border: 2px solid #0056b3;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-tab-title:hover {
+            background-color: #e0eaff; /* Lighter blue on hover */
+        }
+
+        .feature-tab-title.active {
+            background-color: #0056b3;
+            color: #fff;
+            border-color: #0056b3;
+        }
+
+        .features-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: left; /* Align text within content to left */
+            min-height: 150px; /* Ensure some height even if content is short */
+            display: none; /* Hidden by default, shown by JS */
+            animation: fadeIn 0.5s ease-in-out; /* Simple fade in animation */
+        }
+
+        .features-content.active {
+            display: block; /* Shown when active */
+        }
+
+        .features-content i {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+            display: block; /* Ensure icon is on its own line */
+            text-align: center; /* Center the icon */
+        }
+
+        .features-content h3 {
+            font-size: 1.8em; /* Slightly larger heading for content */
+            margin-bottom: 15px;
+            text-align: center; /* Center the heading */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Map Snippet Section */
+        .map-snippet {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .map-snippet h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .map-placeholder {
+            background-color: #e0e0e0;
+            height: 400px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure iframe fits */
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Current Rates Snapshot */
         .rates-summary {
             background-color: #e6f2ff; /* Light blue background */
             padding: 40px 0;
@@ -40,6 +303,7 @@
             color: #555;
         }
 
+        /* Complaints & Contact */
         .complaints-contact {
             padding: 60px 0;
             background-color: #fff;
@@ -72,9 +336,139 @@
         .complaints-contact .contact-item p {
             margin-bottom: 0;
         }
-        
-        /* Responsive Adjustments for new sections */
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links ul li {
+            margin: 0 15px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        .footer-links ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
+            header .container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav {
+                order: 3; /* Move nav below logo and toggle */
+                width: 100%;
+                display: none; /* Hidden by default for mobile */
+                flex-direction: column;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            nav.active {
+                display: flex; /* Show when active */
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .logo {
+                flex-grow: 1; /* Allow logo to take space */
+                text-align: center; /* Center logo on smaller screens */
+            }
+
+            .hero {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-cta .btn {
+                margin: 0; /* Remove horizontal margin */
+            }
+
+            /* Responsive for redesigned features */
+            .features-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-tab-title {
+                width: 90%; /* Make tabs wider on mobile */
+                max-width: 300px; /* Prevent them from being too wide */
+                margin-bottom: 10px;
+            }
+
             .rates-summary ul li {
                 flex-basis: 100%;
             }
@@ -111,8 +505,10 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Stress-Free Parking in Bulawayo City Centre with Tendy Three Investments Parking Solutions.</h1> <p>Find, Reserve, and Pay for your parking with Tendy Three – Easy, Secure, and Affordable.</p>
-                <p><strong>Quick Pay:</strong> Pay instantly via Mobile Money (EcoCash, OneMoney, MyCash), ZIPIT, or purchase a convenient Daily Pre-paid Pass for just US$4! Learn more on our "How It Works" page.</p> <div class="hero-cta">
+                <h1>Stress-Free Parking in Bulawayo City Centre with Tendy Three Investments Parking Solutions.</h1>
+                <p>Find, Reserve, and Pay for your parking with Tendy Three – Easy, Secure, and Affordable.</p>
+                <p><strong>Quick Pay:</strong> Pay instantly via Mobile Money (EcoCash, OneMoney, MyCash), ZIPIT, or purchase a convenient Daily Pre-paid Pass for just US$4! Learn more on our "How It Works" page.</p>
+                <div class="hero-cta">
                     <a href="locations.html" class="btn primary">Find Parking Now</a>
                     <a href="how-it-works.html" class="btn secondary">How It Works</a>
                 </div>
@@ -121,34 +517,55 @@
 
         <section class="why-choose-us">
             <div class="container">
-                <h2>Why Choose Tendy Three Investments Parking Solutions?</h2> <div class="features-grid">
-                    <div class="feature-item">
+                <h2>Why Choose Tendy Three Investments Parking Solutions?</h2>
+                
+                <div class="features-tabs">
+                    <div class="feature-tab-title active" data-feature="convenience">Convenience</div>
+                    <div class="feature-tab-title" data-feature="security">Security</div>
+                    <div class="feature-tab-title" data-feature="affordability">Affordability</div>
+                    <div class="feature-tab-title" data-feature="local-experts">Local Experts</div>
+                </div>
+
+                <div class="features-content-wrapper">
+                    <div id="convenience-content" class="features-content active">
                         <i class="fas fa-mobile-alt"></i>
                         <h3>Ultimate Convenience</h3>
-                        <p>Experience unparalleled ease with our diverse payment options, including popular mobile money platforms like EcoCash, OneMoney, MyCash, and direct bank transfers via ZIPIT. Need more time? Seamlessly extend your parking session directly from your phone, eliminating the need to rush back to your vehicle. Our system links payments directly to your vehicle's registration number for a hassle-free experience.</p>
+                        <p>Experience unparalleled ease with our diverse payment options, including popular mobile money platforms like EcoCash, OneMoney, MyCash, and direct bank transfers via ZIPIT. Need more time? Seamlessly extend your parking session directly from your phone, eliminating the need to rush back to your vehicle. Our system links payments directly to your vehicle's registration number for a hassle-free experience, allowing you to manage your parking no matter where you are in the city.</p>
                     </div>
-                    <div class="feature-item">
+                    <div id="security-content" class="features-content">
                         <i class="fas fa-shield-alt"></i>
                         <h3>Enhanced Security</h3>
-                        <p>Park with peace of mind knowing your vehicle is in a secure and regularly monitored environment. Our parking zones are equipped with strategically placed surveillance (CCTV in key areas) and patrolled by our highly visible, well-trained parking marshals. We are committed to deterring theft and vandalism, ensuring a safer parking experience for all motorists in Bulawayo.</p>
+                        <p>Park with peace of mind knowing your vehicle is in a secure and regularly monitored environment. Our parking zones are equipped with strategically placed surveillance (CCTV in key areas) and patrolled by our highly visible, well-trained parking marshals. These dedicated personnel not only assist you with parking but also actively deter theft and vandalism, ensuring a safer parking experience for all motorists in Bulawayo. Your vehicle's safety is our priority.</p>
                     </div>
-                    <div class="feature-item">
+                    <div id="affordability-content" class="features-content">
                         <i class="fas fa-tags"></i>
                         <h3>Transparent & Affordable Rates</h3>
-                        <p>Tendy Three Investments offers clear, upfront pricing with no hidden fees. Our flexible hourly rates cater to short visits, while our popular US$4 Daily Pre-paid Pass provides unlimited parking across all TTI-managed bays in the CBD for the entire day. We also offer various long-term passes and corporate solutions designed to provide cost-effective parking for regular users and businesses.</p>
+                        <p>Tendy Three Investments offers clear, upfront pricing with no hidden fees, making parking predictable and budget-friendly. Our flexible hourly rates cater to short visits and quick errands, while our widely popular US$4 Daily Pre-paid Pass provides unlimited parking across all Tendy Three-managed bays in the CBD for the entire day. For regular commuters and businesses, we also offer a range of cost-effective long-term and corporate passes, designed to meet diverse parking needs.</p>
                     </div>
-                    <div class="feature-item">
+                    <div id="local-experts-content" class="features-content">
                         <i class="fas fa-map-marked-alt"></i>
                         <h3>Your Trusted Local Partner</h3>
-                        <p>As Bulawayo's dedicated parking solution provider, Tendy Three Investments works in close partnership with the Bulawayo City Council under a Build, Operate, and Transfer (BOT) arrangement. We understand the city's unique needs and are committed to improving urban mobility, reducing congestion, and contributing to the city's infrastructure development and local employment. We are here to serve Bulawayo, for Bulawayo.</p>
+                        <p>As Bulawayo's dedicated parking solution provider, Tendy Three Investments operates in close partnership with the Bulawayo City Council under a Build, Operate, and Transfer (BOT) arrangement. We are not just a service provider; we are an integral part of the community. We understand the city's unique needs and are passionately committed to improving urban mobility, reducing congestion, and contributing significantly to Bulawayo's infrastructure development and local employment through our operations. We are here to serve Bulawayo, for Bulawayo, with deep local expertise.</p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section class="map-snippet">
+            <div class="container">
+                <h2>Tendy Three Investments Parking Locations</h2>
+                <div class="map-placeholder">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15440.098491873132!2d28.57211115!3d-20.17066665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eb554f676443c6d%3A0x6b6e41b9e0f6b57d!2sBulawayo%20City%20Centre%2C%20Bulawayo%2C%20Zimbabwe!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p>Explore our conveniently located parking bays throughout the Bulawayo CBD. Our extensive network ensures you're always just a short walk from your destination.</p>
+                <a href="locations.html" class="btn primary">View All Locations</a>
+            </div>
+        </section>
+
         <section class="rates-summary">
             <div class="container">
-                <h2>Our Popular Tendy Three Investments Parking Rates</h2> <ul>
+                <h2>Our Popular Tendy Three Investments Parking Rates</h2>
+                <ul>
                     <li>Hourly Rate: US$1.00 <span>(Effective 8 AM - 5 PM weekdays)</span></li>
                     <li>Daily Pre-paid Pass: US$4.00 <span>(Park anywhere in CBD, linked to reg. number, valid for the day)</span></li>
                     <li>Monthly Passes: <span>Tailored solutions for corporate and long-term parking needs. Contact us for details!</span></li>
@@ -158,19 +575,10 @@
             </div>
         </section>
 
-        <section class="map-snippet">
-            <div class="container">
-                <h2>Tendy Three Investments Parking Locations</h2> <div class="map-placeholder">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15440.098491873132!2d28.57211115!3d-20.17066665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eb554f676443c6d%3A0x6b6e41b9e0f6b57d!2sBulawayo%20City%20Centre%2C%20Bulawayo%2C%20Zimbabwe!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-                <p>Explore our conveniently located parking bays throughout the Bulawayo CBD. Our extensive network ensures you're always just a short walk from your destination.</p>
-                <a href="locations.html" class="btn primary">View All Locations</a>
-            </div>
-        </section>
-
         <section class="complaints-contact">
             <div class="container">
-                <h2>Tendy Three Investments Customer Support & Complaints</h2> <p>Your feedback helps us improve our parking solutions. We are dedicated to providing excellent service and resolving any concerns efficiently. Contact us through the following channels:</p>
+                <h2>Tendy Three Investments Customer Support & Complaints</h2>
+                <p>Your feedback helps us improve our parking solutions. We are dedicated to providing excellent service and resolving any concerns efficiently. Contact us through the following channels:</p>
                 <div class="contact-details">
                     <div class="contact-item">
                         <i class="fas fa-phone-alt"></i>
@@ -228,12 +636,3443 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
             const menuToggle = document.querySelector('.menu-toggle');
             const nav = document.querySelector('nav');
 
             if (menuToggle && nav) {
                 menuToggle.addEventListener('click', function() {
                     nav.classList.toggle('active');
+                });
+            }
+
+            // Features Tabs Functionality
+            const featureTabTitles = document.querySelectorAll('.feature-tab-title');
+            const featuresContent = document.querySelectorAll('.features-content');
+
+            if (featureTabTitles.length > 0 && featuresContent.length > 0) {
+                // Show the first feature content by default
+                featuresContent[0].classList.add('active'); 
+
+                featureTabTitles.forEach(title => {
+                    title.addEventListener('click', function() {
+                        // Remove 'active' class from all titles and content
+                        featureTabTitles.forEach(t => t.classList.remove('active'));
+                        featuresContent.forEach(c => c.classList.remove('active'));
+
+                        // Add 'active' class to the clicked title
+                        this.classList.add('active');
+
+                        // Get the data-feature attribute to identify the corresponding content
+                        const targetFeature = this.dataset.feature;
+                        const targetContentId = `${targetFeature}-content`;
+                        const targetContent = document.getElementById(targetContentId);
+
+                        // Show the corresponding content
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendy Three Investments Parking Solutions - Your City Parking Solution in Bulawayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Basic Reset & Typography */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3; /* A strong blue for headings */
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #0056b3;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn.secondary {
+            background-color: #eee;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn.secondary:hover {
+            background-color: #ddd;
+            color: #0056b3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1920x600/0056b3/ffffff?text=Tendy+Three+Parking+in+Bulawayo') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero::before { /* Overlay for better text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta .btn {
+            margin: 0 10px;
+        }
+
+        /* Why Choose Us Section - Redesigned */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .features-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .feature-tab-title {
+            background-color: #fff;
+            color: #0056b3;
+            font-weight: 600;
+            padding: 15px 30px;
+            margin: 5px; /* Add a small margin for spacing */
+            border: 2px solid #0056b3;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-tab-title:hover {
+            background-color: #e0eaff; /* Lighter blue on hover */
+        }
+
+        .feature-tab-title.active {
+            background-color: #0056b3;
+            color: #fff;
+            border-color: #0056b3;
+        }
+
+        .features-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: left; /* Align text within content to left */
+            min-height: 150px; /* Ensure some height even if content is short */
+            display: none; /* Hidden by default, shown by JS */
+            animation: fadeIn 0.5s ease-in-out; /* Simple fade in animation */
+        }
+
+        .features-content.active {
+            display: block; /* Shown when active */
+        }
+
+        .features-content i {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+            display: block; /* Ensure icon is on its own line */
+            text-align: center; /* Center the icon */
+        }
+
+        .features-content h3 {
+            font-size: 1.8em; /* Slightly larger heading for content */
+            margin-bottom: 15px;
+            text-align: center; /* Center the heading */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Map Snippet Section */
+        .map-snippet {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .map-snippet h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .map-placeholder {
+            background-color: #e0e0e0;
+            height: 400px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure iframe fits */
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Current Rates Snapshot */
+        .rates-summary {
+            background-color: #e6f2ff; /* Light blue background */
+            padding: 40px 0;
+            text-align: center;
+        }
+        .rates-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .rates-summary ul li {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #0056b3;
+        }
+        .rates-summary ul li span {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* Complaints & Contact */
+        .complaints-contact {
+            padding: 60px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+        .complaints-contact .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .complaints-contact .contact-item {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex: 1 1 280px; /* Adjust as needed */
+            max-width: 350px;
+        }
+        .complaints-contact .contact-item i {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .complaints-contact .contact-item h3 {
+            margin-bottom: 5px;
+            font-size: 1.3em;
+        }
+        .complaints-contact .contact-item p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links ul li {
+            margin: 0 15px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        .footer-links ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav {
+                order: 3; /* Move nav below logo and toggle */
+                width: 100%;
+                display: none; /* Hidden by default for mobile */
+                flex-direction: column;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            nav.active {
+                display: flex; /* Show when active */
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .logo {
+                flex-grow: 1; /* Allow logo to take space */
+                text-align: center; /* Center logo on smaller screens */
+            }
+
+            .hero {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-cta .btn {
+                margin: 0; /* Remove horizontal margin */
+            }
+
+            /* Responsive for redesigned features */
+            .features-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-tab-title {
+                width: 90%; /* Make tabs wider on mobile */
+                max-width: 300px; /* Prevent them from being too wide */
+                margin-bottom: 10px;
+            }
+
+            .rates-summary ul li {
+                flex-basis: 100%;
+            }
+            .complaints-contact .contact-item {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Tendy Three Investments</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Parking Services</a></li>
+                    <li><a href="rates.html">Rates & Passes</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="by-laws.html">By-laws & Regulations</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Stress-Free Parking in Bulawayo City Centre with Tendy Three Investments Parking Solutions.</h1>
+                <p>Find, Reserve, and Pay for your parking with Tendy Three – Easy, Secure, and Affordable.</p>
+                <p><strong>Quick Pay:</strong> Pay instantly via Mobile Money (EcoCash, OneMoney, MyCash), ZIPIT, or purchase a convenient Daily Pre-paid Pass for just US$4! Learn more on our "How It Works" page.</p>
+                <div class="hero-cta">
+                    <a href="locations.html" class="btn primary">Find Parking Now</a>
+                    <a href="how-it-works.html" class="btn secondary">How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <div class="container">
+                <h2>Why Choose Tendy Three Investments Parking Solutions?</h2>
+                
+                <div class="features-tabs">
+                    <div class="feature-tab-title active" data-feature="convenience">Convenience</div>
+                    <div class="feature-tab-title" data-feature="security">Security</div>
+                    <div class="feature-tab-title" data-feature="affordability">Affordability</div>
+                    <div class="feature-tab-title" data-feature="local-experts">Local Experts</div>
+                </div>
+
+                <div class="features-content-wrapper">
+                    <div id="convenience-content" class="features-content active">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Ultimate Convenience</h3>
+                        <p>Experience unparalleled ease with our diverse payment options, including popular mobile money platforms like EcoCash, OneMoney, MyCash, and direct bank transfers via ZIPIT. Need more time? Seamlessly extend your parking session directly from your phone, eliminating the need to rush back to your vehicle. Our system links payments directly to your vehicle's registration number for a hassle-free experience, allowing you to manage your parking no matter where you are in the city.</p>
+                    </div>
+                    <div id="security-content" class="features-content">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Enhanced Security</h3>
+                        <p>Park with peace of mind knowing your vehicle is in a secure and regularly monitored environment. Our parking zones are equipped with strategically placed surveillance (CCTV in key areas) and patrolled by our highly visible, well-trained parking marshals. These dedicated personnel not only assist you with parking but also actively deter theft and vandalism, ensuring a safer parking experience for all motorists in Bulawayo. Your vehicle's safety is our priority.</p>
+                    </div>
+                    <div id="affordability-content" class="features-content">
+                        <i class="fas fa-tags"></i>
+                        <h3>Transparent & Affordable Rates</h3>
+                        <p>Tendy Three Investments offers clear, upfront pricing with no hidden fees, making parking predictable and budget-friendly. Our flexible hourly rates cater to short visits and quick errands, while our widely popular US$4 Daily Pre-paid Pass provides unlimited parking across all Tendy Three-managed bays in the CBD for the entire day. For regular commuters and businesses, we also offer a range of cost-effective long-term and corporate passes, designed to meet diverse parking needs.</p>
+                    </div>
+                    <div id="local-experts-content" class="features-content">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Your Trusted Local Partner</h3>
+                        <p>As Bulawayo's dedicated parking solution provider, Tendy Three Investments operates in close partnership with the Bulawayo City Council under a Build, Operate, and Transfer (BOT) arrangement. We are not just a service provider; we are an integral part of the community. We understand the city's unique needs and are passionately committed to improving urban mobility, reducing congestion, and contributing significantly to Bulawayo's infrastructure development and local employment through our operations. We are here to serve Bulawayo, for Bulawayo, with deep local expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-snippet">
+            <div class="container">
+                <h2>Tendy Three Investments Parking Locations</h2>
+                <div class="map-placeholder">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15440.098491873132!2d28.57211115!3d-20.17066665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eb554f676443c6d%3A0x6b6e41b9e0f6b57d!2sBulawayo%20City%20Centre%2C%20Bulawayo%2C%20Zimbabwe!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p>Explore our conveniently located parking bays throughout the Bulawayo CBD. Our extensive network ensures you're always just a short walk from your destination.</p>
+                <a href="locations.html" class="btn primary">View All Locations</a>
+            </div>
+        </section>
+
+        <section class="rates-summary">
+            <div class="container">
+                <h2>Our Popular Tendy Three Investments Parking Rates</h2>
+                <ul>
+                    <li>Hourly Rate: US$1.00 <span>(Effective 8 AM - 5 PM weekdays)</span></li>
+                    <li>Daily Pre-paid Pass: US$4.00 <span>(Park anywhere in CBD, linked to reg. number, valid for the day)</span></li>
+                    <li>Monthly Passes: <span>Tailored solutions for corporate and long-term parking needs. Contact us for details!</span></li>
+                </ul>
+                <p style="margin-top: 20px;">*Enforcement hours for paid parking are extended from 6 AM to 7 PM daily. Please note that City of Bulawayo (Clamping and Tow-away) By-laws, 2023 (SI 220 of 2023) are in effect 24/7. Always park legally and adhere to by-laws to avoid penalties.</p>
+                <a href="rates.html" class="btn primary">View All Rates & Passes</a>
+            </div>
+        </section>
+
+        <section class="complaints-contact">
+            <div class="container">
+                <h2>Tendy Three Investments Customer Support & Complaints</h2>
+                <p>Your feedback helps us improve our parking solutions. We are dedicated to providing excellent service and resolving any concerns efficiently. Contact us through the following channels:</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Dedicated Call Centre</h3>
+                        <p>For immediate assistance, payment queries, or general inquiries:</p>
+                        <p>+263 86 88 006 707 (All Networks)</p>
+                        <p>+263 2922 71290 (All Networks)</p>
+                        <p>08084700 (Econet Only - Toll-Free)</p>
+                        <p>08004700 (TelOne Only - Toll-Free)</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>For general inquiries and support, reach us at:</p>
+                        <p><a href="mailto:support@tendythree.com">support@tendythree.com</a></p>
+                        <p>For complaints, detailed feedback, or formal queries, please use:</p>
+                        <p><a href="mailto:complaints.support@tendythree.com">complaints.support@tendythree.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <h3>Visit Our Office</h3>
+                        <p>Our customer service team is available at our physical office for in-person support, complaint resolution, and payment assistance:</p>
+                        <p>2nd Floor, Fidelity House,</p>
+                        <p>Fife Street / 11th Avenue (Corner of Jason Moyo St. and 11th Ave.),</p>
+                        <p>Bulawayo, Zimbabwe</p>
+                        <p>Office Hours: Monday - Friday, 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">For detailed information on our procedures regarding parking infringements, clamping, towing, and how to file a formal complaint or appeal, please refer to our dedicated page:</p>
+                <a href="complaints-procedure.html" class="btn secondary">View Our Complaints Handling Procedure & By-laws</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="by-laws.html">Bulawayo City By-laws</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/TTIParkingSolutions/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/Tendy_ThreeZim" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2025 Tendy Three Investments. All rights reserved.</p>
+            <p>Your Convenient Parking Solution in Bulawayo.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // Features Tabs Functionality
+            const featureTabTitles = document.querySelectorAll('.feature-tab-title');
+            const featuresContent = document.querySelectorAll('.features-content');
+
+            if (featureTabTitles.length > 0 && featuresContent.length > 0) {
+                // Show the first feature content by default
+                featuresContent[0].classList.add('active'); 
+
+                featureTabTitles.forEach(title => {
+                    title.addEventListener('click', function() {
+                        // Remove 'active' class from all titles and content
+                        featureTabTitles.forEach(t => t.classList.remove('active'));
+                        featuresContent.forEach(c => c.classList.remove('active'));
+
+                        // Add 'active' class to the clicked title
+                        this.classList.add('active');
+
+                        // Get the data-feature attribute to identify the corresponding content
+                        const targetFeature = this.dataset.feature;
+                        const targetContentId = `${targetFeature}-content`;
+                        const targetContent = document.getElementById(targetContentId);
+
+                        // Show the corresponding content
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendy Three Investments Parking Solutions - Your City Parking Solution in Bulawayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Basic Reset & Typography */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3; /* A strong blue for headings */
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #0056b3;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn.secondary {
+            background-color: #eee;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn.secondary:hover {
+            background-color: #ddd;
+            color: #0056b3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1920x600/0056b3/ffffff?text=Tendy+Three+Parking+in+Bulawayo') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero::before { /* Overlay for better text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta .btn {
+            margin: 0 10px;
+        }
+
+        /* Why Choose Us Section - Redesigned */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .features-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .feature-tab-title {
+            background-color: #fff;
+            color: #0056b3;
+            font-weight: 600;
+            padding: 15px 30px;
+            margin: 5px; /* Add a small margin for spacing */
+            border: 2px solid #0056b3;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-tab-title:hover {
+            background-color: #e0eaff; /* Lighter blue on hover */
+        }
+
+        .feature-tab-title.active {
+            background-color: #0056b3;
+            color: #fff;
+            border-color: #0056b3;
+        }
+
+        .features-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: left; /* Align text within content to left */
+            min-height: 150px; /* Ensure some height even if content is short */
+            display: none; /* Hidden by default, shown by JS */
+            animation: fadeIn 0.5s ease-in-out; /* Simple fade in animation */
+        }
+
+        .features-content.active {
+            display: block; /* Shown when active */
+        }
+
+        .features-content i {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+            display: block; /* Ensure icon is on its own line */
+            text-align: center; /* Center the icon */
+        }
+
+        .features-content h3 {
+            font-size: 1.8em; /* Slightly larger heading for content */
+            margin-bottom: 15px;
+            text-align: center; /* Center the heading */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Map Snippet Section */
+        .map-snippet {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .map-snippet h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .map-placeholder {
+            background-color: #e0e0e0;
+            height: 400px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure iframe fits */
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Current Rates Snapshot */
+        .rates-summary {
+            background-color: #e6f2ff; /* Light blue background */
+            padding: 40px 0;
+            text-align: center;
+        }
+        .rates-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .rates-summary ul li {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #0056b3;
+        }
+        .rates-summary ul li span {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* Complaints & Contact */
+        .complaints-contact {
+            padding: 60px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+        .complaints-contact .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .complaints-contact .contact-item {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex: 1 1 280px; /* Adjust as needed */
+            max-width: 350px;
+        }
+        .complaints-contact .contact-item i {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .complaints-contact .contact-item h3 {
+            margin-bottom: 5px;
+            font-size: 1.3em;
+        }
+        .complaints-contact .contact-item p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links ul li {
+            margin: 0 15px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        .footer-links ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav {
+                order: 3; /* Move nav below logo and toggle */
+                width: 100%;
+                display: none; /* Hidden by default for mobile */
+                flex-direction: column;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            nav.active {
+                display: flex; /* Show when active */
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .logo {
+                flex-grow: 1; /* Allow logo to take space */
+                text-align: center; /* Center logo on smaller screens */
+            }
+
+            .hero {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-cta .btn {
+                margin: 0; /* Remove horizontal margin */
+            }
+
+            /* Responsive for redesigned features */
+            .features-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-tab-title {
+                width: 90%; /* Make tabs wider on mobile */
+                max-width: 300px; /* Prevent them from being too wide */
+                margin-bottom: 10px;
+            }
+
+            .rates-summary ul li {
+                flex-basis: 100%;
+            }
+            .complaints-contact .contact-item {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Tendy Three Investments</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Parking Services</a></li>
+                    <li><a href="rates.html">Rates & Passes</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="by-laws.html">By-laws & Regulations</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Stress-Free Parking in Bulawayo City Centre with Tendy Three Investments Parking Solutions.</h1>
+                <p>Find, Reserve, and Pay for your parking with Tendy Three – Easy, Secure, and Affordable.</p>
+                <p><strong>Quick Pay:</strong> Pay instantly via Mobile Money (EcoCash, OneMoney, MyCash), ZIPIT, or purchase a convenient Daily Pre-paid Pass for just US$4! Learn more on our "How It Works" page.</p>
+                <div class="hero-cta">
+                    <a href="locations.html" class="btn primary">Find Parking Now</a>
+                    <a href="how-it-works.html" class="btn secondary">How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <div class="container">
+                <h2>Why Choose Tendy Three Investments Parking Solutions?</h2>
+                
+                <div class="features-tabs">
+                    <div class="feature-tab-title active" data-feature="convenience">Convenience</div>
+                    <div class="feature-tab-title" data-feature="security">Security</div>
+                    <div class="feature-tab-title" data-feature="affordability">Affordability</div>
+                    <div class="feature-tab-title" data-feature="local-experts">Local Experts</div>
+                </div>
+
+                <div class="features-content-wrapper">
+                    <div id="convenience-content" class="features-content active">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Ultimate Convenience</h3>
+                        <p>Experience unparalleled ease with our diverse payment options, including popular mobile money platforms like EcoCash, OneMoney, MyCash, and direct bank transfers via ZIPIT. Need more time? Seamlessly extend your parking session directly from your phone, eliminating the need to rush back to your vehicle. Our system links payments directly to your vehicle's registration number for a hassle-free experience, allowing you to manage your parking no matter where you are in the city.</p>
+                    </div>
+                    <div id="security-content" class="features-content">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Enhanced Security</h3>
+                        <p>Park with peace of mind knowing your vehicle is in a secure and regularly monitored environment. Our parking zones are equipped with strategically placed surveillance (CCTV in key areas) and patrolled by our highly visible, well-trained parking marshals. These dedicated personnel not only assist you with parking but also actively deter theft and vandalism, ensuring a safer parking experience for all motorists in Bulawayo. Your vehicle's safety is our priority.</p>
+                    </div>
+                    <div id="affordability-content" class="features-content">
+                        <i class="fas fa-tags"></i>
+                        <h3>Transparent & Affordable Rates</h3>
+                        <p>Tendy Three Investments offers clear, upfront pricing with no hidden fees, making parking predictable and budget-friendly. Our flexible hourly rates cater to short visits and quick errands, while our widely popular US$4 Daily Pre-paid Pass provides unlimited parking across all Tendy Three-managed bays in the CBD for the entire day. For regular commuters and businesses, we also offer a range of cost-effective long-term and corporate passes, designed to meet diverse parking needs.</p>
+                    </div>
+                    <div id="local-experts-content" class="features-content">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Your Trusted Local Partner</h3>
+                        <p>As Bulawayo's dedicated parking solution provider, Tendy Three Investments operates in close partnership with the Bulawayo City Council under a Build, Operate, and Transfer (BOT) arrangement. We are not just a service provider; we are an integral part of the community. We understand the city's unique needs and are passionately committed to improving urban mobility, reducing congestion, and contributing significantly to Bulawayo's infrastructure development and local employment through our operations. We are here to serve Bulawayo, for Bulawayo, with deep local expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-snippet">
+            <div class="container">
+                <h2>Tendy Three Investments Parking Locations</h2>
+                <div class="map-placeholder">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15440.098491873132!2d28.57211115!3d-20.17066665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eb554f676443c6d%3A0x6b6e41b9e0f6b57d!2sBulawayo%20City%20Centre%2C%20Bulawayo%2C%20Zimbabwe!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p>Explore our conveniently located parking bays throughout the Bulawayo CBD. Our extensive network ensures you're always just a short walk from your destination.</p>
+                <a href="locations.html" class="btn primary">View All Locations</a>
+            </div>
+        </section>
+
+        <section class="rates-summary">
+            <div class="container">
+                <h2>Our Popular Tendy Three Investments Parking Rates</h2>
+                <ul>
+                    <li>Hourly Rate: US$1.00 <span>(Effective 8 AM - 5 PM weekdays)</span></li>
+                    <li>Daily Pre-paid Pass: US$4.00 <span>(Park anywhere in CBD, linked to reg. number, valid for the day)</span></li>
+                    <li>Monthly Passes: <span>Tailored solutions for corporate and long-term parking needs. Contact us for details!</span></li>
+                </ul>
+                <p style="margin-top: 20px;">*Enforcement hours for paid parking are extended from 6 AM to 7 PM daily. Please note that City of Bulawayo (Clamping and Tow-away) By-laws, 2023 (SI 220 of 2023) are in effect 24/7. Always park legally and adhere to by-laws to avoid penalties.</p>
+                <a href="rates.html" class="btn primary">View All Rates & Passes</a>
+            </div>
+        </section>
+
+        <section class="complaints-contact">
+            <div class="container">
+                <h2>Tendy Three Investments Customer Support & Complaints</h2>
+                <p>Your feedback helps us improve our parking solutions. We are dedicated to providing excellent service and resolving any concerns efficiently. Contact us through the following channels:</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Dedicated Call Centre</h3>
+                        <p>For immediate assistance, payment queries, or general inquiries:</p>
+                        <p>+263 86 88 006 707 (All Networks)</p>
+                        <p>+263 2922 71290 (All Networks)</p>
+                        <p>08084700 (Econet Only - Toll-Free)</p>
+                        <p>08004700 (TelOne Only - Toll-Free)</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>For general inquiries and support, reach us at:</p>
+                        <p><a href="mailto:support@tendythree.com">support@tendythree.com</a></p>
+                        <p>For complaints, detailed feedback, or formal queries, please use:</p>
+                        <p><a href="mailto:complaints.support@tendythree.com">complaints.support@tendythree.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <h3>Visit Our Office</h3>
+                        <p>Our customer service team is available at our physical office for in-person support, complaint resolution, and payment assistance:</p>
+                        <p>2nd Floor, Fidelity House,</p>
+                        <p>Fife Street / 11th Avenue (Corner of Jason Moyo St. and 11th Ave.),</p>
+                        <p>Bulawayo, Zimbabwe</p>
+                        <p>Office Hours: Monday - Friday, 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">For detailed information on our procedures regarding parking infringements, clamping, towing, and how to file a formal complaint or appeal, please refer to our dedicated page:</p>
+                <a href="complaints-procedure.html" class="btn secondary">View Our Complaints Handling Procedure & By-laws</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="by-laws.html">Bulawayo City By-laws</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/TTIParkingSolutions/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/Tendy_ThreeZim" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2025 Tendy Three Investments. All rights reserved.</p>
+            <p>Your Convenient Parking Solution in Bulawayo.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // Features Tabs Functionality
+            const featureTabTitles = document.querySelectorAll('.feature-tab-title');
+            const featuresContent = document.querySelectorAll('.features-content');
+
+            if (featureTabTitles.length > 0 && featuresContent.length > 0) {
+                // Show the first feature content by default
+                featuresContent[0].classList.add('active'); 
+
+                featureTabTitles.forEach(title => {
+                    title.addEventListener('click', function() {
+                        // Remove 'active' class from all titles and content
+                        featureTabTitles.forEach(t => t.classList.remove('active'));
+                        featuresContent.forEach(c => c.classList.remove('active'));
+
+                        // Add 'active' class to the clicked title
+                        this.classList.add('active');
+
+                        // Get the data-feature attribute to identify the corresponding content
+                        const targetFeature = this.dataset.feature;
+                        const targetContentId = `${targetFeature}-content`;
+                        const targetContent = document.getElementById(targetContentId);
+
+                        // Show the corresponding content
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendy Three Investments Parking Solutions - Your City Parking Solution in Bulawayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Basic Reset & Typography */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3; /* A strong blue for headings */
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #0056b3;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn.secondary {
+            background-color: #eee;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn.secondary:hover {
+            background-color: #ddd;
+            color: #0056b3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1920x600/0056b3/ffffff?text=Tendy+Three+Parking+in+Bulawayo') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero::before { /* Overlay for better text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta .btn {
+            margin: 0 10px;
+        }
+
+        /* Why Choose Us Section - Redesigned */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .features-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .feature-tab-title {
+            background-color: #fff;
+            color: #0056b3;
+            font-weight: 600;
+            padding: 15px 30px;
+            margin: 5px; /* Add a small margin for spacing */
+            border: 2px solid #0056b3;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-tab-title:hover {
+            background-color: #e0eaff; /* Lighter blue on hover */
+        }
+
+        .feature-tab-title.active {
+            background-color: #0056b3;
+            color: #fff;
+            border-color: #0056b3;
+        }
+
+        .features-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: left; /* Align text within content to left */
+            min-height: 150px; /* Ensure some height even if content is short */
+            display: none; /* Hidden by default, shown by JS */
+            animation: fadeIn 0.5s ease-in-out; /* Simple fade in animation */
+        }
+
+        .features-content.active {
+            display: block; /* Shown when active */
+        }
+
+        .features-content i {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+            display: block; /* Ensure icon is on its own line */
+            text-align: center; /* Center the icon */
+        }
+
+        .features-content h3 {
+            font-size: 1.8em; /* Slightly larger heading for content */
+            margin-bottom: 15px;
+            text-align: center; /* Center the heading */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Map Snippet Section */
+        .map-snippet {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .map-snippet h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .map-placeholder {
+            background-color: #e0e0e0;
+            height: 400px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure iframe fits */
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Current Rates Snapshot */
+        .rates-summary {
+            background-color: #e6f2ff; /* Light blue background */
+            padding: 40px 0;
+            text-align: center;
+        }
+        .rates-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .rates-summary ul li {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #0056b3;
+        }
+        .rates-summary ul li span {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* Complaints & Contact */
+        .complaints-contact {
+            padding: 60px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+        .complaints-contact .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .complaints-contact .contact-item {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex: 1 1 280px; /* Adjust as needed */
+            max-width: 350px;
+        }
+        .complaints-contact .contact-item i {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .complaints-contact .contact-item h3 {
+            margin-bottom: 5px;
+            font-size: 1.3em;
+        }
+        .complaints-contact .contact-item p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links ul li {
+            margin: 0 15px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        .footer-links ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav {
+                order: 3; /* Move nav below logo and toggle */
+                width: 100%;
+                display: none; /* Hidden by default for mobile */
+                flex-direction: column;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            nav.active {
+                display: flex; /* Show when active */
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .logo {
+                flex-grow: 1; /* Allow logo to take space */
+                text-align: center; /* Center logo on smaller screens */
+            }
+
+            .hero {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-cta .btn {
+                margin: 0; /* Remove horizontal margin */
+            }
+
+            /* Responsive for redesigned features */
+            .features-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-tab-title {
+                width: 90%; /* Make tabs wider on mobile */
+                max-width: 300px; /* Prevent them from being too wide */
+                margin-bottom: 10px;
+            }
+
+            .rates-summary ul li {
+                flex-basis: 100%;
+            }
+            .complaints-contact .contact-item {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Tendy Three Investments</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Parking Services</a></li>
+                    <li><a href="rates.html">Rates & Passes</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="by-laws.html">By-laws & Regulations</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Stress-Free Parking in Bulawayo City Centre with Tendy Three Investments Parking Solutions.</h1>
+                <p>Find, Reserve, and Pay for your parking with Tendy Three – Easy, Secure, and Affordable.</p>
+                <p><strong>Quick Pay:</strong> Pay instantly via Mobile Money (EcoCash, OneMoney, MyCash), ZIPIT, or purchase a convenient Daily Pre-paid Pass for just US$4! Learn more on our "How It Works" page.</p>
+                <div class="hero-cta">
+                    <a href="locations.html" class="btn primary">Find Parking Now</a>
+                    <a href="how-it-works.html" class="btn secondary">How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <div class="container">
+                <h2>Why Choose Tendy Three Investments Parking Solutions?</h2>
+                
+                <div class="features-tabs">
+                    <div class="feature-tab-title active" data-feature="convenience">Convenience</div>
+                    <div class="feature-tab-title" data-feature="security">Security</div>
+                    <div class="feature-tab-title" data-feature="affordability">Affordability</div>
+                    <div class="feature-tab-title" data-feature="local-experts">Local Experts</div>
+                </div>
+
+                <div class="features-content-wrapper">
+                    <div id="convenience-content" class="features-content active">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Ultimate Convenience</h3>
+                        <p>Experience unparalleled ease with our diverse payment options, including popular mobile money platforms like EcoCash, OneMoney, MyCash, and direct bank transfers via ZIPIT. Need more time? Seamlessly extend your parking session directly from your phone, eliminating the need to rush back to your vehicle. Our system links payments directly to your vehicle's registration number for a hassle-free experience, allowing you to manage your parking no matter where you are in the city.</p>
+                    </div>
+                    <div id="security-content" class="features-content">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Enhanced Security</h3>
+                        <p>Park with peace of mind knowing your vehicle is in a secure and regularly monitored environment. Our parking zones are equipped with strategically placed surveillance (CCTV in key areas) and patrolled by our highly visible, well-trained parking marshals. These dedicated personnel not only assist you with parking but also actively deter theft and vandalism, ensuring a safer parking experience for all motorists in Bulawayo. Your vehicle's safety is our priority.</p>
+                    </div>
+                    <div id="affordability-content" class="features-content">
+                        <i class="fas fa-tags"></i>
+                        <h3>Transparent & Affordable Rates</h3>
+                        <p>Tendy Three Investments offers clear, upfront pricing with no hidden fees, making parking predictable and budget-friendly. Our flexible hourly rates cater to short visits and quick errands, while our widely popular US$4 Daily Pre-paid Pass provides unlimited parking across all Tendy Three-managed bays in the CBD for the entire day. For regular commuters and businesses, we also offer a range of cost-effective long-term and corporate passes, designed to meet diverse parking needs.</p>
+                    </div>
+                    <div id="local-experts-content" class="features-content">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Your Trusted Local Partner</h3>
+                        <p>As Bulawayo's dedicated parking solution provider, Tendy Three Investments operates in close partnership with the Bulawayo City Council under a Build, Operate, and Transfer (BOT) arrangement. We are not just a service provider; we are an integral part of the community. We understand the city's unique needs and are passionately committed to improving urban mobility, reducing congestion, and contributing significantly to Bulawayo's infrastructure development and local employment through our operations. We are here to serve Bulawayo, for Bulawayo, with deep local expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-snippet">
+            <div class="container">
+                <h2>Tendy Three Investments Parking Locations</h2>
+                <div class="map-placeholder">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15440.098491873132!2d28.57211115!3d-20.17066665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eb554f676443c6d%3A0x6b6e41b9e0f6b57d!2sBulawayo%20City%20Centre%2C%20Bulawayo%2C%20Zimbabwe!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p>Explore our conveniently located parking bays throughout the Bulawayo CBD. Our extensive network ensures you're always just a short walk from your destination.</p>
+                <a href="locations.html" class="btn primary">View All Locations</a>
+            </div>
+        </section>
+
+        <section class="rates-summary">
+            <div class="container">
+                <h2>Our Popular Tendy Three Investments Parking Rates</h2>
+                <ul>
+                    <li>Hourly Rate: US$1.00 <span>(Effective 8 AM - 5 PM weekdays)</span></li>
+                    <li>Daily Pre-paid Pass: US$4.00 <span>(Park anywhere in CBD, linked to reg. number, valid for the day)</span></li>
+                    <li>Monthly Passes: <span>Tailored solutions for corporate and long-term parking needs. Contact us for details!</span></li>
+                </ul>
+                <p style="margin-top: 20px;">*Enforcement hours for paid parking are extended from 6 AM to 7 PM daily. Please note that City of Bulawayo (Clamping and Tow-away) By-laws, 2023 (SI 220 of 2023) are in effect 24/7. Always park legally and adhere to by-laws to avoid penalties.</p>
+                <a href="rates.html" class="btn primary">View All Rates & Passes</a>
+            </div>
+        </section>
+
+        <section class="complaints-contact">
+            <div class="container">
+                <h2>Tendy Three Investments Customer Support & Complaints</h2>
+                <p>Your feedback helps us improve our parking solutions. We are dedicated to providing excellent service and resolving any concerns efficiently. Contact us through the following channels:</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Dedicated Call Centre</h3>
+                        <p>For immediate assistance, payment queries, or general inquiries:</p>
+                        <p>+263 86 88 006 707 (All Networks)</p>
+                        <p>+263 2922 71290 (All Networks)</p>
+                        <p>08084700 (Econet Only - Toll-Free)</p>
+                        <p>08004700 (TelOne Only - Toll-Free)</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>For general inquiries and support, reach us at:</p>
+                        <p><a href="mailto:support@tendythree.com">support@tendythree.com</a></p>
+                        <p>For complaints, detailed feedback, or formal queries, please use:</p>
+                        <p><a href="mailto:complaints.support@tendythree.com">complaints.support@tendythree.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <h3>Visit Our Office</h3>
+                        <p>Our customer service team is available at our physical office for in-person support, complaint resolution, and payment assistance:</p>
+                        <p>2nd Floor, Fidelity House,</p>
+                        <p>Fife Street / 11th Avenue (Corner of Jason Moyo St. and 11th Ave.),</p>
+                        <p>Bulawayo, Zimbabwe</p>
+                        <p>Office Hours: Monday - Friday, 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">For detailed information on our procedures regarding parking infringements, clamping, towing, and how to file a formal complaint or appeal, please refer to our dedicated page:</p>
+                <a href="complaints-procedure.html" class="btn secondary">View Our Complaints Handling Procedure & By-laws</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="by-laws.html">Bulawayo City By-laws</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/TTIParkingSolutions/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/Tendy_ThreeZim" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2025 Tendy Three Investments. All rights reserved.</p>
+            <p>Your Convenient Parking Solution in Bulawayo.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // Features Tabs Functionality
+            const featureTabTitles = document.querySelectorAll('.feature-tab-title');
+            const featuresContent = document.querySelectorAll('.features-content');
+
+            if (featureTabTitles.length > 0 && featuresContent.length > 0) {
+                // Show the first feature content by default
+                featuresContent[0].classList.add('active'); 
+
+                featureTabTitles.forEach(title => {
+                    title.addEventListener('click', function() {
+                        // Remove 'active' class from all titles and content
+                        featureTabTitles.forEach(t => t.classList.remove('active'));
+                        featuresContent.forEach(c => c.classList.remove('active'));
+
+                        // Add 'active' class to the clicked title
+                        this.classList.add('active');
+
+                        // Get the data-feature attribute to identify the corresponding content
+                        const targetFeature = this.dataset.feature;
+                        const targetContentId = `${targetFeature}-content`;
+                        const targetContent = document.getElementById(targetContentId);
+
+                        // Show the corresponding content
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendy Three Investments Parking Solutions - Your City Parking Solution in Bulawayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Basic Reset & Typography */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3; /* A strong blue for headings */
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #0056b3;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn.secondary {
+            background-color: #eee;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn.secondary:hover {
+            background-color: #ddd;
+            color: #0056b3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1920x600/0056b3/ffffff?text=Tendy+Three+Parking+in+Bulawayo') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero::before { /* Overlay for better text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta .btn {
+            margin: 0 10px;
+        }
+
+        /* Why Choose Us Section - Redesigned */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .features-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .feature-tab-title {
+            background-color: #fff;
+            color: #0056b3;
+            font-weight: 600;
+            padding: 15px 30px;
+            margin: 5px; /* Add a small margin for spacing */
+            border: 2px solid #0056b3;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-tab-title:hover {
+            background-color: #e0eaff; /* Lighter blue on hover */
+        }
+
+        .feature-tab-title.active {
+            background-color: #0056b3;
+            color: #fff;
+            border-color: #0056b3;
+        }
+
+        .features-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: left; /* Align text within content to left */
+            min-height: 150px; /* Ensure some height even if content is short */
+            display: none; /* Hidden by default, shown by JS */
+            animation: fadeIn 0.5s ease-in-out; /* Simple fade in animation */
+        }
+
+        .features-content.active {
+            display: block; /* Shown when active */
+        }
+
+        .features-content i {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+            display: block; /* Ensure icon is on its own line */
+            text-align: center; /* Center the icon */
+        }
+
+        .features-content h3 {
+            font-size: 1.8em; /* Slightly larger heading for content */
+            margin-bottom: 15px;
+            text-align: center; /* Center the heading */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Map Snippet Section */
+        .map-snippet {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .map-snippet h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .map-placeholder {
+            background-color: #e0e0e0;
+            height: 400px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure iframe fits */
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Current Rates Snapshot */
+        .rates-summary {
+            background-color: #e6f2ff; /* Light blue background */
+            padding: 40px 0;
+            text-align: center;
+        }
+        .rates-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .rates-summary ul li {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #0056b3;
+        }
+        .rates-summary ul li span {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* Complaints & Contact */
+        .complaints-contact {
+            padding: 60px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+        .complaints-contact .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .complaints-contact .contact-item {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex: 1 1 280px; /* Adjust as needed */
+            max-width: 350px;
+        }
+        .complaints-contact .contact-item i {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .complaints-contact .contact-item h3 {
+            margin-bottom: 5px;
+            font-size: 1.3em;
+        }
+        .complaints-contact .contact-item p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links ul li {
+            margin: 0 15px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        .footer-links ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav {
+                order: 3; /* Move nav below logo and toggle */
+                width: 100%;
+                display: none; /* Hidden by default for mobile */
+                flex-direction: column;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            nav.active {
+                display: flex; /* Show when active */
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .logo {
+                flex-grow: 1; /* Allow logo to take space */
+                text-align: center; /* Center logo on smaller screens */
+            }
+
+            .hero {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-cta .btn {
+                margin: 0; /* Remove horizontal margin */
+            }
+
+            /* Responsive for redesigned features */
+            .features-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-tab-title {
+                width: 90%; /* Make tabs wider on mobile */
+                max-width: 300px; /* Prevent them from being too wide */
+                margin-bottom: 10px;
+            }
+
+            .rates-summary ul li {
+                flex-basis: 100%;
+            }
+            .complaints-contact .contact-item {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Tendy Three Investments</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Parking Services</a></li>
+                    <li><a href="rates.html">Rates & Passes</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="by-laws.html">By-laws & Regulations</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Stress-Free Parking in Bulawayo City Centre with Tendy Three Investments Parking Solutions.</h1>
+                <p>Find, Reserve, and Pay for your parking with Tendy Three – Easy, Secure, and Affordable.</p>
+                <p><strong>Quick Pay:</strong> Pay instantly via Mobile Money (EcoCash, OneMoney, MyCash), ZIPIT, or purchase a convenient Daily Pre-paid Pass for just US$4! Learn more on our "How It Works" page.</p>
+                <div class="hero-cta">
+                    <a href="locations.html" class="btn primary">Find Parking Now</a>
+                    <a href="how-it-works.html" class="btn secondary">How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <div class="container">
+                <h2>Why Choose Tendy Three Investments Parking Solutions?</h2>
+                
+                <div class="features-tabs">
+                    <div class="feature-tab-title active" data-feature="convenience">Convenience</div>
+                    <div class="feature-tab-title" data-feature="security">Security</div>
+                    <div class="feature-tab-title" data-feature="affordability">Affordability</div>
+                    <div class="feature-tab-title" data-feature="local-experts">Local Experts</div>
+                </div>
+
+                <div class="features-content-wrapper">
+                    <div id="convenience-content" class="features-content active">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Ultimate Convenience</h3>
+                        <p>Experience unparalleled ease with our diverse payment options, including popular mobile money platforms like EcoCash, OneMoney, MyCash, and direct bank transfers via ZIPIT. Need more time? Seamlessly extend your parking session directly from your phone, eliminating the need to rush back to your vehicle. Our system links payments directly to your vehicle's registration number for a hassle-free experience, allowing you to manage your parking no matter where you are in the city.</p>
+                    </div>
+                    <div id="security-content" class="features-content">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Enhanced Security</h3>
+                        <p>Park with peace of mind knowing your vehicle is in a secure and regularly monitored environment. Our parking zones are equipped with strategically placed surveillance (CCTV in key areas) and patrolled by our highly visible, well-trained parking marshals. These dedicated personnel not only assist you with parking but also actively deter theft and vandalism, ensuring a safer parking experience for all motorists in Bulawayo. Your vehicle's safety is our priority.</p>
+                    </div>
+                    <div id="affordability-content" class="features-content">
+                        <i class="fas fa-tags"></i>
+                        <h3>Transparent & Affordable Rates</h3>
+                        <p>Tendy Three Investments offers clear, upfront pricing with no hidden fees, making parking predictable and budget-friendly. Our flexible hourly rates cater to short visits and quick errands, while our widely popular US$4 Daily Pre-paid Pass provides unlimited parking across all Tendy Three-managed bays in the CBD for the entire day. For regular commuters and businesses, we also offer a range of cost-effective long-term and corporate passes, designed to meet diverse parking needs.</p>
+                    </div>
+                    <div id="local-experts-content" class="features-content">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Your Trusted Local Partner</h3>
+                        <p>As Bulawayo's dedicated parking solution provider, Tendy Three Investments operates in close partnership with the Bulawayo City Council under a Build, Operate, and Transfer (BOT) arrangement. We are not just a service provider; we are an integral part of the community. We understand the city's unique needs and are passionately committed to improving urban mobility, reducing congestion, and contributing significantly to Bulawayo's infrastructure development and local employment through our operations. We are here to serve Bulawayo, for Bulawayo, with deep local expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-snippet">
+            <div class="container">
+                <h2>Tendy Three Investments Parking Locations</h2>
+                <div class="map-placeholder">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15440.098491873132!2d28.57211115!3d-20.17066665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eb554f676443c6d%3A0x6b6e41b9e0f6b57d!2sBulawayo%20City%20Centre%2C%20Bulawayo%2C%20Zimbabwe!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p>Explore our conveniently located parking bays throughout the Bulawayo CBD. Our extensive network ensures you're always just a short walk from your destination.</p>
+                <a href="locations.html" class="btn primary">View All Locations</a>
+            </div>
+        </section>
+
+        <section class="rates-summary">
+            <div class="container">
+                <h2>Our Popular Tendy Three Investments Parking Rates</h2>
+                <ul>
+                    <li>Hourly Rate: US$1.00 <span>(Effective 8 AM - 5 PM weekdays)</span></li>
+                    <li>Daily Pre-paid Pass: US$4.00 <span>(Park anywhere in CBD, linked to reg. number, valid for the day)</span></li>
+                    <li>Monthly Passes: <span>Tailored solutions for corporate and long-term parking needs. Contact us for details!</span></li>
+                </ul>
+                <p style="margin-top: 20px;">*Enforcement hours for paid parking are extended from 6 AM to 7 PM daily. Please note that City of Bulawayo (Clamping and Tow-away) By-laws, 2023 (SI 220 of 2023) are in effect 24/7. Always park legally and adhere to by-laws to avoid penalties.</p>
+                <a href="rates.html" class="btn primary">View All Rates & Passes</a>
+            </div>
+        </section>
+
+        <section class="complaints-contact">
+            <div class="container">
+                <h2>Tendy Three Investments Customer Support & Complaints</h2>
+                <p>Your feedback helps us improve our parking solutions. We are dedicated to providing excellent service and resolving any concerns efficiently. Contact us through the following channels:</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Dedicated Call Centre</h3>
+                        <p>For immediate assistance, payment queries, or general inquiries:</p>
+                        <p>+263 86 88 006 707 (All Networks)</p>
+                        <p>+263 2922 71290 (All Networks)</p>
+                        <p>08084700 (Econet Only - Toll-Free)</p>
+                        <p>08004700 (TelOne Only - Toll-Free)</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>For general inquiries and support, reach us at:</p>
+                        <p><a href="mailto:support@tendythree.com">support@tendythree.com</a></p>
+                        <p>For complaints, detailed feedback, or formal queries, please use:</p>
+                        <p><a href="mailto:complaints.support@tendythree.com">complaints.support@tendythree.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <h3>Visit Our Office</h3>
+                        <p>Our customer service team is available at our physical office for in-person support, complaint resolution, and payment assistance:</p>
+                        <p>2nd Floor, Fidelity House,</p>
+                        <p>Fife Street / 11th Avenue (Corner of Jason Moyo St. and 11th Ave.),</p>
+                        <p>Bulawayo, Zimbabwe</p>
+                        <p>Office Hours: Monday - Friday, 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">For detailed information on our procedures regarding parking infringements, clamping, towing, and how to file a formal complaint or appeal, please refer to our dedicated page:</p>
+                <a href="complaints-procedure.html" class="btn secondary">View Our Complaints Handling Procedure & By-laws</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="by-laws.html">Bulawayo City By-laws</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/TTIParkingSolutions/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/Tendy_ThreeZim" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2025 Tendy Three Investments. All rights reserved.</p>
+            <p>Your Convenient Parking Solution in Bulawayo.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // Features Tabs Functionality
+            const featureTabTitles = document.querySelectorAll('.feature-tab-title');
+            const featuresContent = document.querySelectorAll('.features-content');
+
+            if (featureTabTitles.length > 0 && featuresContent.length > 0) {
+                // Show the first feature content by default
+                featuresContent[0].classList.add('active'); 
+
+                featureTabTitles.forEach(title => {
+                    title.addEventListener('click', function() {
+                        // Remove 'active' class from all titles and content
+                        featureTabTitles.forEach(t => t.classList.remove('active'));
+                        featuresContent.forEach(c => c.classList.remove('active'));
+
+                        // Add 'active' class to the clicked title
+                        this.classList.add('active');
+
+                        // Get the data-feature attribute to identify the corresponding content
+                        const targetFeature = this.dataset.feature;
+                        const targetContentId = `${targetFeature}-content`;
+                        const targetContent = document.getElementById(targetContentId);
+
+                        // Show the corresponding content
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tendy Three Investments Parking Solutions - Your City Parking Solution in Bulawayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Basic Reset & Typography */
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #0056b3; /* A strong blue for headings */
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: #555;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #0056b3;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn.primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn.secondary {
+            background-color: #eee;
+            color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn.secondary:hover {
+            background-color: #ddd;
+            color: #0056b3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1920x600/0056b3/ffffff?text=Tendy+Three+Parking+in+Bulawayo') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero::before { /* Overlay for better text readability */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .hero-cta .btn {
+            margin: 0 10px;
+        }
+
+        /* Why Choose Us Section - Redesigned */
+        .why-choose-us {
+            padding: 60px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .why-choose-us h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .features-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .feature-tab-title {
+            background-color: #fff;
+            color: #0056b3;
+            font-weight: 600;
+            padding: 15px 30px;
+            margin: 5px; /* Add a small margin for spacing */
+            border: 2px solid #0056b3;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-tab-title:hover {
+            background-color: #e0eaff; /* Lighter blue on hover */
+        }
+
+        .feature-tab-title.active {
+            background-color: #0056b3;
+            color: #fff;
+            border-color: #0056b3;
+        }
+
+        .features-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: left; /* Align text within content to left */
+            min-height: 150px; /* Ensure some height even if content is short */
+            display: none; /* Hidden by default, shown by JS */
+            animation: fadeIn 0.5s ease-in-out; /* Simple fade in animation */
+        }
+
+        .features-content.active {
+            display: block; /* Shown when active */
+        }
+
+        .features-content i {
+            font-size: 3em;
+            color: #007bff;
+            margin-bottom: 15px;
+            display: block; /* Ensure icon is on its own line */
+            text-align: center; /* Center the icon */
+        }
+
+        .features-content h3 {
+            font-size: 1.8em; /* Slightly larger heading for content */
+            margin-bottom: 15px;
+            text-align: center; /* Center the heading */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Map Snippet Section */
+        .map-snippet {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .map-snippet h2 {
+            margin-bottom: 40px;
+            font-size: 2.2em;
+        }
+
+        .map-placeholder {
+            background-color: #e0e0e0;
+            height: 400px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+            border-radius: 8px;
+            overflow: hidden; /* Ensure iframe fits */
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Current Rates Snapshot */
+        .rates-summary {
+            background-color: #e6f2ff; /* Light blue background */
+            padding: 40px 0;
+            text-align: center;
+        }
+        .rates-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .rates-summary ul li {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #0056b3;
+        }
+        .rates-summary ul li span {
+            display: block;
+            font-size: 0.9em;
+            font-weight: 400;
+            color: #555;
+        }
+
+        /* Complaints & Contact */
+        .complaints-contact {
+            padding: 60px 0;
+            background-color: #fff;
+            text-align: center;
+        }
+        .complaints-contact .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .complaints-contact .contact-item {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            flex: 1 1 280px; /* Adjust as needed */
+            max-width: 350px;
+        }
+        .complaints-contact .contact-item i {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .complaints-contact .contact-item h3 {
+            margin-bottom: 5px;
+            font-size: 1.3em;
+        }
+        .complaints-contact .contact-item p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer-links ul li {
+            margin: 0 15px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            font-weight: 400;
+        }
+
+        .footer-links ul li a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .social-icons {
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007bff;
+        }
+
+        footer p {
+            font-size: 0.9em;
+            color: #ccc;
+            margin: 5px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav {
+                order: 3; /* Move nav below logo and toggle */
+                width: 100%;
+                display: none; /* Hidden by default for mobile */
+                flex-direction: column;
+                text-align: center;
+                margin-top: 15px;
+            }
+
+            nav.active {
+                display: flex; /* Show when active */
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .logo {
+                flex-grow: 1; /* Allow logo to take space */
+                text-align: center; /* Center logo on smaller screens */
+            }
+
+            .hero {
+                padding: 60px 20px;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .hero-cta {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero-cta .btn {
+                margin: 0; /* Remove horizontal margin */
+            }
+
+            /* Responsive for redesigned features */
+            .features-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature-tab-title {
+                width: 90%; /* Make tabs wider on mobile */
+                max-width: 300px; /* Prevent them from being too wide */
+                margin-bottom: 10px;
+            }
+
+            .rates-summary ul li {
+                flex-basis: 100%;
+            }
+            .complaints-contact .contact-item {
+                flex-basis: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Tendy Three Investments</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Parking Services</a></li>
+                    <li><a href="rates.html">Rates & Passes</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="how-it-works.html">How It Works</a></li>
+                    <li><a href="by-laws.html">By-laws & Regulations</a></li>
+                    <li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Stress-Free Parking in Bulawayo City Centre with Tendy Three Investments Parking Solutions.</h1>
+                <p>Find, Reserve, and Pay for your parking with Tendy Three – Easy, Secure, and Affordable.</p>
+                <p><strong>Quick Pay:</strong> Pay instantly via Mobile Money (EcoCash, OneMoney, MyCash), ZIPIT, or purchase a convenient Daily Pre-paid Pass for just US$4! Learn more on our "How It Works" page.</p>
+                <div class="hero-cta">
+                    <a href="locations.html" class="btn primary">Find Parking Now</a>
+                    <a href="how-it-works.html" class="btn secondary">How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-choose-us">
+            <div class="container">
+                <h2>Why Choose Tendy Three Investments Parking Solutions?</h2>
+                
+                <div class="features-tabs">
+                    <div class="feature-tab-title active" data-feature="convenience">Convenience</div>
+                    <div class="feature-tab-title" data-feature="security">Security</div>
+                    <div class="feature-tab-title" data-feature="affordability">Affordability</div>
+                    <div class="feature-tab-title" data-feature="local-experts">Local Experts</div>
+                </div>
+
+                <div class="features-content-wrapper">
+                    <div id="convenience-content" class="features-content active">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Ultimate Convenience</h3>
+                        <p>Experience unparalleled ease with our diverse payment options, including popular mobile money platforms like EcoCash, OneMoney, MyCash, and direct bank transfers via ZIPIT. Need more time? Seamlessly extend your parking session directly from your phone, eliminating the need to rush back to your vehicle. Our system links payments directly to your vehicle's registration number for a hassle-free experience, allowing you to manage your parking no matter where you are in the city.</p>
+                    </div>
+                    <div id="security-content" class="features-content">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Enhanced Security</h3>
+                        <p>Park with peace of mind knowing your vehicle is in a secure and regularly monitored environment. Our parking zones are equipped with strategically placed surveillance (CCTV in key areas) and patrolled by our highly visible, well-trained parking marshals. These dedicated personnel not only assist you with parking but also actively deter theft and vandalism, ensuring a safer parking experience for all motorists in Bulawayo. Your vehicle's safety is our priority.</p>
+                    </div>
+                    <div id="affordability-content" class="features-content">
+                        <i class="fas fa-tags"></i>
+                        <h3>Transparent & Affordable Rates</h3>
+                        <p>Tendy Three Investments offers clear, upfront pricing with no hidden fees, making parking predictable and budget-friendly. Our flexible hourly rates cater to short visits and quick errands, while our widely popular US$4 Daily Pre-paid Pass provides unlimited parking across all Tendy Three-managed bays in the CBD for the entire day. For regular commuters and businesses, we also offer a range of cost-effective long-term and corporate passes, designed to meet diverse parking needs.</p>
+                    </div>
+                    <div id="local-experts-content" class="features-content">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Your Trusted Local Partner</h3>
+                        <p>As Bulawayo's dedicated parking solution provider, Tendy Three Investments operates in close partnership with the Bulawayo City Council under a Build, Operate, and Transfer (BOT) arrangement. We are not just a service provider; we are an integral part of the community. We understand the city's unique needs and are passionately committed to improving urban mobility, reducing congestion, and contributing significantly to Bulawayo's infrastructure development and local employment through our operations. We are here to serve Bulawayo, for Bulawayo, with deep local expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-snippet">
+            <div class="container">
+                <h2>Tendy Three Investments Parking Locations</h2>
+                <div class="map-placeholder">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15440.098491873132!2d28.57211115!3d-20.17066665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1eb554f676443c6d%3A0x6b6e41b9e0f6b57d!2sBulawayo%20City%20Centre%2C%20Bulawayo%2C%20Zimbabwe!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p>Explore our conveniently located parking bays throughout the Bulawayo CBD. Our extensive network ensures you're always just a short walk from your destination.</p>
+                <a href="locations.html" class="btn primary">View All Locations</a>
+            </div>
+        </section>
+
+        <section class="rates-summary">
+            <div class="container">
+                <h2>Our Popular Tendy Three Investments Parking Rates</h2>
+                <ul>
+                    <li>Hourly Rate: US$1.00 <span>(Effective 8 AM - 5 PM weekdays)</span></li>
+                    <li>Daily Pre-paid Pass: US$4.00 <span>(Park anywhere in CBD, linked to reg. number, valid for the day)</span></li>
+                    <li>Monthly Passes: <span>Tailored solutions for corporate and long-term parking needs. Contact us for details!</span></li>
+                </ul>
+                <p style="margin-top: 20px;">*Enforcement hours for paid parking are extended from 6 AM to 7 PM daily. Please note that City of Bulawayo (Clamping and Tow-away) By-laws, 2023 (SI 220 of 2023) are in effect 24/7. Always park legally and adhere to by-laws to avoid penalties.</p>
+                <a href="rates.html" class="btn primary">View All Rates & Passes</a>
+            </div>
+        </section>
+
+        <section class="complaints-contact">
+            <div class="container">
+                <h2>Tendy Three Investments Customer Support & Complaints</h2>
+                <p>Your feedback helps us improve our parking solutions. We are dedicated to providing excellent service and resolving any concerns efficiently. Contact us through the following channels:</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Dedicated Call Centre</h3>
+                        <p>For immediate assistance, payment queries, or general inquiries:</p>
+                        <p>+263 86 88 006 707 (All Networks)</p>
+                        <p>+263 2922 71290 (All Networks)</p>
+                        <p>08084700 (Econet Only - Toll-Free)</p>
+                        <p>08004700 (TelOne Only - Toll-Free)</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>For general inquiries and support, reach us at:</p>
+                        <p><a href="mailto:support@tendythree.com">support@tendythree.com</a></p>
+                        <p>For complaints, detailed feedback, or formal queries, please use:</p>
+                        <p><a href="mailto:complaints.support@tendythree.com">complaints.support@tendythree.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-building"></i>
+                        <h3>Visit Our Office</h3>
+                        <p>Our customer service team is available at our physical office for in-person support, complaint resolution, and payment assistance:</p>
+                        <p>2nd Floor, Fidelity House,</p>
+                        <p>Fife Street / 11th Avenue (Corner of Jason Moyo St. and 11th Ave.),</p>
+                        <p>Bulawayo, Zimbabwe</p>
+                        <p>Office Hours: Monday - Friday, 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+                <p style="margin-top: 30px;">For detailed information on our procedures regarding parking infringements, clamping, towing, and how to file a formal complaint or appeal, please refer to our dedicated page:</p>
+                <a href="complaints-procedure.html" class="btn secondary">View Our Complaints Handling Procedure & By-laws</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="by-laws.html">Bulawayo City By-laws</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/TTIParkingSolutions/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/Tendy_ThreeZim" target="_blank" aria-label="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2025 Tendy Three Investments. All rights reserved.</p>
+            <p>Your Convenient Parking Solution in Bulawayo.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+
+            // Features Tabs Functionality
+            const featureTabTitles = document.querySelectorAll('.feature-tab-title');
+            const featuresContent = document.querySelectorAll('.features-content');
+
+            if (featureTabTitles.length > 0 && featuresContent.length > 0) {
+                // Show the first feature content by default
+                featuresContent[0].classList.add('active'); 
+
+                featureTabTitles.forEach(title => {
+                    title.addEventListener('click', function() {
+                        // Remove 'active' class from all titles and content
+                        featureTabTitles.forEach(t => t.classList.remove('active'));
+                        featuresContent.forEach(c => c.classList.remove('active'));
+
+                        // Add 'active' class to the clicked title
+                        this.classList.add('active');
+
+                        // Get the data-feature attribute to identify the corresponding content
+                        const targetFeature = this.dataset.feature;
+                        const targetContentId = `${targetFeature}-content`;
+                        const targetContent = document.getElementById(targetContentId);
+
+                        // Show the corresponding content
+                        if (targetContent) {
+                            targetContent.classList.add('active');
+                        }
+                    });
                 });
             }
         });
