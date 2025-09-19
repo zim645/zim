@@ -3,381 +3,550 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binga Tourism - Explore Zimbabwe</title>
-    <!-- Tailwind CSS CDN for modern styling and responsiveness -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ZimPriceTracker - Inflation Monitoring Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom styles for the app */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif; /* Using Inter font for a clean look */
-            background-color: #f0f4f8; /* Light background */
-            color: #333;
-            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+            background: linear-gradient(135deg, #0053b3 0%, #00264d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
+        
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 90vh;
         }
-        .section-heading {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #1e3a8a; /* Dark blue heading */
-            margin-bottom: 2rem;
+        
+        .header {
+            background: #0053b3;
+            color: white;
+            padding: 20px;
             text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .btn-primary {
-            @apply inline-block px-8 py-3 bg-blue-700 text-white font-semibold rounded-full shadow-lg hover:bg-blue-800 transition duration-300 ease-in-out;
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-        .card {
-            @apply bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:scale-105;
+        
+        .zim-flag {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #009739 0%, #009739 33%, #FBDE4A 33%, #FBDE4A 66%, #DE2910 66%, #DE2910 100%);
+            border-radius: 50%;
+            border: 2px solid white;
         }
-        .card-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
         }
-        /* Style for the map container */
-        #map {
-            height: 500px; /* Fixed height for the map */
-            width: 100%;
-            border-radius: 0.75rem; /* Rounded corners for the map */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        
+        .header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
-        /* Leaflet CSS for map styling */
-        @import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css');
+        
+        .chat-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f0f5ff;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message {
+            max-width: 75%;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+            border-radius: 18px;
+            animation: fadeIn 0.3s ease;
+            line-height: 1.5;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background: #ffffff;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+            border: 1px solid #d0d9e8;
+        }
+        
+        .user-message {
+            background: #0053b3;
+            color: white;
+            border-bottom-right-radius: 5px;
+            align-self: flex-end;
+        }
+        
+        .input-area {
+            display: flex;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+        }
+        
+        #send-btn {
+            background: #0053b3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        
+        #send-btn:hover {
+            background: #003d80;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            border-left: 4px solid #0053b3;
+        }
+        
+        .product-image {
+            width: 60px;
+            height: 60px;
+            background: #f0f4f8;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: #0053b3;
+            font-size: 1.5rem;
+        }
+        
+        .product-info {
+            flex: 1;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .product-price {
+            color: #0053b3;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .product-store {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .price-change {
+            font-size: 0.85rem;
+            margin-top: 3px;
+        }
+        
+        .price-up {
+            color: #e53935;
+        }
+        
+        .price-down {
+            color: #4caf50;
+        }
+        
+        .typing-indicator {
+            display: inline-flex;
+            padding: 12px 16px;
+            background: #e8ebf0;
+            border-radius: 18px;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #9ea9b9;
+            border-radius: 50%;
+            margin: 0 3px;
+            animation: typingAnimation 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .quick-reply {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .quick-reply-btn {
+            background: #e8f0ff;
+            border: 1px solid #c5d9ff;
+            border-radius: 18px;
+            padding: 8px 15px;
+            margin: 5px 5px 5px 0;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            color: #0053b3;
+        }
+        
+        .quick-reply-btn:hover {
+            background: #d5e5ff;
+        }
+        
+        .source-link {
+            display: block;
+            margin-top: 15px;
+            color: #0053b3;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .inflation-alert {
+            background: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .last-updated {
+            font-size: 0.8rem;
+            color: #777;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                height: 95vh;
+                width: 95%;
+            }
+            
+            .message {
+                max-width: 85%;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
-<body class="antialiased">
-
-    <!-- Header Section -->
-    <header class="bg-blue-900 text-white py-4 shadow-lg fixed w-full z-50">
-        <nav class="container flex justify-between items-center">
-            <div class="text-3xl font-extrabold tracking-wide">
-                <a href="#home" class="hover:text-blue-200 transition duration-300">Binga Explorer</a>
-            </div>
-            <ul class="flex space-x-6 text-lg">
-                <li><a href="#home" class="hover:text-blue-200 transition duration-300">Home</a></li>
-                <li><a href="#attractions" class="hover:text-blue-200 transition duration-300">Attractions</a></li>
-                <li><a href="#accommodation" class="hover:text-blue-200 transition duration-300">Accommodation</a></li>
-                <li><a href="#activities" class="hover:text-blue-200 transition duration-300">Activities</a></li>
-                <li><a href="#reviews" class="hover:text-blue-200 transition duration-300">Reviews</a></li>
-                <li><a href="#map-section" class="hover:text-blue-200 transition duration-300">Map</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="pt-20">
-        <!-- Hero Section -->
-        <section id="home" class="relative h-screen flex items-center justify-center text-white text-center bg-cover bg-center"
-            style="background-image: url('https://placehold.co/1920x1080/4a5568/ffffff?text=Discover+Binga');">
-            <div class="absolute inset-0 bg-black opacity-60"></div>
-            <div class="z-10 p-8">
-                <h1 class="text-6xl font-extrabold mb-4 animate-fade-in-down">Uncover the Magic of Binga, Zimbabwe</h1>
-                <p class="text-2xl mb-8 animate-fade-in-up">Your ultimate guide to authentic cultural experiences and breathtaking natural beauty on Lake Kariba's shores.</p>
-                <a href="#attractions" class="btn-primary animate-scale-in">Start Exploring</a>
-            </div>
-        </section>
-
-        <!-- About Binga Section (Optional, could be part of Home or a separate section) -->
-        <section id="about" class="py-16 bg-white">
-            <div class="container">
-                <h2 class="section-heading">About Binga</h2>
-                <div class="flex flex-col md:flex-row items-center gap-8">
-                    <div class="md:w-1/2">
-                        <img src="https://placehold.co/600x400/87CEEB/FFFFFF?text=Binga+Scenery" alt="Binga Scenery" class="rounded-xl shadow-lg">
-                    </div>
-                    <div class="md:w-1/2 text-lg leading-relaxed">
-                        <p class="mb-4">Binga is a captivating district nestled on the southeastern shores of the vast Lake Kariba in Matabeleland North Province, Zimbabwe. It's a place where the rich cultural heritage of the Tonga people thrives amidst stunning natural landscapes.</p>
-                        <p class="mb-4">Known for its vibrant fishing industry, traditional villages, and unique geological features, Binga offers an off-the-beaten-path adventure. Visitors can immerse themselves in local customs, enjoy the tranquility of the lake, or explore the area's hidden gems.</p>
-                        <p>From the famous Binga Hot Springs to the intricate basketry of the Tonga craftsmen, every corner of Binga tells a story waiting to be discovered.</p>
-                    </div>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="zim-flag"></div>
+                <div>
+                    <h1>ZimPriceTracker</h1>
+                    <p>Tracking prices and inflation in Zimbabwe</p>
                 </div>
-            </div>
-        </section>
-
-        <!-- Attractions Section -->
-        <section id="attractions" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
-            <div class="container">
-                <h2 class="section-heading">Must-Visit Attractions</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Attraction Card 1 -->
-                    <div class="card">
-                        <img src="https://placehold.co/600x400/A0B2C3/FFFFFF?text=Lake+Kariba" alt="Lake Kariba" class="card-image">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Lake Kariba</h3>
-                            <p class="text-gray-600">One of the world's largest man-made lakes, famous for its breathtaking sunsets, tiger fishing, and houseboating adventures.</p>
-                            <a href="#" class="text-blue-600 hover:underline mt-4 block">Learn More &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Attraction Card 2 -->
-                    <div class="card">
-                        <img src="https://placehold.co/600x400/C0D2E3/FFFFFF?text=Binga+Hot+Springs" alt="Binga Hot Springs" class="card-image">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Binga Hot Springs</h3>
-                            <p class="text-gray-600">Natural thermal springs offering a unique opportunity to relax and rejuvenate in mineral-rich waters.</p>
-                            <a href="#" class="text-blue-600 hover:underline mt-4 block">Learn More &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Attraction Card 3 -->
-                    <div class="card">
-                        <img src="https://placehold.co/600x400/D0E2F3/FFFFFF?text=Tonga+Museum" alt="Tonga Culture Museum" class="card-image">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Tonga Culture Museum</h3>
-                            <p class="text-gray-600">Discover the rich history, traditions, and artifacts of the indigenous Tonga people.</p>
-                            <a href="#" class="text-blue-600 hover:underline mt-4 block">Learn More &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Add more attractions as needed -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Accommodation Section -->
-        <section id="accommodation" class="py-16 bg-white">
-            <div class="container">
-                <h2 class="section-heading">Where to Stay</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Accommodation Card 1 -->
-                    <div class="card flex flex-col md:flex-row">
-                        <img src="https://placehold.co/400x300/E0F2F3/FFFFFF?text=Binga+Camp" alt="Binga Rest Camp" class="card-image md:w-1/3 md:h-auto">
-                        <div class="p-6 md:w-2/3">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Binga Rest Camp</h3>
-                            <p class="text-gray-600 mb-4">Affordable chalets and camping facilities with stunning lake views, perfect for budget travelers and nature lovers.</p>
-                            <div class="flex items-center text-yellow-500 mb-2">
-                                &#9733;&#9733;&#9733;&#9734;&#9734; <span class="text-gray-500 ml-2">(120 Reviews)</span>
-                            </div>
-                            <a href="#" class="btn-primary">View Details</a>
-                        </div>
-                    </div>
-                    <!-- Accommodation Card 2 -->
-                    <div class="card flex flex-col md:flex-row">
-                        <img src="https://placehold.co/400x300/F0F2F3/FFFFFF?text=Safari+Lodge" alt="Kariba Safari Lodge" class="card-image md:w-1/3 md:h-auto">
-                        <div class="p-6 md:w-2/3">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Kariba Safari Lodge (Nearby)</h3>
-                            <p class="text-gray-600 mb-4">A luxurious escape offering game drives, boat cruises, and exquisite dining with panoramic lake vistas.</p>
-                            <div class="flex items-center text-yellow-500 mb-2">
-                                &#9733;&#9733;&#9733;&#9733;&#9734; <span class="text-gray-500 ml-2">(85 Reviews)</span>
-                            </div>
-                            <a href="#" class="btn-primary">View Details</a>
-                        </div>
-                    </div>
-                    <!-- Add more accommodation options -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Activities Section -->
-        <section id="activities" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
-            <div class="container">
-                <h2 class="section-heading">Exciting Activities</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Activity Card 1 -->
-                    <div class="card">
-                        <img src="https://placehold.co/600x400/A0B2C3/FFFFFF?text=Tiger+Fishing" alt="Tiger Fishing" class="card-image">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Tiger Fishing Expeditions</h3>
-                            <p class="text-gray-600">Challenge yourself with the thrill of catching the mighty Tiger Fish, a renowned freshwater game fish.</p>
-                            <a href="#" class="text-blue-600 hover:underline mt-4 block">Book Now &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Activity Card 2 -->
-                    <div class="card">
-                        <img src="https://placehold.co/600x400/C0D2E3/FFFFFF?text=Cultural+Tour" alt="Cultural Village Tours" class="card-image">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Cultural Village Tours</h3>
-                            <p class="text-gray-600">Visit authentic Tonga villages, interact with locals, and learn about their traditions and way of life.</p>
-                            <a href="#" class="text-blue-600 hover:underline mt-4 block">Book Now &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Activity Card 3 -->
-                    <div class="card">
-                        <img src="https://placehold.co/600x400/D0E2F3/FFFFFF?text=Sunset+Cruise" alt="Sunset Cruises" class="card-image">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-gray-800 mb-2">Lake Kariba Sunset Cruises</h3>
-                            <p class="text-gray-600">Witness spectacular sunsets over Lake Kariba while enjoying a relaxing boat cruise.</p>
-                            <a href="#" class="text-blue-600 hover:underline mt-4 block">Book Now &rarr;</a>
-                        </div>
-                    </div>
-                    <!-- Add more activities -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Reviews Section (TripAdvisor-like) -->
-        <section id="reviews" class="py-16 bg-white">
-            <div class="container">
-                <h2 class="section-heading">Traveler Reviews</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <!-- Review Card 1 -->
-                    <div class="card p-6">
-                        <div class="flex items-center mb-4">
-                            <img src="https://placehold.co/50x50/E0E0E0/888888?text=JD" alt="User Avatar" class="rounded-full mr-4">
-                            <div>
-                                <h4 class="font-semibold text-gray-800">John Doe</h4>
-                                <p class="text-sm text-gray-500">Visited June 2025</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center text-yellow-500 mb-2">
-                            &#9733;&#9733;&#9733;&#9733;&#9734;
-                        </div>
-                        <p class="text-gray-700 leading-relaxed">"Binga exceeded all my expectations! The cultural tour was incredibly insightful, and the hot springs were so relaxing. A truly authentic Zimbabwean experience."</p>
-                    </div>
-                    <!-- Review Card 2 -->
-                    <div class="card p-6">
-                        <div class="flex items-center mb-4">
-                            <img src="https://placehold.co/50x50/D0D0D0/777777?text=AS" alt="User Avatar" class="rounded-full mr-4">
-                            <div>
-                                <h4 class="font-semibold text-gray-800">Alice Smith</h4>
-                                <p class="text-sm text-gray-500">Visited May 2025</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center text-yellow-500 mb-2">
-                            &#9733;&#9733;&#9733;&#9733;&#9733;
-                        </div>
-                        <p class="text-gray-700 leading-relaxed">"Tiger fishing on Lake Kariba was an unforgettable adventure! The guides were fantastic, and the scenery was just breathtaking. Highly recommend!"</p>
-                    </div>
-                    <!-- Add more reviews -->
-                </div>
-
-                <!-- Review Submission Form -->
-                <div class="bg-blue-50 p-8 rounded-xl shadow-inner">
-                    <h3 class="text-2xl font-bold text-blue-800 mb-6 text-center">Share Your Binga Experience!</h3>
-                    <form id="review-form" class="space-y-4">
-                        <div>
-                            <label for="reviewer-name" class="block text-gray-700 text-sm font-bold mb-2">Your Name:</label>
-                            <input type="text" id="reviewer-name" name="reviewer-name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Jane Doe" required>
-                        </div>
-                        <div>
-                            <label for="rating" class="block text-gray-700 text-sm font-bold mb-2">Rating:</label>
-                            <select id="rating" name="rating" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                                <option value="">Select a rating</option>
-                                <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (Excellent)</option>
-                                <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (Very Good)</option>
-                                <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (Average)</option>
-                                <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (Poor)</option>
-                                <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (Terrible)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="review-text" class="block text-gray-700 text-sm font-bold mb-2">Your Review:</label>
-                            <textarea id="review-text" name="review-text" rows="5" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Share your experience..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary w-full">Submit Review</button>
-                        <div id="review-message" class="mt-4 text-center text-green-700 font-semibold hidden"></div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Live Map Section -->
-        <section id="map-section" class="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
-            <div class="container">
-                <h2 class="section-heading">Explore Binga on the Map</h2>
-                <div id="map" class="rounded-xl shadow-lg"></div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer Section -->
-    <footer class="bg-blue-900 text-white py-8 text-center shadow-inner">
-        <div class="container">
-            <p>&copy; 2025 Binga Explorer. All rights reserved. | Developed for Binga Tourism</p>
-            <div class="flex justify-center space-x-4 mt-4">
-                <a href="#" class="hover:text-blue-200 transition duration-300">Privacy Policy</a>
-                <a href="#" class="hover:text-blue-200 transition duration-300">Terms of Service</a>
             </div>
         </div>
-    </footer>
+        
+        <div class="chat-container" id="chat-container">
+            <div class="message bot-message">
+                <p>Hello! I'm here to help you track prices and inflation data from Zimbabwean supermarkets and shops.</p>
+                <p>What product would you like to check today?</p>
+                <div class="quick-reply">
+                    <button class="quick-reply-btn" data-product="Cooking Oil">Cooking Oil</button>
+                    <button class="quick-reply-btn" data-product="Sugar">Sugar</button>
+                    <button class="quick-reply-btn" data-product="Maize Meal">Maize Meal</button>
+                    <button class="quick-reply-btn" data-product="Bread">Bread</button>
+                </div>
+                <div class="last-updated">Last updated: Today, 10:45 AM</div>
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Ask about product prices or inflation data...">
+            <button id="send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
 
-    <!-- Leaflet.js for the interactive map -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
-        // JavaScript for smooth scrolling and map initialization
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chat-container');
+            const userInput = document.getElementById('user-input');
+            const sendBtn = document.getElementById('send-btn');
+            
+            // Sample product data for Zimbabwean context
+            const products = {
+                'cooking oil': [
+                    { name: 'Cooking Oil 2L', price: 'ZWL 5,200', store: 'OK Zimbabwe', image: '🛢️', change: '+12%' },
+                    { name: 'Sunflower Oil 2L', price: 'ZWL 5,800', store: 'Pick n Pay', image: '🛢️', change: '+15%' },
+                    { name: 'Vegetable Oil 2L', price: 'ZWL 4,900', store: 'TM Supermarket', image: '🛢️', change: '+8%' }
+                ],
+                'sugar': [
+                    { name: 'Brown Sugar 2kg', price: 'ZWL 3,500', store: 'OK Zimbabwe', image: '🍚', change: '+5%' },
+                    { name: 'White Sugar 2kg', price: 'ZWL 3,800', store: 'Spar', image: '🍚', change: '+7%' },
+                    { name: 'Cane Sugar 2kg', price: 'ZWL 3,200', store: 'Food World', image: '🍚', change: '+3%' }
+                ],
+                'maize meal': [
+                    { name: 'Maize Meal 10kg', price: 'ZWL 8,500', store: 'TM Supermarket', image: '🌽', change: '+18%' },
+                    { name: 'Mealie Meal 5kg', price: 'ZWL 4,200', store: 'OK Zimbabwe', image: '🌽', change: '+15%' },
+                    { name: 'Super Maize Meal 10kg', price: 'ZWL 9,000', store: 'Pick n Pay', image: '🌽', change: '+20%' }
+                ],
+                'bread': [
+                    { name: 'Standard Loaf', price: 'ZWL 1,200', store: 'Baker\'s Inn', image: '🍞', change: '+10%' },
+                    { name: 'Brown Bread', price: 'ZWL 1,500', store: 'Lobels', image: '🍞', change: '+12%' },
+                    { name: 'White Bread', price: 'ZWL 1,300', store: 'Bona Loaf', image: '🍞', change: '+8%' }
+                ],
+                'fuel': [
+                    { name: 'Petrol (per liter)', price: 'ZWL 8,500', store: 'Total Zimbabwe', image: '⛽', change: '+25%' },
+                    { name: 'Diesel (per liter)', price: 'ZWL 8,200', store: 'Puma Energy', image: '⛽', change: '+22%' }
+                ],
+                'rent': [
+                    { name: '3-Bedroom Apartment (Harare)', price: 'ZWL 450,000/month', store: 'Property24', image: '🏠', change: '+30%' },
+                    { name: '2-Bedroom Apartment (Bulawayo)', price: 'ZWL 320,000/month', store: 'Property World', image: '🏠', change: '+25%' }
+                ]
+            };
+            
+            // Data sources
+            const dataSources = [
+                {name: "ZimStat Consumer Price Index", url: "https://www.zimstat.co.zw/price-statistics/"},
+                {name: "RBZ Inflation Reports", url: "https://www.rbz.co.zw/inflation-reports/"},
+                {name: "Consumer Council of Zimbabwe", url: "https://ccz.org.zw/price-check/"},
+                {name: "TM Supermarket Price List", url: "https://tmsupermarket.co.zw/prices/"},
+                {name: "OK Zimbabwe Latest Catalogue", url: "https://okzimbabwe.co.zw/catalogue/"},
+                {name: "Ministry of Industry and Commerce", url: "https://www.commerce.gov.zw/price-monitoring/"}
+            ];
+            
+            // Add message to chat
+            function addMessage(text, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+                messageDiv.innerHTML = text;
+                chatContainer.appendChild(messageDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Show typing indicator
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.classList.add('typing-indicator');
+                typingDiv.id = 'typing-indicator';
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                chatContainer.appendChild(typingDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                return typingDiv;
+            }
+            
+            // Remove typing indicator
+            function removeTypingIndicator() {
+                const typingIndicator = document.getElementById('typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+            
+            // Display product results
+            function displayProducts(productArray) {
+                const productsDiv = document.createElement('div');
+                
+                productArray.forEach(product => {
+                    const changeClass = product.change.startsWith('+') ? 'price-up' : 'price-down';
+                    
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('product-card');
+                    productCard.innerHTML = `
+                        <div class="product-image">${product.image}</div>
+                        <div class="product-info">
+                            <div class="product-name">${product.name}</div>
+                            <div class="product-store">${product.store}</div>
+                            <div class="price-change ${changeClass}">Change: ${product.change}</div>
+                        </div>
+                        <div class="product-price">${product.price}</div>
+                    `;
+                    productsDiv.appendChild(productCard);
+                });
+                
+                chatContainer.appendChild(productsDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Display data sources
+            function displayDataSources() {
+                const sourcesDiv = document.createElement('div');
+                sourcesDiv.innerHTML = `<p>Here are some reliable sources for price and inflation data in Zimbabwe:</p>`;
+                
+                const sourcesList = document.createElement('ul');
+                sourcesList.style.margin = '10px 0 10px 20px';
+                
+                dataSources.forEach(source => {
+                    const listItem = document.createElement('li');
+                    listItem.style.marginBottom = '8px';
+                    listItem.innerHTML = `<a href="${source.url}" target="_blank" class="source-link">${source.name}</a>`;
+                    sourcesList.appendChild(listItem);
+                });
+                
+                sourcesDiv.appendChild(sourcesList);
+                chatContainer.appendChild(sourcesDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Show inflation alert
+            function showInflationAlert() {
+                const alertDiv = document.createElement('div');
+                alertDiv.classList.add('inflation-alert');
+                alertDiv.innerHTML = `
+                    <strong><i class="fas fa-exclamation-triangle"></i> Inflation Alert</strong>
+                    <p>Zimbabwe's annual inflation rate reached 175.8% in June 2023, according to ZimStat.</p>
+                    <p>Food and non-alcoholic beverages inflation stands at 285.0%.</p>
+                `;
+                chatContainer.appendChild(alertDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            // Handle user message
+            function handleUserMessage() {
+                const message = userInput.value.trim().toLowerCase();
+                if (message === '') return;
+                
+                addMessage(message, true);
+                userInput.value = '';
+                
+                const typingIndicator = showTypingIndicator();
+                
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    
+                    if (message.includes('source') || message.includes('where') || message.includes('data')) {
+                        addMessage("I can fetch price data from various online sources including supermarket websites, government publications, and economic reports.");
+                        displayDataSources();
+                    } 
+                    else if (message.includes('inflation') || message.includes('economic')) {
+                        addMessage("Current inflation data for Zimbabwe:");
+                        showInflationAlert();
+                        addMessage("I can help you track specific product prices that are contributing to inflation.");
+                    }
+                    else if (products[message]) {
+                        addMessage(`I found these prices for ${message} from local supermarkets:`);
+                        displayProducts(products[message]);
+                        addMessage("Prices are changing rapidly due to high inflation. What other product would you like to check?");
+                    } else {
+                        addMessage("I'm not sure I found that product. Try something like 'cooking oil', 'sugar', 'maize meal', 'bread', 'fuel', or 'rent'. Or ask about inflation data.");
+                    }
+                    
+                    // Add quick replies
+                    const quickReplyDiv = document.createElement('div');
+                    quickReplyDiv.classList.add('quick-reply');
+                    quickReplyDiv.innerHTML = `
+                        <button class="quick-reply-btn" data-product="cooking oil">Cooking Oil</button>
+                        <button class="quick-reply-btn" data-product="sugar">Sugar</button>
+                        <button class="quick-reply-btn" data-product="maize meal">Maize Meal</button>
+                        <button class="quick-reply-btn" data-product="fuel">Fuel Prices</button>
+                    `;
+                    chatContainer.appendChild(quickReplyDiv);
+                    
+                    // Add event listeners to quick reply buttons
+                    document.querySelectorAll('.quick-reply-btn').forEach(button => {
+                        button.addEventListener('click', function() {
+                            userInput.value = this.getAttribute('data-product');
+                            handleUserMessage();
+                        });
+                    });
+                    
+                }, 1500);
+            }
+            
+            // Event listeners
+            sendBtn.addEventListener('click', handleUserMessage);
+            
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+            
+            // Add event listeners to initial quick reply buttons
+            document.querySelectorAll('.quick-reply-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    userInput.value = this.getAttribute('data-product');
+                    handleUserMessage();
                 });
             });
-        });
-
-        // Initialize the Leaflet Map
-        document.addEventListener('DOMContentLoaded', function() {
-            // Binga's approximate coordinates: -17.625, 27.35 (south-east of Lake Kariba)
-            // Adjust center and zoom as needed for better coverage of Binga area
-            const map = L.map('map').setView([-17.625, 27.35], 11); // Increased zoom for more detail
-
-            // Add OpenStreetMap tiles
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-
-            // Define points of interest in Binga
-            const pointsOfInterest = [
-                { lat: -17.625, lng: 27.35, name: 'Binga Town Centre', description: 'Main hub of Binga.', type: 'Town' },
-                { lat: -17.61, lng: 27.33, name: 'Binga Hot Springs', description: 'Natural thermal springs.', type: 'Attraction' },
-                { lat: -17.63, lng: 27.36, name: 'Binga Rest Camp', description: 'Accommodation with lake views.', type: 'Accommodation' },
-                { lat: -17.60, lng: 27.30, name: 'Lake Kariba Shore', description: 'Access point for lake activities.', type: 'Attraction' },
-                { lat: -17.62, lng: 27.34, name: 'Tonga Culture Museum', description: 'Learn about Tonga heritage.', type: 'Attraction' }
-                // Add more specific Binga locations here
-            ];
-
-            // Add markers for each point of interest
-            pointsOfInterest.forEach(point => {
-                L.marker([point.lat, point.lng])
-                    .addTo(map)
-                    .bindPopup(`<b>${point.name}</b><br>${point.description}<br>Type: ${point.type}`);
-            });
-
-            // Optional: Add a circle to highlight the general Binga area
-            L.circle([-17.625, 27.35], {
-                color: 'blue',
-                fillColor: '#3047a0',
-                fillOpacity: 0.1,
-                radius: 5000 // 5 km radius
-            }).addTo(map).bindPopup("General Binga Area");
-
-            // Review Form Submission Handler
-            const reviewForm = document.getElementById('review-form');
-            const reviewMessage = document.getElementById('review-message');
-
-            reviewForm.addEventListener('submit', function(e) {
-                e.preventDefault(); // Prevent default form submission
-
-                const reviewerName = document.getElementById('reviewer-name').value;
-                const rating = document.getElementById('rating').value;
-                const reviewText = document.getElementById('review-text').value;
-
-                // Basic validation
-                if (!reviewerName || !rating || !reviewText) {
-                    reviewMessage.textContent = 'Please fill in all fields.';
-                    reviewMessage.className = 'mt-4 text-center text-red-700 font-semibold block';
-                    return;
-                }
-
-                // In a real application, you would send this data to a server (e.g., using fetch API)
-                // For this HTML-only example, we'll just log it and show a success message.
-                console.log('New Review Submitted:');
-                console.log('Name:', reviewerName);
-                console.log('Rating:', rating);
-                console.log('Review:', reviewText);
-
-                reviewMessage.textContent = 'Thank you for your review! It has been submitted.';
-                reviewMessage.className = 'mt-4 text-center text-green-700 font-semibold block';
-
-                // Clear the form
-                reviewForm.reset();
-
-                // Hide message after a few seconds
-                setTimeout(() => {
-                    reviewMessage.className = 'mt-4 text-center text-green-700 font-semibold hidden';
-                }, 5000);
-            });
+            
+            // Show initial inflation alert after a delay
+            setTimeout(() => {
+                showInflationAlert();
+            }, 1000);
         });
     </script>
 </body>
