@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rise and Shine Empowerment - Registration Notice</title>
+    <title>Rise and Shine Empowerment - Core Programs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --primary-color: #1a365d;
-            --secondary-color: #2d3748;
-            --accent-color: #3182ce;
-            --welfare-color: #2b6cb0;
-            --empowerment-color: #e53e3e;
+            --secondary-color: #2c5282;
+            --accent-color: #e53e3e;
+            --empowerment-color: #dd6b20;
             --education-color: #38a169;
-            --shelter-color: #dd6b20;
-            --tech-color: #805ad5;
-            --light-bg: #f7fafc;
+            --shelter-color: #805ad5;
         }
         
         * {
@@ -41,34 +39,13 @@
             margin-bottom: 50px;
         }
         
+        /* Header */
         .header {
             background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
             color: white;
             padding: 40px 30px;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.1;
-        }
-        
-        .official-notice {
-            background-color: rgba(255, 255, 255, 0.15);
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-size: 18px;
-            border-left: 5px solid #e53e3e;
         }
         
         .organization-name {
@@ -76,7 +53,6 @@
             font-weight: 800;
             margin-bottom: 10px;
             letter-spacing: 1px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .organization-tagline {
@@ -85,263 +61,218 @@
             opacity: 0.9;
             max-width: 800px;
             margin: 0 auto;
+            font-style: italic;
         }
         
-        .core-values {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .value-item {
-            background: rgba(255, 255, 255, 0.15);
+        .core-mission {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
             border-radius: 8px;
-            padding: 15px 25px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-top: 25px;
+            font-size: 20px;
+            border-left: 5px solid #e53e3e;
         }
         
-        .content {
-            padding: 40px;
-        }
-        
-        .section {
-            margin-bottom: 50px;
+        /* Core Objectives Section */
+        .core-objectives-section {
+            padding: 60px 40px;
+            background-color: #f8fafc;
         }
         
         .section-title {
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 36px;
+            font-weight: 800;
             color: var(--primary-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            border-bottom: 3px solid;
-            display: flex;
-            align-items: center;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
         }
         
-        .core-objectives .section-title {
-            border-bottom-color: var(--empowerment-color);
-        }
-        
-        .extended-programs .section-title {
-            border-bottom-color: var(--tech-color);
-        }
-        
-        .section-title i {
-            margin-right: 15px;
-        }
-        
-        .section-content {
-            font-size: 17px;
-        }
-        
-        .aim-box {
-            background-color: #ebf8ff;
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border-left: 8px solid var(--accent-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .aim-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .aim-title i {
-            color: var(--accent-color);
-            margin-right: 15px;
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-color);
         }
         
         .objectives-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
         
         .objective-card {
             background-color: white;
             border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid;
+            padding: 35px 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            border-top: 8px solid;
             position: relative;
         }
         
         .objective-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
-        .objective-card.core {
+        .objective-card.empowerment {
             border-top-color: var(--empowerment-color);
         }
         
-        .objective-card.extended {
-            border-top-color: var(--tech-color);
+        .objective-card.education {
+            border-top-color: var(--education-color);
+        }
+        
+        .objective-card.shelter {
+            border-top-color: var(--shelter-color);
+        }
+        
+        .objective-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .objective-card.empowerment .objective-icon {
+            color: var(--empowerment-color);
+        }
+        
+        .objective-card.education .objective-icon {
+            color: var(--education-color);
+        }
+        
+        .objective-card.shelter .objective-icon {
+            color: var(--shelter-color);
+        }
+        
+        .objective-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
         
         .objective-number {
             position: absolute;
-            top: -15px;
-            left: 20px;
+            top: -20px;
+            left: 30px;
             background-color: var(--primary-color);
             color: white;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 18px;
-        }
-        
-        .objective-card.core .objective-number {
-            background-color: var(--empowerment-color);
-        }
-        
-        .objective-card.extended .objective-number {
-            background-color: var(--tech-color);
-        }
-        
-        .card-title {
             font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            margin-top: 10px;
         }
         
-        .card-content {
-            font-size: 16px;
-            color: #4a5568;
-        }
-        
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .core-badge {
-            background-color: var(--empowerment-color);
-            color: white;
-        }
-        
-        .extended-badge {
-            background-color: var(--tech-color);
-            color: white;
-        }
-        
-        .free-badge {
-            background-color: #38a169;
-            color: white;
-        }
-        
-        .paid-badge {
-            background-color: #b83280;
-            color: white;
+        /* Extended Programs */
+        .extended-programs {
+            padding: 60px 40px;
+            background-color: #fff;
         }
         
         .programs-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
-            margin-top: 20px;
+            margin-top: 40px;
         }
         
         .program-card {
-            background-color: var(--light-bg);
+            background-color: #f8fafc;
             border-radius: 8px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-            border-left: 5px solid var(--tech-color);
+            border-left: 5px solid var(--accent-color);
+            transition: all 0.3s;
         }
         
         .program-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background-color: #ebf8ff;
         }
         
         .program-title {
             font-size: 20px;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: var(--primary-color);
             display: flex;
             align-items: center;
         }
         
         .program-title i {
-            color: var(--tech-color);
             margin-right: 10px;
+            color: var(--accent-color);
         }
         
-        .program-details {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #e2e8f0;
+        /* Donation Section - Simple at Bottom */
+        .donation-section {
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            text-align: center;
         }
         
-        .program-details ul {
-            list-style-type: none;
-            padding-left: 0;
+        .donation-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
         }
         
-        .program-details li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #e2e8f0;
+        .donation-tagline {
+            font-size: 22px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
         }
         
-        .program-details li:last-child {
-            border-bottom: none;
-        }
-        
-        .target-beneficiaries {
-            background-color: #fffaf0;
-            border-radius: 10px;
-            padding: 25px;
-            margin-top: 30px;
-            border: 2px solid #ed8936;
-        }
-        
-        .beneficiary-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+        .donation-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
             margin-top: 20px;
         }
         
-        .beneficiary-item {
-            background-color: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        .donation-button:hover {
+            background-color: #c53030;
+        }
+        
+        /* Contact Footer */
+        .contact-footer {
+            background-color: #2d3748;
+            color: white;
+            padding: 40px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 15px;
         }
         
-        .beneficiary-icon {
-            background-color: #ebf8ff;
+        .contact-icon {
+            background-color: rgba(255, 255, 255, 0.1);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -349,601 +280,283 @@
             align-items: center;
             justify-content: center;
             font-size: 22px;
-            color: var(--accent-color);
+            color: #e2e8f0;
+            flex-shrink: 0;
         }
         
-        .registration-notice {
-            background-color: #fff5f5;
-            border-radius: 10px;
+        .contact-details h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+        
+        .owner-contact {
+            background-color: rgba(255, 255, 255, 0.05);
             padding: 25px;
-            margin-top: 40px;
-            border: 2px dashed #e53e3e;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 5px solid #e53e3e;
         }
         
-        .notice-title {
+        .owner-title {
             font-size: 22px;
             font-weight: 700;
-            color: #c53030;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
+            color: #e2e8f0;
         }
         
-        .notice-title i {
-            margin-right: 15px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
+        .owner-email {
+            font-size: 20px;
+            color: #63b3ed;
             font-weight: 600;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #cbd5e0;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 30px;
-            background-color: var(--empowerment-color);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #c53030;
-        }
-        
-        .footer {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin: 30px 0;
-        }
-        
-        .footer-links a {
-            color: #cbd5e0;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: white;
         }
         
         .copyright {
+            text-align: center;
+            padding-top: 30px;
             margin-top: 30px;
+            border-top: 1px solid #4a5568;
             color: #a0aec0;
             font-size: 14px;
         }
         
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-        }
-        
-        .contact-item {
-            text-align: center;
-        }
-        
+        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 margin-top: 0;
                 border-radius: 0;
             }
             
-            .header {
-                padding: 30px 20px;
-            }
-            
             .organization-name {
                 font-size: 36px;
             }
             
-            .content {
-                padding: 25px;
+            .objectives-container, .programs-grid, .contact-grid {
+                grid-template-columns: 1fr;
             }
             
-            .objectives-container, .programs-grid, .beneficiary-list {
-                grid-template-columns: 1fr;
+            .core-objectives-section, .extended-programs, .donation-section, .contact-footer {
+                padding: 40px 20px;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <div class="official-notice">
-                <i class="fas fa-file-contract"></i> Official Registration Notice - Welfare Organisations Act, 1966
-            </div>
-            
             <h1 class="organization-name">Rise and Shine Empowerment</h1>
-            <p class="organization-tagline">Promoting a better quality of life for youths and vulnerable children in marginalized communities</p>
+            <p class="organization-tagline">"We rise by lifting each other!"</p>
             
-            <div class="core-values">
-                <div class="value-item"><i class="fas fa-heart"></i> Empowerment</div>
-                <div class="value-item"><i class="fas fa-graduation-cap"></i> Education</div>
-                <div class="value-item"><i class="fas fa-home"></i> Shelter</div>
-                <div class="value-item"><i class="fas fa-handshake"></i> Community</div>
-                <div class="value-item"><i class="fas fa-laptop-code"></i> Innovation</div>
+            <div class="core-mission">
+                <strong>AIM:</strong> Promoting a better quality of life for youths and vulnerable children in marginalized communities.
             </div>
         </header>
         
-        <main class="content">
-            <section class="section core-objectives">
-                <h2 class="section-title"><i class="fas fa-bullseye"></i> Core Aims & Objectives</h2>
-                
-                <div class="aim-box">
-                    <div class="aim-title">
-                        <i class="fas fa-star"></i> ORGANIZATION AIM
-                    </div>
-                    <p style="font-size: 20px; font-weight: 600; color: var(--primary-color);">
-                        Promoting a better quality of life for youths and vulnerable children in marginalized communities.
-                    </p>
-                </div>
-                
-                <h3 style="font-size: 24px; color: var(--empowerment-color); margin-bottom: 20px;">
-                    <i class="fas fa-list-ol"></i> Core Objectives
-                </h3>
-                
-                <div class="objectives-container">
-                    <div class="objective-card core">
-                        <div class="objective-number">I</div>
-                        <h3 class="card-title">Youth Empowerment</h3>
-                        <div class="card-content">
-                            <span class="badge core-badge">Core Objective</span>
-                            <p>To empower youth in marginalized communities through sports, technical and vocational skills training, leadership development, and life skills education.</p>
-                            <div class="program-details">
-                                <p><strong>Programs include:</strong></p>
-                                <ul>
-                                    <li>Sports academies and competitions</li>
-                                    <li>Vocational training workshops</li>
-                                    <li>Leadership and entrepreneurship programs</li>
-                                    <li>Life skills and mental health support</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="objective-card core">
-                        <div class="objective-number">II</div>
-                        <h3 class="card-title">Quality Education Access</h3>
-                        <div class="card-content">
-                            <span class="badge core-badge">Core Objective</span>
-                            <p>To enhance access to quality education for vulnerable children in marginalized communities through scholarships, learning centers, and educational support programs.</p>
-                            <div class="program-details">
-                                <p><strong>Programs include:</strong></p>
-                                <ul>
-                                    <li>After-school tutoring and homework clubs</li>
-                                    <li>Scholarship programs for primary and secondary education</li>
-                                    <li>Digital literacy and computer skills training</li>
-                                    <li>School supplies and uniform assistance</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="objective-card core">
-                        <div class="objective-number">III</div>
-                        <h3 class="card-title">Safe & Secure Shelter</h3>
-                        <div class="card-content">
-                            <span class="badge core-badge">Core Objective</span>
-                            <p>To provide safe and secure shelter for vulnerable children through residential care facilities, emergency housing, and family support services.</p>
-                            <div class="program-details">
-                                <p><strong>Programs include:</strong></p>
-                                <ul>
-                                    <li>Residential care homes for orphans</li>
-                                    <li>Emergency shelter for street children</li>
-                                    <li>Foster care support services</li>
-                                    <li>Family preservation and reunification programs</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <!-- Core Objectives Section -->
+        <section class="core-objectives-section">
+            <h2 class="section-title">Our Core Objectives</h2>
             
-            <section class="section extended-programs">
-                <h2 class="section-title"><i class="fas fa-rocket"></i> Extended Empowerment Programs</h2>
-                <div class="section-content">
-                    <p>Building upon our core objectives, we offer extended programs that provide advanced skills and opportunities for youth empowerment through technology and innovation.</p>
+            <div class="objectives-container">
+                <div class="objective-card empowerment">
+                    <div class="objective-number">I</div>
+                    <div class="objective-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="objective-title">Youth Empowerment</h3>
+                    <p>To empower youth in marginalized communities through sports, technical and vocational skills training that builds capacity for sustainable livelihoods and community leadership.</p>
                     
-                    <div class="programs-grid">
-                        <div class="program-card">
-                            <h3 class="program-title"><i class="fas fa-robot"></i> AI & Machine Learning</h3>
-                            <div class="card-content">
-                                <span class="badge free-badge">Free Basics</span>
-                                <span class="badge paid-badge">Advanced</span>
-                                <p>Introduction to AI, Python/R programming, and practical ML applications for solving community challenges.</p>
-                                <div class="program-details">
-                                    <ul>
-                                        <li>Python programming for beginners</li>
-                                        <li>Data analysis and visualization</li>
-                                        <li>AI ethics and responsible innovation</li>
-                                        <li>Practical projects in agriculture and healthcare</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="program-card">
-                            <h3 class="program-title"><i class="fas fa-database"></i> Data Science & Statistics</h3>
-                            <div class="card-content">
-                                <span class="badge free-badge">Free Basics</span>
-                                <span class="badge paid-badge">Certification</span>
-                                <p>Data analysis, statistical modeling, and visualization skills for evidence-based community development.</p>
-                                <div class="program-details">
-                                    <ul>
-                                        <li>Statistical analysis with R/Python</li>
-                                        <li>Data visualization with Tableau/Power BI</li>
-                                        <li>Survey design and data collection</li>
-                                        <li>Research methods for social sciences</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="program-card">
-                            <h3 class="program-title"><i class="fas fa-atom"></i> Quantum Science Basics</h3>
-                            <div class="card-content">
-                                <span class="badge free-badge">Introductory</span>
-                                <p>Introduction to quantum computing concepts and their potential applications for future technologies.</p>
-                                <div class="program-details">
-                                    <ul>
-                                        <li>Quantum mechanics fundamentals</li>
-                                        <li>Quantum computing applications</li>
-                                        <li>Future career opportunities in quantum fields</li>
-                                        <li>Partnerships with research institutions</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="program-card">
-                            <h3 class="program-title"><i class="fas fa-graduation-cap"></i> Academic Support</h3>
-                            <div class="card-content">
-                                <span class="badge free-badge">Free Support</span>
-                                <span class="badge paid-badge">Mentorship</span>
-                                <p>Dissertation guidance, university project assistance, and research mentorship for students in STEM fields.</p>
-                                <div class="program-details">
-                                    <ul>
-                                        <li>Research methodology workshops</li>
-                                        <li>Thesis writing support</li>
-                                        <li>Statistical analysis assistance</li>
-                                        <li>Academic publishing guidance</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="program-card">
-                            <h3 class="program-title"><i class="fas fa-clinic-medical"></i> Clinical Trials Training</h3>
-                            <div class="card-content">
-                                <span class="badge paid-badge">Certification</span>
-                                <p>Training in clinical research methodology, data management, and regulatory compliance for healthcare professionals.</p>
-                                <div class="program-details">
-                                    <ul>
-                                        <li>Clinical research ethics</li>
-                                        <li>Data management and biostatistics</li>
-                                        <li>Regulatory affairs and compliance</li>
-                                        <li>Good Clinical Practice (GCP) certification</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="program-card">
-                            <h3 class="program-title"><i class="fas fa-seedling"></i> Agri-Tech & Entrepreneurship</h3>
-                            <div class="card-content">
-                                <span class="badge free-badge">Workshops</span>
-                                <span class="badge paid-badge">Incubator</span>
-                                <p>Combining agricultural innovation with entrepreneurship to create sustainable businesses and food security solutions.</p>
-                                <div class="program-details">
-                                    <ul>
-                                        <li>Precision agriculture techniques</li>
-                                        <li>Agri-business development</li>
-                                        <li>Market access and value chains</li>
-                                        <li>Technology for sustainable farming</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <p><strong>Programs:</strong> Sports academies, vocational workshops, leadership training, life skills development.</p>
                     </div>
                 </div>
-            </section>
-            
-            <section class="section">
-                <h2 class="section-title"><i class="fas fa-users"></i> Target Beneficiaries</h2>
-                <div class="section-content">
-                    <p>Our programs are designed to serve the following groups, with a special focus on marginalized communities in Zimbabwe:</p>
+                
+                <div class="objective-card education">
+                    <div class="objective-number">II</div>
+                    <div class="objective-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="objective-title">Quality Education Access</h3>
+                    <p>To enhance access to quality education for vulnerable children in marginalized communities through scholarships, learning support, and educational resources that break cycles of poverty.</p>
                     
-                    <div class="target-beneficiaries">
-                        <div class="beneficiary-list">
-                            <div class="beneficiary-item">
-                                <div class="beneficiary-icon">
-                                    <i class="fas fa-child"></i>
-                                </div>
-                                <div>
-                                    <h4>Vulnerable Children</h4>
-                                    <p>Orphans, street children, and those in difficult circumstances</p>
-                                </div>
-                            </div>
-                            
-                            <div class="beneficiary-item">
-                                <div class="beneficiary-icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                </div>
-                                <div>
-                                    <h4>Youth (15-35 years)</h4>
-                                    <p>Unemployed youth, school leavers, and young adults seeking skills</p>
-                                </div>
-                            </div>
-                            
-                            <div class="beneficiary-item">
-                                <div class="beneficiary-icon">
-                                    <i class="fas fa-user-md"></i>
-                                </div>
-                                <div>
-                                    <h4>Healthcare Professionals</h4>
-                                    <p>Medical students, nurses, and clinical officers interested in research</p>
-                                </div>
-                            </div>
-                            
-                            <div class="beneficiary-item">
-                                <div class="beneficiary-icon">
-                                    <i class="fas fa-tractor"></i>
-                                </div>
-                                <div>
-                                    <h4>Farmers & Agric Workers</h4>
-                                    <p>Smallholder farmers and agricultural extension workers</p>
-                                </div>
-                            </div>
-                            
-                            <div class="beneficiary-item">
-                                <div class="beneficiary-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div>
-                                    <h4>University Students</h4>
-                                    <p>STEM students needing research support and practical skills</p>
-                                </div>
-                            </div>
-                            
-                            <div class="beneficiary-item">
-                                <div class="beneficiary-icon">
-                                    <i class="fas fa-female"></i>
-                                </div>
-                                <div>
-                                    <h4>Women & Girls</h4>
-                                    <p>Special focus on empowering women and girls in technology</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <p><strong>Programs:</strong> After-school tutoring, scholarship programs, digital literacy, school supplies support.</p>
                     </div>
                 </div>
-            </section>
-            
-            <section class="section">
-                <h2 class="section-title"><i class="fas fa-map-marker-alt"></i> Service Areas</h2>
-                <div class="section-content">
-                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
-                        <div style="flex: 1; min-width: 250px; background-color: #ebf8ff; padding: 20px; border-radius: 8px;">
-                            <h3 style="color: var(--accent-color); margin-bottom: 15px;">
-                                <i class="fas fa-star"></i> Primary Area
-                            </h3>
-                            <p style="font-size: 20px; font-weight: 700; color: var(--primary-color);">Mashonaland West Province</p>
-                            <p>Kadoma, Chinhoyi, Chegutu, Karoi, and surrounding rural communities</p>
-                        </div>
-                        
-                        <div style="flex: 1; min-width: 250px; background-color: #f0fff4; padding: 20px; border-radius: 8px;">
-                            <h3 style="color: #38a169; margin-bottom: 15px;">
-                                <i class="fas fa-expand-alt"></i> Expansion Areas
-                            </h3>
-                            <ul style="list-style-type: none; padding-left: 0;">
-                                <li style="padding: 8px 0; border-bottom: 1px dashed #e2e8f0;">
-                                    <i class="fas fa-map-pin"></i> Harare Metropolitan Province
-                                </li>
-                                <li style="padding: 8px 0; border-bottom: 1px dashed #e2e8f0;">
-                                    <i class="fas fa-map-pin"></i> Midlands Province
-                                </li>
-                                <li style="padding: 8px 0; border-bottom: 1px dashed #e2e8f0;">
-                                    <i class="fas fa-map-pin"></i> Mashonaland Central Province
-                                </li>
-                                <li style="padding: 8px 0;">
-                                    <i class="fas fa-map-pin"></i> Online Programs (Nationwide)
-                                </li>
-                            </ul>
-                        </div>
+                
+                <div class="objective-card shelter">
+                    <div class="objective-number">III</div>
+                    <div class="objective-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="objective-title">Safe & Secure Shelter</h3>
+                    <p>To provide safe and secure shelter for vulnerable children through residential care, emergency housing, and family support services that ensure basic needs and protection.</p>
+                    
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                        <p><strong>Programs:</strong> Residential care homes, emergency shelter, foster care support, family preservation.</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+        
+        <!-- Extended Programs -->
+        <section class="extended-programs">
+            <h2 class="section-title">Extended Empowerment Programs</h2>
+            <p style="text-align: center; max-width: 900px; margin: 0 auto 30px; font-size: 18px;">
+                Building upon our core objectives, we offer specialized programs that equip youth with future-ready skills for sustainable development.
+            </p>
             
-            <section class="registration-notice">
-                <h2 class="notice-title"><i class="fas fa-exclamation-circle"></i> Registration & Contact Information</h2>
-                
-                <div style="background-color: white; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
-                    <p><strong>Official Registration:</strong> Application submitted under the Welfare Organisations Act, 1966</p>
-                    <p><strong>Application Reference:</strong> CL06692055</p>
-                    <p><strong>Publication Date:</strong> 12th December, 2025 in The Herald Legal Columns</p>
-                    <p><strong>Objection Deadline:</strong> 2nd January, 2026 (21 days from publication)</p>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3 class="program-title"><i class="fas fa-robot"></i> AI & Machine Learning</h3>
+                    <p>Introduction to Python/R programming and practical AI applications for solving community challenges in agriculture, health, and business.</p>
                 </div>
                 
-                <h3 style="color: var(--primary-color); margin-bottom: 15px;">Contact Rise and Shine Empowerment</h3>
+                <div class="program-card">
+                    <h3 class="program-title"><i class="fas fa-database"></i> Data Science & Statistics</h3>
+                    <p>Data analysis, visualization, and statistical modeling skills for evidence-based community development and decision-making.</p>
+                </div>
                 
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt" style="font-size: 24px; color: var(--accent-color); margin-bottom: 10px;"></i>
-                        <h4>Address</h4>
+                <div class="program-card">
+                    <h3 class="program-title"><i class="fas fa-atom"></i> Quantum Science Basics</h3>
+                    <p>Introduction to quantum computing concepts and their potential applications for future technology careers.</p>
+                </div>
+                
+                <div class="program-card">
+                    <h3 class="program-title"><i class="fas fa-graduation-cap"></i> Academic Support</h3>
+                    <p>Dissertation guidance, university project assistance, and research mentorship for students in STEM fields.</p>
+                </div>
+                
+                <div class="program-card">
+                    <h3 class="program-title"><i class="fas fa-clinic-medical"></i> Clinical Trials Training</h3>
+                    <p>Training in clinical research methodology, data management, and regulatory compliance for healthcare professionals.</p>
+                </div>
+                
+                <div class="program-card">
+                    <h3 class="program-title"><i class="fas fa-seedling"></i> Agri-Tech & Entrepreneurship</h3>
+                    <p>Combining agricultural innovation with entrepreneurship to create sustainable businesses and food security solutions.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Simple Donation Section at Bottom -->
+        <section class="donation-section">
+            <h2 class="donation-title">Support Our Mission</h2>
+            <p class="donation-tagline">
+                Your contribution directly empowers youth, provides education to vulnerable children, and offers safe shelter to those in need. Every donation helps us fulfill our core objectives in marginalized communities.
+            </p>
+            
+            <a href="#contact" class="donation-button">
+                <i class="fas fa-heart"></i> Donate to Empower Youth
+            </a>
+            
+            <p style="margin-top: 30px; font-size: 18px; opacity: 0.8;">
+                100% of donations go directly to our core programs: Youth Empowerment, Education Access, and Safe Shelter.
+            </p>
+        </section>
+        
+        <!-- Contact Footer -->
+        <footer class="contact-footer" id="contact">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
                         <p>Plot 5, Railway 7 Farm<br>Kadoma, Mashonaland West<br>Zimbabwe</p>
                     </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-phone" style="font-size: 24px; color: var(--accent-color); margin-bottom: 10px;"></i>
-                        <h4>Phone</h4>
-                        <p>+263 242 456 789<br>+263 772 123 456</p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
                     </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-envelope" style="font-size: 24px; color: var(--accent-color); margin-bottom: 10px;"></i>
-                        <h4>Email</h4>
+                    <div class="contact-details">
+                        <h4>Contact Numbers</h4>
+                        <p>Office: +263 242 456 789<br>Mobile: +263 772 123 456</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Organization Email</h4>
                         <p>info@riseandshine.co.zw<br>registrations@riseandshine.co.zw</p>
                     </div>
                 </div>
                 
-                <div style="margin-top: 30px;">
-                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Program Registration Form</h3>
-                    <form id="registrationForm">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-                            <div class="form-group">
-                                <label for="fullName">Full Name *</label>
-                                <input type="text" id="fullName" class="form-control" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email Address *</label>
-                                <input type="email" id="email" class="form-control" required>
-                            </div>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-                            <div class="form-group">
-                                <label for="program">Program of Interest *</label>
-                                <select id="program" class="form-control" required>
-                                    <option value="">Select a program</option>
-                                    <option value="core">Core Programs (Youth Empowerment, Education, Shelter)</option>
-                                    <option value="ai">AI & Machine Learning</option>
-                                    <option value="data">Data Science & Statistics</option>
-                                    <option value="quantum">Quantum Science Basics</option>
-                                    <option value="academic">Academic Support & Dissertation Help</option>
-                                    <option value="clinical">Clinical Trials Training</option>
-                                    <option value="agriculture">Agri-Tech & Entrepreneurship</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="track">Preferred Track *</label>
-                                <select id="track" class="form-control" required>
-                                    <option value="">Select a track</option>
-                                    <option value="free">Free Programs</option>
-                                    <option value="paid">Paid Certification</option>
-                                    <option value="scholarship">Scholarship Application</option>
-                                    <option value="volunteer">Volunteer Opportunity</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Additional Information</label>
-                            <textarea id="message" class="form-control" rows="4" placeholder="Tell us about yourself, your background, and why you're interested in this program"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn">
-                            <i class="fas fa-paper-plane"></i> Submit Registration
-                        </button>
-                    </form>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Office Hours</h4>
+                        <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
+                    </div>
                 </div>
-            </section>
-        </main>
-        
-        <footer class="footer">
-            <h3>Rise and Shine Empowerment</h3>
-            <p>Empowering Youth, Transforming Communities, Building Futures</p>
+            </div>
             
-            <div class="footer-links">
-                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
-                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
-                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
-                <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <!-- Owner Contact Section -->
+            <div class="owner-contact">
+                <h3 class="owner-title">Contact the Founder & Director</h3>
+                <p style="margin-bottom: 15px; font-size: 18px;">For direct communication regarding partnerships, major donations, or strategic inquiries:</p>
+                
+                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+                    <div style="font-size: 20px; font-weight: 600;">Mr. L. Katova</div>
+                    <div class="owner-email">
+                        <i class="fas fa-envelope"></i> leo1katova@gmail.com
+                    </div>
+                </div>
+                
+                <p style="margin-top: 15px; font-size: 16px; opacity: 0.9;">
+                    Founder & Executive Director of Rise and Shine Empowerment
+                </p>
             </div>
             
             <div class="copyright">
                 &copy; 2025 Rise and Shine Empowerment. Registered under the Zimbabwe Welfare Organisations Act, 1966. 
-                All rights reserved. | Plot 5, Railway 7 Farm, Kadoma, Zimbabwe
-            </div>
-            
-            <div style="margin-top: 20px; font-size: 14px;">
-                <p><i class="fas fa-handshake"></i> In partnership with: Ministry of Youth, Ministry of Social Welfare, University of Zimbabwe, NUST, Local Authorities</p>
+                All rights reserved. Application Reference: CL06692055
             </div>
         </footer>
     </div>
     
     <script>
-        // Form submission handling
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        // Simple donation button interaction
+        document.querySelector('.donation-button').addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Get form values
-            const name = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            const program = document.getElementById('program').value;
-            const track = document.getElementById('track').value;
+            // Scroll to contact section
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
             
-            // Show confirmation message
-            const programNames = {
-                'core': 'Core Programs (Youth Empowerment, Education, Shelter)',
-                'ai': 'AI & Machine Learning',
-                'data': 'Data Science & Statistics',
-                'quantum': 'Quantum Science Basics',
-                'academic': 'Academic Support & Dissertation Help',
-                'clinical': 'Clinical Trials Training',
-                'agriculture': 'Agri-Tech & Entrepreneurship'
-            };
+            // Highlight the owner contact section
+            const ownerContact = document.querySelector('.owner-contact');
+            ownerContact.style.backgroundColor = 'rgba(229, 62, 62, 0.1)';
+            ownerContact.style.borderLeftColor = '#e53e3e';
             
-            const trackNames = {
-                'free': 'Free Programs',
-                'paid': 'Paid Certification',
-                'scholarship': 'Scholarship Application',
-                'volunteer': 'Volunteer Opportunity'
-            };
+            // Reset after 3 seconds
+            setTimeout(() => {
+                ownerContact.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
+            }, 3000);
             
-            alert(`Thank you ${name}! Your registration for ${programNames[program]} (${trackNames[track]}) has been received. We will contact you at ${email} within 3-5 business days.`);
-            
-            // Reset form
-            document.getElementById('registrationForm').reset();
+            // Show message
+            alert('Thank you for your interest in supporting Rise and Shine Empowerment! Please contact Mr. Katova at leo1katova@gmail.com for donation details and partnerships.');
         });
         
-        // Add interactivity to objective cards
-        document.querySelectorAll('.objective-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const title = this.querySelector('.card-title').textContent;
-                const isCore = this.classList.contains('core');
-                const type = isCore ? 'Core Objective' : 'Extended Program';
-                alert(`${type}: ${title}\n\nThis is one of our key focus areas. Click the registration form below to learn more or apply for related programs.`);
+        // Simple hover effect for program cards
+        document.querySelectorAll('.program-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
             });
         });
     </script>
