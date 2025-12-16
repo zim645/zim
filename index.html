@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZimPriceTracker - Inflation Monitoring Chatbot</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Rise and Shine Empowerment - Registration Notice</title>
     <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d3748;
+            --accent-color: #3182ce;
+            --welfare-color: #2b6cb0;
+            --empowerment-color: #e53e3e;
+            --education-color: #38a169;
+            --shelter-color: #dd6b20;
+            --tech-color: #805ad5;
+            --light-bg: #f7fafc;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,539 +25,926 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0053b3 0%, #00264d 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background-color: #edf2f7;
+            color: #2d3748;
+            line-height: 1.7;
         }
         
         .container {
-            width: 100%;
-            max-width: 1000px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            height: 90vh;
+            margin-top: 30px;
+            margin-bottom: 50px;
         }
         
         .header {
-            background: #0053b3;
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
             color: white;
-            padding: 20px;
+            padding: 40px 30px;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
+        
+        .official-notice {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .organization-name {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .organization-tagline {
+            font-size: 24px;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .core-values {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .value-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 15px 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid;
+            display: flex;
+            align-items: center;
+        }
+        
+        .core-objectives .section-title {
+            border-bottom-color: var(--empowerment-color);
+        }
+        
+        .extended-programs .section-title {
+            border-bottom-color: var(--tech-color);
+        }
+        
+        .section-title i {
+            margin-right: 15px;
+        }
+        
+        .section-content {
+            font-size: 17px;
+        }
+        
+        .aim-box {
+            background-color: #ebf8ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 8px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .aim-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .aim-title i {
+            color: var(--accent-color);
+            margin-right: 15px;
+        }
+        
+        .objectives-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .objective-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid;
+            position: relative;
+        }
+        
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .objective-card.core {
+            border-top-color: var(--empowerment-color);
+        }
+        
+        .objective-card.extended {
+            border-top-color: var(--tech-color);
+        }
+        
+        .objective-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
         }
         
-        .header-content {
+        .objective-card.core .objective-number {
+            background-color: var(--empowerment-color);
+        }
+        
+        .objective-card.extended .objective-number {
+            background-color: var(--tech-color);
+        }
+        
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            margin-top: 10px;
+        }
+        
+        .card-content {
+            font-size: 16px;
+            color: #4a5568;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .core-badge {
+            background-color: var(--empowerment-color);
+            color: white;
+        }
+        
+        .extended-badge {
+            background-color: var(--tech-color);
+            color: white;
+        }
+        
+        .free-badge {
+            background-color: #38a169;
+            color: white;
+        }
+        
+        .paid-badge {
+            background-color: #b83280;
+            color: white;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .program-card {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            border-left: 5px solid var(--tech-color);
+        }
+        
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .program-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .program-title i {
+            color: var(--tech-color);
+            margin-right: 10px;
+        }
+        
+        .program-details {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .program-details ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .program-details li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+        
+        .program-details li:last-child {
+            border-bottom: none;
+        }
+        
+        .target-beneficiaries {
+            background-color: #fffaf0;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 2px solid #ed8936;
+        }
+        
+        .beneficiary-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .beneficiary-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: center;
             gap: 15px;
         }
         
-        .zim-flag {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #009739 0%, #009739 33%, #FBDE4A 33%, #FBDE4A 66%, #DE2910 66%, #DE2910 100%);
+        .beneficiary-icon {
+            background-color: #ebf8ff;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            border: 2px solid white;
-        }
-        
-        .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-        
-        .header p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .chat-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            background: #f0f5ff;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--accent-color);
         }
         
-        .message {
-            max-width: 75%;
-            padding: 12px 16px;
+        .registration-notice {
+            background-color: #fff5f5;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 40px;
+            border: 2px dashed #e53e3e;
+        }
+        
+        .notice-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #c53030;
             margin-bottom: 15px;
-            border-radius: 18px;
-            animation: fadeIn 0.3s ease;
-            line-height: 1.5;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .bot-message {
-            background: #ffffff;
-            border-bottom-left-radius: 5px;
-            align-self: flex-start;
-            border: 1px solid #d0d9e8;
-        }
-        
-        .user-message {
-            background: #0053b3;
-            color: white;
-            border-bottom-right-radius: 5px;
-            align-self: flex-end;
-        }
-        
-        .input-area {
             display: flex;
-            padding: 15px;
-            background: white;
-            border-top: 1px solid #eee;
+            align-items: center;
         }
         
-        #user-input {
-            flex: 1;
+        .notice-title i {
+            margin-right: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
             padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            outline: none;
-            font-size: 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
         }
         
-        #send-btn {
-            background: #0053b3;
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: var(--empowerment-color);
             color: white;
             border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            margin-left: 10px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.3s;
-        }
-        
-        #send-btn:hover {
-            background: #003d80;
-        }
-        
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px 0;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-            display: flex;
-            align-items: center;
-            border-left: 4px solid #0053b3;
-        }
-        
-        .product-image {
-            width: 60px;
-            height: 60px;
-            background: #f0f4f8;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            color: #0053b3;
-            font-size: 1.5rem;
-        }
-        
-        .product-info {
-            flex: 1;
-        }
-        
-        .product-name {
+            border-radius: 5px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 5px;
-            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
         
-        .product-price {
-            color: #0053b3;
-            font-weight: bold;
-            font-size: 1.1rem;
+        .btn:hover {
+            background-color: #c53030;
         }
         
-        .product-store {
-            font-size: 0.9rem;
-            color: #777;
+        .footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px;
+            text-align: center;
         }
         
-        .price-change {
-            font-size: 0.85rem;
-            margin-top: 3px;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0;
         }
         
-        .price-up {
-            color: #e53935;
+        .footer-links a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
         }
         
-        .price-down {
-            color: #4caf50;
+        .footer-links a:hover {
+            color: white;
         }
         
-        .typing-indicator {
-            display: inline-flex;
-            padding: 12px 16px;
-            background: #e8ebf0;
-            border-radius: 18px;
-            border-bottom-left-radius: 5px;
-            align-self: flex-start;
+        .copyright {
+            margin-top: 30px;
+            color: #a0aec0;
+            font-size: 14px;
         }
         
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: #9ea9b9;
-            border-radius: 50%;
-            margin: 0 3px;
-            animation: typingAnimation 1.4s infinite;
-        }
-        
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-        
-        @keyframes typingAnimation {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-5px);
-            }
-        }
-        
-        .quick-reply {
+        .contact-info {
             display: flex;
             flex-wrap: wrap;
-            margin-top: 10px;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
         }
         
-        .quick-reply-btn {
-            background: #e8f0ff;
-            border: 1px solid #c5d9ff;
-            border-radius: 18px;
-            padding: 8px 15px;
-            margin: 5px 5px 5px 0;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            color: #0053b3;
-        }
-        
-        .quick-reply-btn:hover {
-            background: #d5e5ff;
-        }
-        
-        .source-link {
-            display: block;
-            margin-top: 15px;
-            color: #0053b3;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .source-link:hover {
-            text-decoration: underline;
-        }
-        
-        .inflation-alert {
-            background: #fff8e1;
-            border-left: 4px solid #ffc107;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            font-size: 0.9rem;
-        }
-        
-        .last-updated {
-            font-size: 0.8rem;
-            color: #777;
-            text-align: right;
-            margin-top: 5px;
+        .contact-item {
+            text-align: center;
         }
         
         @media (max-width: 768px) {
             .container {
-                height: 95vh;
-                width: 95%;
+                margin-top: 0;
+                border-radius: 0;
             }
             
-            .message {
-                max-width: 85%;
+            .header {
+                padding: 30px 20px;
             }
             
-            .header h1 {
-                font-size: 1.5rem;
+            .organization-name {
+                font-size: 36px;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .objectives-container, .programs-grid, .beneficiary-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="header-content">
-                <div class="zim-flag"></div>
-                <div>
-                    <h1>ZimPriceTracker</h1>
-                    <p>Tracking prices and inflation in Zimbabwe</p>
-                </div>
+        <header class="header">
+            <div class="official-notice">
+                <i class="fas fa-file-contract"></i> Official Registration Notice - Welfare Organisations Act, 1966
             </div>
-        </div>
-        
-        <div class="chat-container" id="chat-container">
-            <div class="message bot-message">
-                <p>Hello! I'm here to help you track prices and inflation data from Zimbabwean supermarkets and shops.</p>
-                <p>What product would you like to check today?</p>
-                <div class="quick-reply">
-                    <button class="quick-reply-btn" data-product="Cooking Oil">Cooking Oil</button>
-                    <button class="quick-reply-btn" data-product="Sugar">Sugar</button>
-                    <button class="quick-reply-btn" data-product="Maize Meal">Maize Meal</button>
-                    <button class="quick-reply-btn" data-product="Bread">Bread</button>
-                </div>
-                <div class="last-updated">Last updated: Today, 10:45 AM</div>
-            </div>
-        </div>
-        
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Ask about product prices or inflation data...">
-            <button id="send-btn">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatContainer = document.getElementById('chat-container');
-            const userInput = document.getElementById('user-input');
-            const sendBtn = document.getElementById('send-btn');
             
-            // Sample product data for Zimbabwean context
-            const products = {
-                'cooking oil': [
-                    { name: 'Cooking Oil 2L', price: 'ZWL 5,200', store: 'OK Zimbabwe', image: '🛢️', change: '+12%' },
-                    { name: 'Sunflower Oil 2L', price: 'ZWL 5,800', store: 'Pick n Pay', image: '🛢️', change: '+15%' },
-                    { name: 'Vegetable Oil 2L', price: 'ZWL 4,900', store: 'TM Supermarket', image: '🛢️', change: '+8%' }
-                ],
-                'sugar': [
-                    { name: 'Brown Sugar 2kg', price: 'ZWL 3,500', store: 'OK Zimbabwe', image: '🍚', change: '+5%' },
-                    { name: 'White Sugar 2kg', price: 'ZWL 3,800', store: 'Spar', image: '🍚', change: '+7%' },
-                    { name: 'Cane Sugar 2kg', price: 'ZWL 3,200', store: 'Food World', image: '🍚', change: '+3%' }
-                ],
-                'maize meal': [
-                    { name: 'Maize Meal 10kg', price: 'ZWL 8,500', store: 'TM Supermarket', image: '🌽', change: '+18%' },
-                    { name: 'Mealie Meal 5kg', price: 'ZWL 4,200', store: 'OK Zimbabwe', image: '🌽', change: '+15%' },
-                    { name: 'Super Maize Meal 10kg', price: 'ZWL 9,000', store: 'Pick n Pay', image: '🌽', change: '+20%' }
-                ],
-                'bread': [
-                    { name: 'Standard Loaf', price: 'ZWL 1,200', store: 'Baker\'s Inn', image: '🍞', change: '+10%' },
-                    { name: 'Brown Bread', price: 'ZWL 1,500', store: 'Lobels', image: '🍞', change: '+12%' },
-                    { name: 'White Bread', price: 'ZWL 1,300', store: 'Bona Loaf', image: '🍞', change: '+8%' }
-                ],
-                'fuel': [
-                    { name: 'Petrol (per liter)', price: 'ZWL 8,500', store: 'Total Zimbabwe', image: '⛽', change: '+25%' },
-                    { name: 'Diesel (per liter)', price: 'ZWL 8,200', store: 'Puma Energy', image: '⛽', change: '+22%' }
-                ],
-                'rent': [
-                    { name: '3-Bedroom Apartment (Harare)', price: 'ZWL 450,000/month', store: 'Property24', image: '🏠', change: '+30%' },
-                    { name: '2-Bedroom Apartment (Bulawayo)', price: 'ZWL 320,000/month', store: 'Property World', image: '🏠', change: '+25%' }
-                ]
+            <h1 class="organization-name">Rise and Shine Empowerment</h1>
+            <p class="organization-tagline">Promoting a better quality of life for youths and vulnerable children in marginalized communities</p>
+            
+            <div class="core-values">
+                <div class="value-item"><i class="fas fa-heart"></i> Empowerment</div>
+                <div class="value-item"><i class="fas fa-graduation-cap"></i> Education</div>
+                <div class="value-item"><i class="fas fa-home"></i> Shelter</div>
+                <div class="value-item"><i class="fas fa-handshake"></i> Community</div>
+                <div class="value-item"><i class="fas fa-laptop-code"></i> Innovation</div>
+            </div>
+        </header>
+        
+        <main class="content">
+            <section class="section core-objectives">
+                <h2 class="section-title"><i class="fas fa-bullseye"></i> Core Aims & Objectives</h2>
+                
+                <div class="aim-box">
+                    <div class="aim-title">
+                        <i class="fas fa-star"></i> ORGANIZATION AIM
+                    </div>
+                    <p style="font-size: 20px; font-weight: 600; color: var(--primary-color);">
+                        Promoting a better quality of life for youths and vulnerable children in marginalized communities.
+                    </p>
+                </div>
+                
+                <h3 style="font-size: 24px; color: var(--empowerment-color); margin-bottom: 20px;">
+                    <i class="fas fa-list-ol"></i> Core Objectives
+                </h3>
+                
+                <div class="objectives-container">
+                    <div class="objective-card core">
+                        <div class="objective-number">I</div>
+                        <h3 class="card-title">Youth Empowerment</h3>
+                        <div class="card-content">
+                            <span class="badge core-badge">Core Objective</span>
+                            <p>To empower youth in marginalized communities through sports, technical and vocational skills training, leadership development, and life skills education.</p>
+                            <div class="program-details">
+                                <p><strong>Programs include:</strong></p>
+                                <ul>
+                                    <li>Sports academies and competitions</li>
+                                    <li>Vocational training workshops</li>
+                                    <li>Leadership and entrepreneurship programs</li>
+                                    <li>Life skills and mental health support</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="objective-card core">
+                        <div class="objective-number">II</div>
+                        <h3 class="card-title">Quality Education Access</h3>
+                        <div class="card-content">
+                            <span class="badge core-badge">Core Objective</span>
+                            <p>To enhance access to quality education for vulnerable children in marginalized communities through scholarships, learning centers, and educational support programs.</p>
+                            <div class="program-details">
+                                <p><strong>Programs include:</strong></p>
+                                <ul>
+                                    <li>After-school tutoring and homework clubs</li>
+                                    <li>Scholarship programs for primary and secondary education</li>
+                                    <li>Digital literacy and computer skills training</li>
+                                    <li>School supplies and uniform assistance</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="objective-card core">
+                        <div class="objective-number">III</div>
+                        <h3 class="card-title">Safe & Secure Shelter</h3>
+                        <div class="card-content">
+                            <span class="badge core-badge">Core Objective</span>
+                            <p>To provide safe and secure shelter for vulnerable children through residential care facilities, emergency housing, and family support services.</p>
+                            <div class="program-details">
+                                <p><strong>Programs include:</strong></p>
+                                <ul>
+                                    <li>Residential care homes for orphans</li>
+                                    <li>Emergency shelter for street children</li>
+                                    <li>Foster care support services</li>
+                                    <li>Family preservation and reunification programs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section extended-programs">
+                <h2 class="section-title"><i class="fas fa-rocket"></i> Extended Empowerment Programs</h2>
+                <div class="section-content">
+                    <p>Building upon our core objectives, we offer extended programs that provide advanced skills and opportunities for youth empowerment through technology and innovation.</p>
+                    
+                    <div class="programs-grid">
+                        <div class="program-card">
+                            <h3 class="program-title"><i class="fas fa-robot"></i> AI & Machine Learning</h3>
+                            <div class="card-content">
+                                <span class="badge free-badge">Free Basics</span>
+                                <span class="badge paid-badge">Advanced</span>
+                                <p>Introduction to AI, Python/R programming, and practical ML applications for solving community challenges.</p>
+                                <div class="program-details">
+                                    <ul>
+                                        <li>Python programming for beginners</li>
+                                        <li>Data analysis and visualization</li>
+                                        <li>AI ethics and responsible innovation</li>
+                                        <li>Practical projects in agriculture and healthcare</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <h3 class="program-title"><i class="fas fa-database"></i> Data Science & Statistics</h3>
+                            <div class="card-content">
+                                <span class="badge free-badge">Free Basics</span>
+                                <span class="badge paid-badge">Certification</span>
+                                <p>Data analysis, statistical modeling, and visualization skills for evidence-based community development.</p>
+                                <div class="program-details">
+                                    <ul>
+                                        <li>Statistical analysis with R/Python</li>
+                                        <li>Data visualization with Tableau/Power BI</li>
+                                        <li>Survey design and data collection</li>
+                                        <li>Research methods for social sciences</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <h3 class="program-title"><i class="fas fa-atom"></i> Quantum Science Basics</h3>
+                            <div class="card-content">
+                                <span class="badge free-badge">Introductory</span>
+                                <p>Introduction to quantum computing concepts and their potential applications for future technologies.</p>
+                                <div class="program-details">
+                                    <ul>
+                                        <li>Quantum mechanics fundamentals</li>
+                                        <li>Quantum computing applications</li>
+                                        <li>Future career opportunities in quantum fields</li>
+                                        <li>Partnerships with research institutions</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <h3 class="program-title"><i class="fas fa-graduation-cap"></i> Academic Support</h3>
+                            <div class="card-content">
+                                <span class="badge free-badge">Free Support</span>
+                                <span class="badge paid-badge">Mentorship</span>
+                                <p>Dissertation guidance, university project assistance, and research mentorship for students in STEM fields.</p>
+                                <div class="program-details">
+                                    <ul>
+                                        <li>Research methodology workshops</li>
+                                        <li>Thesis writing support</li>
+                                        <li>Statistical analysis assistance</li>
+                                        <li>Academic publishing guidance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <h3 class="program-title"><i class="fas fa-clinic-medical"></i> Clinical Trials Training</h3>
+                            <div class="card-content">
+                                <span class="badge paid-badge">Certification</span>
+                                <p>Training in clinical research methodology, data management, and regulatory compliance for healthcare professionals.</p>
+                                <div class="program-details">
+                                    <ul>
+                                        <li>Clinical research ethics</li>
+                                        <li>Data management and biostatistics</li>
+                                        <li>Regulatory affairs and compliance</li>
+                                        <li>Good Clinical Practice (GCP) certification</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="program-card">
+                            <h3 class="program-title"><i class="fas fa-seedling"></i> Agri-Tech & Entrepreneurship</h3>
+                            <div class="card-content">
+                                <span class="badge free-badge">Workshops</span>
+                                <span class="badge paid-badge">Incubator</span>
+                                <p>Combining agricultural innovation with entrepreneurship to create sustainable businesses and food security solutions.</p>
+                                <div class="program-details">
+                                    <ul>
+                                        <li>Precision agriculture techniques</li>
+                                        <li>Agri-business development</li>
+                                        <li>Market access and value chains</li>
+                                        <li>Technology for sustainable farming</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-users"></i> Target Beneficiaries</h2>
+                <div class="section-content">
+                    <p>Our programs are designed to serve the following groups, with a special focus on marginalized communities in Zimbabwe:</p>
+                    
+                    <div class="target-beneficiaries">
+                        <div class="beneficiary-list">
+                            <div class="beneficiary-item">
+                                <div class="beneficiary-icon">
+                                    <i class="fas fa-child"></i>
+                                </div>
+                                <div>
+                                    <h4>Vulnerable Children</h4>
+                                    <p>Orphans, street children, and those in difficult circumstances</p>
+                                </div>
+                            </div>
+                            
+                            <div class="beneficiary-item">
+                                <div class="beneficiary-icon">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                                <div>
+                                    <h4>Youth (15-35 years)</h4>
+                                    <p>Unemployed youth, school leavers, and young adults seeking skills</p>
+                                </div>
+                            </div>
+                            
+                            <div class="beneficiary-item">
+                                <div class="beneficiary-icon">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div>
+                                    <h4>Healthcare Professionals</h4>
+                                    <p>Medical students, nurses, and clinical officers interested in research</p>
+                                </div>
+                            </div>
+                            
+                            <div class="beneficiary-item">
+                                <div class="beneficiary-icon">
+                                    <i class="fas fa-tractor"></i>
+                                </div>
+                                <div>
+                                    <h4>Farmers & Agric Workers</h4>
+                                    <p>Smallholder farmers and agricultural extension workers</p>
+                                </div>
+                            </div>
+                            
+                            <div class="beneficiary-item">
+                                <div class="beneficiary-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4>University Students</h4>
+                                    <p>STEM students needing research support and practical skills</p>
+                                </div>
+                            </div>
+                            
+                            <div class="beneficiary-item">
+                                <div class="beneficiary-icon">
+                                    <i class="fas fa-female"></i>
+                                </div>
+                                <div>
+                                    <h4>Women & Girls</h4>
+                                    <p>Special focus on empowering women and girls in technology</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-map-marker-alt"></i> Service Areas</h2>
+                <div class="section-content">
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                        <div style="flex: 1; min-width: 250px; background-color: #ebf8ff; padding: 20px; border-radius: 8px;">
+                            <h3 style="color: var(--accent-color); margin-bottom: 15px;">
+                                <i class="fas fa-star"></i> Primary Area
+                            </h3>
+                            <p style="font-size: 20px; font-weight: 700; color: var(--primary-color);">Mashonaland West Province</p>
+                            <p>Kadoma, Chinhoyi, Chegutu, Karoi, and surrounding rural communities</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: #f0fff4; padding: 20px; border-radius: 8px;">
+                            <h3 style="color: #38a169; margin-bottom: 15px;">
+                                <i class="fas fa-expand-alt"></i> Expansion Areas
+                            </h3>
+                            <ul style="list-style-type: none; padding-left: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px dashed #e2e8f0;">
+                                    <i class="fas fa-map-pin"></i> Harare Metropolitan Province
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px dashed #e2e8f0;">
+                                    <i class="fas fa-map-pin"></i> Midlands Province
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px dashed #e2e8f0;">
+                                    <i class="fas fa-map-pin"></i> Mashonaland Central Province
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <i class="fas fa-map-pin"></i> Online Programs (Nationwide)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="registration-notice">
+                <h2 class="notice-title"><i class="fas fa-exclamation-circle"></i> Registration & Contact Information</h2>
+                
+                <div style="background-color: white; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                    <p><strong>Official Registration:</strong> Application submitted under the Welfare Organisations Act, 1966</p>
+                    <p><strong>Application Reference:</strong> CL06692055</p>
+                    <p><strong>Publication Date:</strong> 12th December, 2025 in The Herald Legal Columns</p>
+                    <p><strong>Objection Deadline:</strong> 2nd January, 2026 (21 days from publication)</p>
+                </div>
+                
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">Contact Rise and Shine Empowerment</h3>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt" style="font-size: 24px; color: var(--accent-color); margin-bottom: 10px;"></i>
+                        <h4>Address</h4>
+                        <p>Plot 5, Railway 7 Farm<br>Kadoma, Mashonaland West<br>Zimbabwe</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone" style="font-size: 24px; color: var(--accent-color); margin-bottom: 10px;"></i>
+                        <h4>Phone</h4>
+                        <p>+263 242 456 789<br>+263 772 123 456</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope" style="font-size: 24px; color: var(--accent-color); margin-bottom: 10px;"></i>
+                        <h4>Email</h4>
+                        <p>info@riseandshine.co.zw<br>registrations@riseandshine.co.zw</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">Program Registration Form</h3>
+                    <form id="registrationForm">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div class="form-group">
+                                <label for="program">Program of Interest *</label>
+                                <select id="program" class="form-control" required>
+                                    <option value="">Select a program</option>
+                                    <option value="core">Core Programs (Youth Empowerment, Education, Shelter)</option>
+                                    <option value="ai">AI & Machine Learning</option>
+                                    <option value="data">Data Science & Statistics</option>
+                                    <option value="quantum">Quantum Science Basics</option>
+                                    <option value="academic">Academic Support & Dissertation Help</option>
+                                    <option value="clinical">Clinical Trials Training</option>
+                                    <option value="agriculture">Agri-Tech & Entrepreneurship</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="track">Preferred Track *</label>
+                                <select id="track" class="form-control" required>
+                                    <option value="">Select a track</option>
+                                    <option value="free">Free Programs</option>
+                                    <option value="paid">Paid Certification</option>
+                                    <option value="scholarship">Scholarship Application</option>
+                                    <option value="volunteer">Volunteer Opportunity</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Additional Information</label>
+                            <textarea id="message" class="form-control" rows="4" placeholder="Tell us about yourself, your background, and why you're interested in this program"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">
+                            <i class="fas fa-paper-plane"></i> Submit Registration
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="footer">
+            <h3>Rise and Shine Empowerment</h3>
+            <p>Empowering Youth, Transforming Communities, Building Futures</p>
+            
+            <div class="footer-links">
+                <a href="#"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Rise and Shine Empowerment. Registered under the Zimbabwe Welfare Organisations Act, 1966. 
+                All rights reserved. | Plot 5, Railway 7 Farm, Kadoma, Zimbabwe
+            </div>
+            
+            <div style="margin-top: 20px; font-size: 14px;">
+                <p><i class="fas fa-handshake"></i> In partnership with: Ministry of Youth, Ministry of Social Welfare, University of Zimbabwe, NUST, Local Authorities</p>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Form submission handling
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const program = document.getElementById('program').value;
+            const track = document.getElementById('track').value;
+            
+            // Show confirmation message
+            const programNames = {
+                'core': 'Core Programs (Youth Empowerment, Education, Shelter)',
+                'ai': 'AI & Machine Learning',
+                'data': 'Data Science & Statistics',
+                'quantum': 'Quantum Science Basics',
+                'academic': 'Academic Support & Dissertation Help',
+                'clinical': 'Clinical Trials Training',
+                'agriculture': 'Agri-Tech & Entrepreneurship'
             };
             
-            // Data sources
-            const dataSources = [
-                {name: "ZimStat Consumer Price Index", url: "https://www.zimstat.co.zw/price-statistics/"},
-                {name: "RBZ Inflation Reports", url: "https://www.rbz.co.zw/inflation-reports/"},
-                {name: "Consumer Council of Zimbabwe", url: "https://ccz.org.zw/price-check/"},
-                {name: "TM Supermarket Price List", url: "https://tmsupermarket.co.zw/prices/"},
-                {name: "OK Zimbabwe Latest Catalogue", url: "https://okzimbabwe.co.zw/catalogue/"},
-                {name: "Ministry of Industry and Commerce", url: "https://www.commerce.gov.zw/price-monitoring/"}
-            ];
+            const trackNames = {
+                'free': 'Free Programs',
+                'paid': 'Paid Certification',
+                'scholarship': 'Scholarship Application',
+                'volunteer': 'Volunteer Opportunity'
+            };
             
-            // Add message to chat
-            function addMessage(text, isUser = false) {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message');
-                messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
-                messageDiv.innerHTML = text;
-                chatContainer.appendChild(messageDiv);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
+            alert(`Thank you ${name}! Your registration for ${programNames[program]} (${trackNames[track]}) has been received. We will contact you at ${email} within 3-5 business days.`);
             
-            // Show typing indicator
-            function showTypingIndicator() {
-                const typingDiv = document.createElement('div');
-                typingDiv.classList.add('typing-indicator');
-                typingDiv.id = 'typing-indicator';
-                typingDiv.innerHTML = `
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                `;
-                chatContainer.appendChild(typingDiv);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-                return typingDiv;
-            }
-            
-            // Remove typing indicator
-            function removeTypingIndicator() {
-                const typingIndicator = document.getElementById('typing-indicator');
-                if (typingIndicator) {
-                    typingIndicator.remove();
-                }
-            }
-            
-            // Display product results
-            function displayProducts(productArray) {
-                const productsDiv = document.createElement('div');
-                
-                productArray.forEach(product => {
-                    const changeClass = product.change.startsWith('+') ? 'price-up' : 'price-down';
-                    
-                    const productCard = document.createElement('div');
-                    productCard.classList.add('product-card');
-                    productCard.innerHTML = `
-                        <div class="product-image">${product.image}</div>
-                        <div class="product-info">
-                            <div class="product-name">${product.name}</div>
-                            <div class="product-store">${product.store}</div>
-                            <div class="price-change ${changeClass}">Change: ${product.change}</div>
-                        </div>
-                        <div class="product-price">${product.price}</div>
-                    `;
-                    productsDiv.appendChild(productCard);
-                });
-                
-                chatContainer.appendChild(productsDiv);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-            
-            // Display data sources
-            function displayDataSources() {
-                const sourcesDiv = document.createElement('div');
-                sourcesDiv.innerHTML = `<p>Here are some reliable sources for price and inflation data in Zimbabwe:</p>`;
-                
-                const sourcesList = document.createElement('ul');
-                sourcesList.style.margin = '10px 0 10px 20px';
-                
-                dataSources.forEach(source => {
-                    const listItem = document.createElement('li');
-                    listItem.style.marginBottom = '8px';
-                    listItem.innerHTML = `<a href="${source.url}" target="_blank" class="source-link">${source.name}</a>`;
-                    sourcesList.appendChild(listItem);
-                });
-                
-                sourcesDiv.appendChild(sourcesList);
-                chatContainer.appendChild(sourcesDiv);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-            
-            // Show inflation alert
-            function showInflationAlert() {
-                const alertDiv = document.createElement('div');
-                alertDiv.classList.add('inflation-alert');
-                alertDiv.innerHTML = `
-                    <strong><i class="fas fa-exclamation-triangle"></i> Inflation Alert</strong>
-                    <p>Zimbabwe's annual inflation rate reached 175.8% in June 2023, according to ZimStat.</p>
-                    <p>Food and non-alcoholic beverages inflation stands at 285.0%.</p>
-                `;
-                chatContainer.appendChild(alertDiv);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-            
-            // Handle user message
-            function handleUserMessage() {
-                const message = userInput.value.trim().toLowerCase();
-                if (message === '') return;
-                
-                addMessage(message, true);
-                userInput.value = '';
-                
-                const typingIndicator = showTypingIndicator();
-                
-                setTimeout(() => {
-                    removeTypingIndicator();
-                    
-                    if (message.includes('source') || message.includes('where') || message.includes('data')) {
-                        addMessage("I can fetch price data from various online sources including supermarket websites, government publications, and economic reports.");
-                        displayDataSources();
-                    } 
-                    else if (message.includes('inflation') || message.includes('economic')) {
-                        addMessage("Current inflation data for Zimbabwe:");
-                        showInflationAlert();
-                        addMessage("I can help you track specific product prices that are contributing to inflation.");
-                    }
-                    else if (products[message]) {
-                        addMessage(`I found these prices for ${message} from local supermarkets:`);
-                        displayProducts(products[message]);
-                        addMessage("Prices are changing rapidly due to high inflation. What other product would you like to check?");
-                    } else {
-                        addMessage("I'm not sure I found that product. Try something like 'cooking oil', 'sugar', 'maize meal', 'bread', 'fuel', or 'rent'. Or ask about inflation data.");
-                    }
-                    
-                    // Add quick replies
-                    const quickReplyDiv = document.createElement('div');
-                    quickReplyDiv.classList.add('quick-reply');
-                    quickReplyDiv.innerHTML = `
-                        <button class="quick-reply-btn" data-product="cooking oil">Cooking Oil</button>
-                        <button class="quick-reply-btn" data-product="sugar">Sugar</button>
-                        <button class="quick-reply-btn" data-product="maize meal">Maize Meal</button>
-                        <button class="quick-reply-btn" data-product="fuel">Fuel Prices</button>
-                    `;
-                    chatContainer.appendChild(quickReplyDiv);
-                    
-                    // Add event listeners to quick reply buttons
-                    document.querySelectorAll('.quick-reply-btn').forEach(button => {
-                        button.addEventListener('click', function() {
-                            userInput.value = this.getAttribute('data-product');
-                            handleUserMessage();
-                        });
-                    });
-                    
-                }, 1500);
-            }
-            
-            // Event listeners
-            sendBtn.addEventListener('click', handleUserMessage);
-            
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    handleUserMessage();
-                }
+            // Reset form
+            document.getElementById('registrationForm').reset();
+        });
+        
+        // Add interactivity to objective cards
+        document.querySelectorAll('.objective-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('.card-title').textContent;
+                const isCore = this.classList.contains('core');
+                const type = isCore ? 'Core Objective' : 'Extended Program';
+                alert(`${type}: ${title}\n\nThis is one of our key focus areas. Click the registration form below to learn more or apply for related programs.`);
             });
-            
-            // Add event listeners to initial quick reply buttons
-            document.querySelectorAll('.quick-reply-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    userInput.value = this.getAttribute('data-product');
-                    handleUserMessage();
-                });
-            });
-            
-            // Show initial inflation alert after a delay
-            setTimeout(() => {
-                showInflationAlert();
-            }, 1000);
         });
     </script>
 </body>
