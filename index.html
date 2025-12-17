@@ -37,7 +37,7 @@
             padding: 15px 0;
         }
         
-        /* Circular Logo with Overlapping R & S */
+        /* Circular Logo with Overlapping R & S - Equally Visible */
         .logo-container {
             display: flex;
             align-items: center;
@@ -64,30 +64,32 @@
         }
         .logo-overlap {
             position: relative;
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
         }
         .logo-r-nav {
             position: absolute;
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 900;
             color: var(--primary-color);
             top: -2px;
-            left: -5px;
-            transform: rotate(-5deg);
+            left: -3px;
+            transform: rotate(-8deg);
             z-index: 2;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            opacity: 0.9;
         }
         .logo-s-nav {
             position: absolute;
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 900;
             color: var(--accent-color);
-            top: 2px;
-            left: 8px;
-            transform: rotate(5deg);
+            top: -2px;
+            left: 5px;
+            transform: rotate(8deg);
             z-index: 1;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            opacity: 0.9;
         }
         .logo-text {
             font-size: 1.8rem;
@@ -284,30 +286,32 @@
         }
         .header-logo-overlap {
             position: relative;
-            width: 90px;
-            height: 90px;
+            width: 85px;
+            height: 85px;
         }
         .header-logo-r {
             position: absolute;
-            font-size: 85px;
+            font-size: 75px;
             font-weight: 900;
             color: white;
-            top: -5px;
-            left: -15px;
-            transform: rotate(-5deg);
+            top: -2px;
+            left: -10px;
+            transform: rotate(-8deg);
             z-index: 2;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            opacity: 0.95;
         }
         .header-logo-s {
             position: absolute;
-            font-size: 85px;
+            font-size: 75px;
             font-weight: 900;
             color: var(--accent-color);
-            top: 5px;
-            left: 10px;
-            transform: rotate(5deg);
+            top: -2px;
+            left: 8px;
+            transform: rotate(8deg);
             z-index: 1;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+            opacity: 0.95;
         }
         .tagline-small { 
             font-size: 0.9rem; 
@@ -545,18 +549,18 @@
                 height: 100px;
             }
             .header-logo-overlap {
-                width: 75px;
-                height: 75px;
+                width: 70px;
+                height: 70px;
             }
             .header-logo-r {
-                font-size: 70px;
-                left: -12px;
-                top: -4px;
+                font-size: 62px;
+                left: -8px;
+                top: -2px;
             }
             .header-logo-s {
-                font-size: 70px;
-                left: 8px;
-                top: 4px;
+                font-size: 62px;
+                left: 6px;
+                top: -2px;
             }
         }
     </style>
