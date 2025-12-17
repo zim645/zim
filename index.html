@@ -3,562 +3,859 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rise and Shine Empowerment - Core Programs</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Rise and Shine Empowerment</title>
     <style>
         :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2c5282;
-            --accent-color: #e53e3e;
-            --empowerment-color: #dd6b20;
-            --education-color: #38a169;
-            --shelter-color: #805ad5;
+            --primary-color: #1a365d; /* Deep blue */
+            --secondary-color: #2b6cb0; /* Medium blue */
+            --accent-color: #e53e3e;   /* Red for highlights */
+            --light-bg: #f7fafc;       /* Light background */
+            --text-dark: #2d3748;
+            --text-light: #f7fafc;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { color: var(--text-dark); line-height: 1.6; background-color: #edf2f7; padding-top: 80px; }
+        .container { max-width: 1200px; margin: 20px auto; background: white; box-shadow: 0 0 20px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+
+        /* === TOP NAVIGATION BAR with Dropdowns === */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 0 20px;
         }
-        
-        body {
-            background-color: #edf2f7;
-            color: #2d3748;
-            line-height: 1.7;
-        }
-        
-        .container {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 30px;
-            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
         }
         
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
+        /* Circular Logo */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo-circle {
             position: relative;
-        }
-        
-        .organization-name {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-        
-        .organization-tagline {
-            font-size: 24px;
-            font-weight: 300;
-            opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto;
-            font-style: italic;
-        }
-        
-        .core-mission {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 25px;
-            font-size: 20px;
-            border-left: 5px solid #e53e3e;
-        }
-        
-        /* Core Objectives Section */
-        .core-objectives-section {
-            padding: 60px 40px;
-            background-color: #f8fafc;
-        }
-        
-        .section-title {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background-color: var(--accent-color);
-        }
-        
-        .objectives-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .objective-card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 35px 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s;
-            border-top: 8px solid;
-            position: relative;
-        }
-        
-        .objective-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .objective-card.empowerment {
-            border-top-color: var(--empowerment-color);
-        }
-        
-        .objective-card.education {
-            border-top-color: var(--education-color);
-        }
-        
-        .objective-card.shelter {
-            border-top-color: var(--shelter-color);
-        }
-        
-        .objective-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        
-        .objective-card.empowerment .objective-icon {
-            color: var(--empowerment-color);
-        }
-        
-        .objective-card.education .objective-icon {
-            color: var(--education-color);
-        }
-        
-        .objective-card.shelter .objective-icon {
-            color: var(--shelter-color);
-        }
-        
-        .objective-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-        
-        .objective-number {
-            position: absolute;
-            top: -20px;
-            left: 30px;
-            background-color: var(--primary-color);
-            color: white;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
             border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 20px;
+            overflow: hidden;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
-        
-        /* Extended Programs */
-        .extended-programs {
-            padding: 60px 40px;
-            background-color: #fff;
+        .logo-circle:hover {
+            transform: rotate(360deg);
+            transition: transform 0.6s ease;
         }
-        
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        
-        .program-card {
-            background-color: #f8fafc;
-            border-radius: 8px;
-            padding: 25px;
-            border-left: 5px solid var(--accent-color);
-            transition: all 0.3s;
-        }
-        
-        .program-card:hover {
-            background-color: #ebf8ff;
-        }
-        
-        .program-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--primary-color);
+        .logo-circle-inner {
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
             display: flex;
-            align-items: center;
         }
-        
-        .program-title i {
-            margin-right: 10px;
+        .logo-r {
+            transform: translateX(-4px) rotate(-5deg);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        .logo-s {
+            transform: translateX(4px) rotate(5deg);
+            color: #fed7d7;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        .logo-text span {
             color: var(--accent-color);
         }
         
-        /* Donation Section - Simple at Bottom */
-        .donation-section {
-            padding: 60px 40px;
-            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-            color: white;
-            text-align: center;
-        }
-        
-        .donation-title {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-        
-        .donation-tagline {
-            font-size: 22px;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
-        .donation-button {
-            display: inline-block;
-            padding: 18px 40px;
-            background-color: #e53e3e;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 20px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-            margin-top: 20px;
-        }
-        
-        .donation-button:hover {
-            background-color: #c53030;
-        }
-        
-        /* Contact Footer */
-        .contact-footer {
-            background-color: #2d3748;
-            color: white;
-            padding: 40px;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .contact-item {
+        /* Navigation with Dropdowns */
+        .nav-menu {
             display: flex;
-            align-items: flex-start;
-            gap: 15px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-item {
+            margin-left: 25px;
+            position: relative;
+        }
+        .nav-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 0;
+            transition: color 0.3s;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .nav-link::after {
+            content: '▼';
+            font-size: 0.7rem;
+            margin-left: 5px;
+            opacity: 0.7;
+            transition: transform 0.3s;
+        }
+        .nav-link:hover::after {
+            transform: rotate(180deg);
+        }
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+        .nav-link.active {
+            color: var(--accent-color);
+        }
+        .nav-link.active::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
         }
         
-        .contact-icon {
-            background-color: rgba(255, 255, 255, 0.1);
-            width: 50px;
-            height: 50px;
+        /* Dropdown Menu */
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            padding: 10px 0;
+            border-top: 4px solid var(--accent-color);
+        }
+        .nav-item:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+        .dropdown-content a {
+            color: var(--text-dark);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .dropdown-content a:hover {
+            background-color: var(--light-bg);
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
+            padding-left: 25px;
+        }
+        .dropdown-heading {
+            font-weight: 700;
+            color: var(--primary-color);
+            padding: 12px 20px 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 8px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        .volunteer-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-left: 30px;
+        }
+        .volunteer-btn:hover {
+            background-color: #c53030;
+            color: white;
+        }
+
+        /* === HEADER & TAGLINE === */
+        .site-header { 
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
+            color: white; 
+            padding: 3rem 2.5rem; 
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .site-header::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
+            top: -150px;
+            right: -100px;
+        }
+        .site-header::after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            bottom: -100px;
+            left: -50px;
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        .header-logo {
+            margin-bottom: 1.5rem;
+        }
+        .header-logo-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            color: #e2e8f0;
-            flex-shrink: 0;
+            border: 5px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+        }
+        .header-logo-circle::before {
+            content: "";
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.1);
+            animation: pulse 3s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.1); opacity: 0.1; }
+        }
+        .header-logo-inner {
+            font-size: 60px;
+            font-weight: 900;
+            color: white;
+            display: flex;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        .header-logo-r {
+            transform: translateX(-8px) rotate(-5deg);
+        }
+        .header-logo-s {
+            transform: translateX(8px) rotate(5deg);
+            color: #fed7d7;
+        }
+        .tagline-small { 
+            font-size: 0.9rem; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            opacity: 0.9; 
+            margin-bottom: 0.5rem; 
+        }
+        .tagline-large { 
+            font-size: 2.8rem; 
+            font-weight: 800; 
+            margin: 1rem 0; 
+            line-height: 1.2; 
+        }
+        .organization-name { 
+            font-size: 3.5rem; 
+            font-weight: 900; 
+            margin: 1rem 0; 
+            letter-spacing: -0.5px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* === NEW FEATURES === */
+        /* Quick Actions */
+        .quick-actions {
+            padding: 2rem;
+            background: var(--light-bg);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            padding: 12px 25px;
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: 50px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .action-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
         }
         
-        .contact-details h4 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #e2e8f0;
-        }
+        /* === EXISTING SECTIONS (Keep as is) === */
+        .mission-section { padding: 4rem 2.5rem; background-color: var(--light-bg); }
+        .section-label { font-size: 1rem; color: var(--secondary-color); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; }
+        .section-heading { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+        .mission-text { font-size: 1.2rem; max-width: 900px; margin-bottom: 2rem; color: #4a5568; }
+        .core-aim-box { background: white; padding: 2rem; border-radius: 10px; border-left: 6px solid var(--accent-color); margin: 2.5rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .core-aim-box p { font-size: 1.4rem; font-weight: 600; color: var(--primary-color); }
         
-        .owner-contact {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 30px;
-            border-left: 5px solid #e53e3e;
-        }
+        .vision-mission { padding: 4rem 2.5rem; text-align: center; }
+        .vm-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; max-width: 1000px; margin: 3rem auto 0; }
+        .vm-card { padding: 2.5rem; border-radius: 10px; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-top: 5px solid var(--secondary-color); }
+        .vm-card h3 { color: var(--primary-color); margin-bottom: 1.2rem; font-size: 1.8rem; }
         
-        .owner-title {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #e2e8f0;
-        }
+        .objectives-section { padding: 4rem 2.5rem; background-color: #f0fff4; }
+        .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
+        .obj-card { background: white; padding: 2.5rem; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); position: relative; padding-top: 3.5rem; }
+        .obj-number { position: absolute; top: -20px; left: 2rem; background: var(--accent-color); color: white; width: 45px; height: 45px; border-radius: 50%; display: grid; place-items: center; font-size: 1.4rem; font-weight: 800; }
+        .obj-card h4 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
         
-        .owner-email {
-            font-size: 20px;
-            color: #63b3ed;
+        .programs-section { padding: 4rem 2.5rem; }
+        .programs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .prog-card { background: var(--light-bg); padding: 2rem; border-radius: 8px; border-left: 5px solid var(--secondary-color); transition: transform 0.3s; }
+        .prog-card:hover { transform: translateY(-5px); }
+        .prog-icon { font-size: 2.2rem; color: var(--secondary-color); margin-bottom: 1rem; }
+        .prog-card h5 { color: var(--primary-color); margin-bottom: 0.8rem; font-size: 1.3rem; }
+        
+        .donation-section { 
+            background-color: var(--accent-color); 
+            color: white; 
+            padding: 4rem 2.5rem; 
+            text-align: center; 
+            margin: 2rem 2.5rem;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .donation-section::before {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+        }
+        .donation-section::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: -50px;
+            left: -50px;
+        }
+        .donation-content {
+            position: relative;
+            z-index: 1;
+        }
+        .donation-label { 
+            font-size: 1.1rem; 
+            letter-spacing: 3px; 
+            margin-bottom: 1rem; 
+            display: block; 
             font-weight: 600;
         }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            margin-top: 30px;
-            border-top: 1px solid #4a5568;
-            color: #a0aec0;
-            font-size: 14px;
+        .donation-heading { 
+            font-size: 2.5rem; 
+            font-weight: 800; 
+            margin-bottom: 1.5rem; 
+        }
+        .donation-tagline { 
+            font-size: 1.3rem; 
+            max-width: 800px; 
+            margin: 0 auto 2.5rem; 
+            opacity: 0.95; 
+        }
+        .pill-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 1rem; 
+            justify-content: center; 
+            max-width: 900px; 
+            margin: 0 auto 2rem; 
+        }
+        .pill { 
+            background: rgba(255, 255, 255, 0.2); 
+            padding: 0.8rem 1.8rem; 
+            border-radius: 50px; 
+            font-weight: 600; 
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+        .pill:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        .donation-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--accent-color);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .donation-button:hover {
+            background-color: #f7fafc;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         
+        .contact-section { padding: 4rem 2.5rem; background-color: var(--primary-color); color: var(--text-light); }
+        .contact-wrapper { max-width: 1000px; margin: 0 auto; }
+        .contact-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; margin: 3rem 0; }
+        .contact-item { display: flex; align-items: flex-start; gap: 1.2rem; }
+        .contact-icon { background: rgba(255,255,255,0.1); width: 55px; height: 55px; border-radius: 50%; display: grid; place-items: center; font-size: 1.5rem; flex-shrink: 0; }
+        .owner-highlight { background: rgba(255,255,255,0.08); padding: 2rem; border-radius: 10px; margin-top: 2rem; border-left: 5px solid var(--accent-color); }
+        .owner-email { color: #90cdf4; font-size: 1.3rem; font-weight: 600; margin-top: 0.5rem; }
+        
+        .site-footer { text-align: center; padding: 2.5rem; background: #1a202c; color: #a0aec0; font-size: 0.95rem; }
+
         /* Responsive */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                z-index: 1002;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-item {
+                margin: 10px 0;
+            }
+            .dropdown-content {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                margin-top: 10px;
+                margin-left: 20px;
+                display: none;
+            }
+            .nav-item:hover .dropdown-content {
+                display: block;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .volunteer-btn {
+                margin: 20px 0 0 0;
+            }
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            .donation-section {
+                margin: 2rem 1rem;
+            }
+        }
         @media (max-width: 768px) {
-            .container {
-                margin-top: 0;
-                border-radius: 0;
+            body { padding-top: 70px; }
+            .container { margin: 0; border-radius: 0; }
+            .tagline-large, .organization-name { font-size: 2.2rem; }
+            .donation-heading { font-size: 2rem; }
+            .pill-container { gap: 0.8rem; }
+            .pill { padding: 0.8rem 1.5rem; font-size: 0.95rem; }
+            .nav-container { padding: 10px 0; }
+            .header-logo-circle {
+                width: 100px;
+                height: 100px;
             }
-            
-            .organization-name {
-                font-size: 36px;
-            }
-            
-            .objectives-container, .programs-grid, .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .core-objectives-section, .extended-programs, .donation-section, .contact-footer {
-                padding: 40px 20px;
+            .header-logo-inner {
+                font-size: 50px;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1 class="organization-name">Rise and Shine Empowerment</h1>
-            <p class="organization-tagline">"We rise by lifting each other!"</p>
-            
-            <div class="core-mission">
-                <strong>AIM:</strong> Promoting a better quality of life for youths and vulnerable children in marginalized communities.
-            </div>
-        </header>
-        
-        <!-- Core Objectives Section -->
-        <section class="core-objectives-section">
-            <h2 class="section-title">Our Core Objectives</h2>
-            
-            <div class="objectives-container">
-                <div class="objective-card empowerment">
-                    <div class="objective-number">I</div>
-                    <div class="objective-icon">
-                        <i class="fas fa-hands-helping"></i>
-                    </div>
-                    <h3 class="objective-title">Youth Empowerment</h3>
-                    <p>To empower youth in marginalized communities through sports, technical and vocational skills training that builds capacity for sustainable livelihoods and community leadership.</p>
-                    
-                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
-                        <p><strong>Programs:</strong> Sports academies, vocational workshops, leadership training, life skills development.</p>
+    <!-- TOP NAVIGATION BAR -->
+    <nav class="top-navbar">
+        <div class="nav-container">
+            <a href="#" class="logo-container">
+                <div class="logo-circle">
+                    <div class="logo-circle-inner">
+                        <span class="logo-r">R</span>
+                        <span class="logo-s">S</span>
                     </div>
                 </div>
-                
-                <div class="objective-card education">
-                    <div class="objective-number">II</div>
-                    <div class="objective-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="objective-title">Quality Education Access</h3>
-                    <p>To enhance access to quality education for vulnerable children in marginalized communities through scholarships, learning support, and educational resources that break cycles of poverty.</p>
-                    
-                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
-                        <p><strong>Programs:</strong> After-school tutoring, scholarship programs, digital literacy, school supplies support.</p>
-                    </div>
-                </div>
-                
-                <div class="objective-card shelter">
-                    <div class="objective-number">III</div>
-                    <div class="objective-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3 class="objective-title">Safe & Secure Shelter</h3>
-                    <p>To provide safe and secure shelter for vulnerable children through residential care, emergency housing, and family support services that ensure basic needs and protection.</p>
-                    
-                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
-                        <p><strong>Programs:</strong> Residential care homes, emergency shelter, foster care support, family preservation.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Extended Programs -->
-        <section class="extended-programs">
-            <h2 class="section-title">Extended Empowerment Programs</h2>
-            <p style="text-align: center; max-width: 900px; margin: 0 auto 30px; font-size: 18px;">
-                Building upon our core objectives, we offer specialized programs that equip youth with future-ready skills for sustainable development.
-            </p>
-            
-            <div class="programs-grid">
-                <div class="program-card">
-                    <h3 class="program-title"><i class="fas fa-robot"></i> AI & Machine Learning</h3>
-                    <p>Introduction to Python/R programming and practical AI applications for solving community challenges in agriculture, health, and business.</p>
-                </div>
-                
-                <div class="program-card">
-                    <h3 class="program-title"><i class="fas fa-database"></i> Data Science & Statistics</h3>
-                    <p>Data analysis, visualization, and statistical modeling skills for evidence-based community development and decision-making.</p>
-                </div>
-                
-                <div class="program-card">
-                    <h3 class="program-title"><i class="fas fa-atom"></i> Quantum Science Basics</h3>
-                    <p>Introduction to quantum computing concepts and their potential applications for future technology careers.</p>
-                </div>
-                
-                <div class="program-card">
-                    <h3 class="program-title"><i class="fas fa-graduation-cap"></i> Academic Support</h3>
-                    <p>Dissertation guidance, university project assistance, and research mentorship for students in STEM fields.</p>
-                </div>
-                
-                <div class="program-card">
-                    <h3 class="program-title"><i class="fas fa-clinic-medical"></i> Clinical Trials Training</h3>
-                    <p>Training in clinical research methodology, data management, and regulatory compliance for healthcare professionals.</p>
-                </div>
-                
-                <div class="program-card">
-                    <h3 class="program-title"><i class="fas fa-seedling"></i> Agri-Tech & Entrepreneurship</h3>
-                    <p>Combining agricultural innovation with entrepreneurship to create sustainable businesses and food security solutions.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Simple Donation Section at Bottom -->
-        <section class="donation-section">
-            <h2 class="donation-title">Support Our Mission</h2>
-            <p class="donation-tagline">
-                Your contribution directly empowers youth, provides education to vulnerable children, and offers safe shelter to those in need. Every donation helps us fulfill our core objectives in marginalized communities.
-            </p>
-            
-            <a href="#contact" class="donation-button">
-                <i class="fas fa-heart"></i> Donate to Empower Youth
+                <div class="logo-text">Rise<span>&</span>Shine</div>
             </a>
             
-            <p style="margin-top: 30px; font-size: 18px; opacity: 0.8;">
-                100% of donations go directly to our core programs: Youth Empowerment, Education Access, and Safe Shelter.
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About Us</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-heading">About Our Work</div>
+                        <a href="#story">Our Story & Vision</a>
+                        <a href="#team">Our Team & Leadership</a>
+                        <a href="#partners">Future Partnerships</a>
+                        <a href="#governance">Governance & Policies</a>
+                        <a href="#plans">Strategic Plans</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#programs" class="nav-link">Programs</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-heading">Our Programs</div>
+                        <a href="#education">Education Support</a>
+                        <a href="#vocation">Vocational Training</a>
+                        <a href="#shelter">Safe Shelter Programs</a>
+                        <a href="#tech">Technology Skills</a>
+                        <a href="#sports">Sports & Recreation</a>
+                        <a href="#health">Health & Wellbeing</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#get-involved" class="nav-link">Get Involved</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-heading">Join Our Mission</div>
+                        <a href="#volunteer">Volunteer Opportunities</a>
+                        <a href="#partnerships">Partnerships</a>
+                        <a href="#campaigns">Future Campaigns</a>
+                        <a href="#support">How to Support</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#news" class="nav-link">News</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-heading">Latest Updates</div>
+                        <a href="#announcements">Announcements</a>
+                        <a href="#blog">Blog & Articles</a>
+                        <a href="#media">Media</a>
+                        <a href="#events">Upcoming Events</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#volunteer" class="volunteer-btn">Become a Volunteer</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#donate" class="nav-link" style="color: var(--accent-color); font-weight: 700;">Donate</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- HEADER: Tagline & Name with Circular Logo -->
+        <header class="site-header">
+            <div class="header-content">
+                <div class="header-logo">
+                    <div class="header-logo-circle">
+                        <div class="header-logo-inner">
+                            <span class="header-logo-r">R</span>
+                            <span class="header-logo-s">S</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tagline-small">We rise by lifting each other!</div>
+                <h1 class="organization-name">Rise and Shine Empowerment</h1>
+                <div class="tagline-large">Empower a youth, transform a community.</div>
+            </div>
+        </header>
+
+        <!-- QUICK ACTION BUTTONS -->
+        <div class="quick-actions">
+            <a href="#donate" class="action-btn">
+                <i class="fas fa-heart"></i> Make a Donation
+            </a>
+            <a href="#volunteer" class="action-btn">
+                <i class="fas fa-hands-helping"></i> Volunteer Today
+            </a>
+            <a href="#programs" class="action-btn">
+                <i class="fas fa-graduation-cap"></i> Explore Programs
+            </a>
+            <a href="#events" class="action-btn">
+                <i class="fas fa-calendar-alt"></i> Upcoming Events
+            </a>
+        </div>
+
+        <!-- "WE ARE" / MISSION SECTION -->
+        <section class="mission-section" id="about">
+            <span class="section-label">We are</span>
+            <h2 class="section-heading">Inspiring and Helping for Better Lifestyle</h2>
+            <p class="mission-text">
+                As a local non-governmental organization, we are deeply committed to promoting the social, educational, and economic empowerment of youths and vulnerable children in marginalized communities. Through innovative programs, we strive to break down barriers and create pathways to success.
+                At Rise and Shine, we believe that when young people rise, entire communities thrive. Join us in building a more equitable and inclusive society.
             </p>
+            <div class="core-aim-box">
+                <p><strong>Our Core Aim:</strong> Promoting a better quality of life for youths and vulnerable children in marginalized communities.</p>
+            </div>
         </section>
-        
-        <!-- Contact Footer -->
-        <footer class="contact-footer" id="contact">
-            <div class="contact-grid">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Location</h4>
-                        <p>Plot 5, Railway 7 Farm<br>Kadoma, Mashonaland West<br>Zimbabwe</p>
-                    </div>
+
+        <!-- VISION & MISSION -->
+        <section class="vision-mission">
+            <span class="section-label">Vision and Mission</span>
+            <h2 class="section-heading">Rise and Shine Empowerment Center</h2>
+            <div class="vm-container">
+                <div class="vm-card">
+                    <h3>Our Vision</h3>
+                    <p>We envision a society where every youth and vulnerable child from marginalized communities has the opportunity to reach their full potential and participate equally in all aspects of life.</p>
                 </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Contact Numbers</h4>
-                        <p>Office: +263 242 456 789<br>Mobile: +263 772 123 456</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Organization Email</h4>
-                        <p>info@riseandshine.co.zw<br>registrations@riseandshine.co.zw</p>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="contact-details">
-                        <h4>Office Hours</h4>
-                        <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
-                    </div>
+                <div class="vm-card">
+                    <h3>Our Mission</h3>
+                    <p>Our mission is to enhance the educational, social, and economic empowerment of youths and vulnerable children through skills training, safe shelter, and access to technology.</p>
                 </div>
             </div>
-            
-            <!-- Owner Contact Section -->
-            <div class="owner-contact">
-                <h3 class="owner-title">Contact the Founder & Director</h3>
-                <p style="margin-bottom: 15px; font-size: 18px;">For direct communication regarding partnerships, major donations, or strategic inquiries:</p>
-                
-                <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
-                    <div style="font-size: 20px; font-weight: 600;">Mr. L. Katova</div>
-                    <div class="owner-email">
-                        <i class="fas fa-envelope"></i> leo1katova@gmail.com
-                    </div>
+        </section>
+
+        <!-- CORE OBJECTIVES -->
+        <section class="objectives-section" id="programs">
+            <h2 class="section-heading">Our Core Objectives</h2>
+            <div class="objectives-grid">
+                <div class="obj-card">
+                    <div class="obj-number">I</div>
+                    <h4>Empower Youth Through Skills</h4>
+                    <p>To empower youth in marginalized communities through sports, technical and vocational skills training for sustainable livelihoods.</p>
                 </div>
-                
-                <p style="margin-top: 15px; font-size: 16px; opacity: 0.9;">
-                    Founder & Executive Director of Rise and Shine Empowerment
+                <div class="obj-card">
+                    <div class="obj-number">II</div>
+                    <h4>Enhance Education Access</h4>
+                    <p>To enhance access to quality education and learning resources for vulnerable children in marginalized communities.</p>
+                </div>
+                <div class="obj-card">
+                    <div class="obj-number">III</div>
+                    <h4>Provide Safe Shelter</h4>
+                    <p>To provide safe and secure shelter and care for vulnerable children and youth at risk.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXTENDED PROGRAMS -->
+        <section class="programs-section">
+            <h2 class="section-heading">Extended Programs & Skills</h2>
+            <p>Building on our core objectives, we offer advanced programs to equip youth for the future.</p>
+            <div class="programs-grid">
+                <div class="prog-card"><div class="prog-icon"><i class="fas fa-robot"></i></div><h5>AI & Machine Learning</h5><p>Python, R, practical applications.</p></div>
+                <div class="prog-card"><div class="prog-icon"><i class="fas fa-database"></i></div><h5>Data Science</h5><p>Statistics, analysis, visualization.</p></div>
+                <div class="prog-card"><div class="prog-icon"><i class="fas fa-atom"></i></div><h5>Quantum Science Basics</h5><p>Introductory concepts and futures.</p></div>
+                <div class="prog-card"><div class="prog-icon"><i class="fas fa-graduation-cap"></i></div><h5>Academic Support</h5><p>Dissertation & project guidance.</p></div>
+                <div class="prog-card"><div class="prog-icon"><i class="fas fa-clinic-medical"></i></div><h5>Clinical Trials Training</h5><p>Research methodology & ethics.</p></div>
+                <div class="prog-card"><div class="prog-icon"><i class="fas fa-seedling"></i></div><h5>Agri-Tech & Entrepreneurship</h5><p>Sustainable business skills.</p></div>
+            </div>
+        </section>
+
+        <!-- DONATION SECTION -->
+        <section class="donation-section" id="donate">
+            <div class="donation-content">
+                <span class="donation-label">HELP & DONATE US</span>
+                <h2 class="donation-heading">Support Youth & Vulnerable Children</h2>
+                <p class="donation-tagline">
+                    Your contribution funds vocational training, safe shelter, quality education, and technology programs for marginalized youth.
                 </p>
+                
+                <div class="pill-container">
+                    <span class="pill">Youth Empowerment</span>
+                    <span class="pill">Safe Shelter</span>
+                    <span class="pill">Education Access</span>
+                    <span class="pill">AI & Tech Skills</span>
+                    <span class="pill">Sports & Vocational</span>
+                    <span class="pill">Community Development</span>
+                </div>
+                
+                <a href="#contact" class="donation-button">
+                    <i class="fas fa-heart"></i> Make a Donation Today
+                </a>
             </div>
-            
-            <div class="copyright">
-                &copy; 2025 Rise and Shine Empowerment. Registered under the Zimbabwe Welfare Organisations Act, 1966. 
-                All rights reserved. Application Reference: CL06692055
+        </section>
+
+        <!-- CONTACT & REGISTRATION -->
+        <section class="contact-section" id="contact">
+            <div class="contact-wrapper">
+                <h2 class="section-heading">Contact & Official Registration</h2>
+                <div class="contact-details">
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Address</h4><p>Plot 5, Railway 7 Farm<br>Kadoma, Mashonaland West, Zimbabwe</p></div></div>
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><h4>Phone</h4><p>+263 242 456 789<br>+263 772 123 456</p></div></div>
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Organization Email</h4><p>info@riseandshine.co.zw<br>registrations@riseandshine.co.zw</p></div></div>
+                </div>
+                <div class="owner-highlight">
+                    <h3><i class="fas fa-user-tie"></i> Contact the Founder & Director</h3>
+                    <p>For strategic partnerships, major donations, or high-level inquiries:</p>
+                    <div class="owner-email">Mr. L. Katova: <strong>leo1katova@gmail.com</strong></div>
+                </div>
+                <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.9;"><strong>Official Registration:</strong> CL06692055 | Welfare Organisations Act, 1966 | Notice published in The Herald on 12th December, 2025.</p>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <p>&copy; 2025 Rise and Shine Empowerment. "We rise by lifting each other!"</p>
+            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <a href="#" style="color: #a0aec0; text-decoration: none;">Home</a>
+                <a href="#about" style="color: #a0aec0; text-decoration: none;">About Us</a>
+                <a href="#programs" style="color: #a0aec0; text-decoration: none;">Programs</a>
+                <a href="#get-involved" style="color: #a0aec0; text-decoration: none;">Get Involved</a>
+                <a href="#news" style="color: #a0aec0; text-decoration: none;">News</a>
+                <a href="#contact" style="color: #a0aec0; text-decoration: none;">Contact Us</a>
+                <a href="#privacy" style="color: #a0aec0; text-decoration: none;">Privacy Policy</a>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <a href="#" style="color: #a0aec0; margin: 0 10px; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                <a href="#" style="color: #a0aec0; margin: 0 10px; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                <a href="#" style="color: #a0aec0; margin: 0 10px; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: #a0aec0; margin: 0 10px; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
             </div>
         </footer>
     </div>
-    
+
     <script>
-        // Simple donation button interaction
-        document.querySelector('.donation-button').addEventListener('click', function(e) {
-            e.preventDefault();
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // Close mobile menu if open
+                    document.getElementById('navMenu').classList.remove('active');
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Highlight active navigation item based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
             
-            // Scroll to contact section
-            document.getElementById('contact').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
             });
             
-            // Highlight the owner contact section
-            const ownerContact = document.querySelector('.owner-contact');
-            ownerContact.style.backgroundColor = 'rgba(229, 62, 62, 0.1)';
-            ownerContact.style.borderLeftColor = '#e53e3e';
-            
-            // Reset after 3 seconds
-            setTimeout(() => {
-                ownerContact.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-            }, 3000);
-            
-            // Show message
-            alert('Thank you for your interest in supporting Rise and Shine Empowerment! Please contact Mr. Katova at leo1katova@gmail.com for donation details and partnerships.');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}` || 
+                   (current === '' && link.getAttribute('href') === '#')) {
+                    link.classList.add('active');
+                }
+            });
         });
         
-        // Simple hover effect for program cards
-        document.querySelectorAll('.program-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
-            });
+        // Animate logo on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoCircle = document.querySelector('.header-logo-circle');
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-                this.style.boxShadow = 'none';
+            if(logoCircle) {
+                logoCircle.style.transform = 'scale(0) rotate(0deg)';
+                logoCircle.style.opacity = '0';
+                
+                // Animate in
+                setTimeout(() => {
+                    logoCircle.style.transition = 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    logoCircle.style.transform = 'scale(1) rotate(360deg)';
+                    logoCircle.style.opacity = '1';
+                }, 300);
+            }
+            
+            // Mobile dropdown toggle
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if(item.querySelector('.dropdown-content')) {
+                    item.addEventListener('click', function(e) {
+                        if(window.innerWidth <= 992) {
+                            e.preventDefault();
+                            const dropdown = this.querySelector('.dropdown-content');
+                            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                        }
+                    });
+                }
             });
         });
+        
+        // Logo rotation on hover
+        const logoCircle = document.querySelector('.logo-circle');
+        if(logoCircle) {
+            logoCircle.addEventListener('mouseenter', function() {
+                this.style.transform = 'rotate(360deg)';
+            });
+            
+            logoCircle.addEventListener('mouseleave', function() {
+                this.style.transform = 'rotate(0deg)';
+            });
+        }
     </script>
 </body>
 </html>
