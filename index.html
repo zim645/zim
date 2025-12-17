@@ -37,7 +37,7 @@
             padding: 15px 0;
         }
         
-        /* Circular Logo */
+        /* Circular Logo with Overlapping R & S */
         .logo-container {
             display: flex;
             align-items: center;
@@ -49,7 +49,7 @@
             height: 50px;
             margin-right: 15px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,20 +62,32 @@
             transform: rotate(360deg);
             transition: transform 0.6s ease;
         }
-        .logo-circle-inner {
-            font-size: 24px;
+        .logo-overlap {
+            position: relative;
+            width: 36px;
+            height: 36px;
+        }
+        .logo-r-nav {
+            position: absolute;
+            font-size: 36px;
             font-weight: 900;
-            color: white;
-            display: flex;
+            color: var(--primary-color);
+            top: -2px;
+            left: -5px;
+            transform: rotate(-5deg);
+            z-index: 2;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
-        .logo-r {
-            transform: translateX(-4px) rotate(-5deg);
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-        }
-        .logo-s {
-            transform: translateX(4px) rotate(5deg);
-            color: #fed7d7;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        .logo-s-nav {
+            position: absolute;
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--accent-color);
+            top: 2px;
+            left: 8px;
+            transform: rotate(5deg);
+            z-index: 1;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .logo-text {
             font-size: 1.8rem;
@@ -248,11 +260,11 @@
             height: 120px;
             margin: 0 auto;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 5px solid rgba(255,255,255,0.2);
+            border: 5px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             backdrop-filter: blur(5px);
             overflow: hidden;
@@ -263,26 +275,39 @@
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             animation: pulse 3s infinite alternate;
         }
         @keyframes pulse {
             0% { transform: scale(1); opacity: 0.3; }
             100% { transform: scale(1.1); opacity: 0.1; }
         }
-        .header-logo-inner {
-            font-size: 60px;
-            font-weight: 900;
-            color: white;
-            display: flex;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        .header-logo-overlap {
+            position: relative;
+            width: 90px;
+            height: 90px;
         }
         .header-logo-r {
-            transform: translateX(-8px) rotate(-5deg);
+            position: absolute;
+            font-size: 85px;
+            font-weight: 900;
+            color: white;
+            top: -5px;
+            left: -15px;
+            transform: rotate(-5deg);
+            z-index: 2;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
         }
         .header-logo-s {
-            transform: translateX(8px) rotate(5deg);
-            color: #fed7d7;
+            position: absolute;
+            font-size: 85px;
+            font-weight: 900;
+            color: var(--accent-color);
+            top: 5px;
+            left: 10px;
+            transform: rotate(5deg);
+            z-index: 1;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
         }
         .tagline-small { 
             font-size: 0.9rem; 
@@ -519,8 +544,19 @@
                 width: 100px;
                 height: 100px;
             }
-            .header-logo-inner {
-                font-size: 50px;
+            .header-logo-overlap {
+                width: 75px;
+                height: 75px;
+            }
+            .header-logo-r {
+                font-size: 70px;
+                left: -12px;
+                top: -4px;
+            }
+            .header-logo-s {
+                font-size: 70px;
+                left: 8px;
+                top: 4px;
             }
         }
     </style>
@@ -532,9 +568,9 @@
         <div class="nav-container">
             <a href="#" class="logo-container">
                 <div class="logo-circle">
-                    <div class="logo-circle-inner">
-                        <span class="logo-r">R</span>
-                        <span class="logo-s">S</span>
+                    <div class="logo-overlap">
+                        <div class="logo-r-nav">R</div>
+                        <div class="logo-s-nav">S</div>
                     </div>
                 </div>
                 <div class="logo-text">Rise<span>&</span>Shine</div>
@@ -608,9 +644,9 @@
             <div class="header-content">
                 <div class="header-logo">
                     <div class="header-logo-circle">
-                        <div class="header-logo-inner">
-                            <span class="header-logo-r">R</span>
-                            <span class="header-logo-s">S</span>
+                        <div class="header-logo-overlap">
+                            <div class="header-logo-r">R</div>
+                            <div class="header-logo-s">S</div>
                         </div>
                     </div>
                 </div>
