@@ -652,21 +652,36 @@
             font-size: 0.9rem;
             opacity: 0.9;
         }
-        .testimonial {
+        
+        /* Program Highlight */
+        .program-highlight {
             background: rgba(255, 255, 255, 0.1);
             padding: 2rem;
             border-radius: 15px;
             margin-top: 2.5rem;
-            border-left: 4px solid var(--accent-color);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .testimonial p {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-        .testimonial-author {
-            font-weight: 600;
+        .program-highlight h3 {
             color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .program-highlight ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .program-highlight li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .program-highlight li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #ffd700;
+            font-weight: bold;
         }
         
         /* === FAQ SECTION === */
@@ -1299,36 +1314,43 @@
             </div>
         </section>
 
-        <!-- UPDATED DONATION SECTION -->
+        <!-- UPDATED DONATION SECTION (Without Testimonial) -->
         <section class="donation-section" id="donate">
             <div class="donation-container">
                 <!-- Left Column: Donation Info -->
                 <div class="donation-info">
                     <h2>Invest in Zimbabwe's Future</h2>
-                    <p>Your donation directly supports youth empowerment programs that create lasting change in marginalized communities. Every dollar you give helps provide education, skills training, and safe shelter for vulnerable children and youth.</p>
+                    <p>Your donation will help us launch youth empowerment programs that create lasting change in marginalized communities. Every dollar you give will help provide education, skills training, and safe shelter for vulnerable children and youth.</p>
                     
                     <div class="impact-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Youths Empowered</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">85%</div>
-                            <div class="stat-label">Success Rate</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15</div>
-                            <div class="stat-label">Communities Served</div>
-                        </div>
                         <div class="stat-item">
                             <div class="stat-number">100%</div>
                             <div class="stat-label">Direct Impact</div>
                         </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Core Objectives</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">6+</div>
+                            <div class="stat-label">Program Areas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">Local</div>
+                            <div class="stat-label">Community Focus</div>
+                        </div>
                     </div>
                     
-                    <div class="testimonial">
-                        <p>"Thanks to Rise and Shine, I learned coding skills that helped me get a job. Now I can support my family and mentor other young people in my community."</p>
-                        <div class="testimonial-author">- Tinashe, Former Beneficiary</div>
+                    <!-- Program Highlight Section (Replaces Testimonial) -->
+                    <div class="program-highlight">
+                        <h3>Our Program Impact Goals:</h3>
+                        <ul>
+                            <li>Provide vocational training to 100+ youth annually</li>
+                            <li>Support 50+ vulnerable children with education</li>
+                            <li>Establish safe shelter facilities for at-risk youth</li>
+                            <li>Deliver technology skills training in rural communities</li>
+                            <li>Create sustainable livelihood opportunities</li>
+                        </ul>
                     </div>
                 </div>
                 
