@@ -13,9 +13,31 @@
             --text-dark: #2d3748;
             --text-light: #f7fafc;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
-        body { color: var(--text-dark); line-height: 1.6; background-color: #edf2f7; padding-top: 80px; }
-        .container { max-width: 1200px; margin: 20px auto; background: white; box-shadow: 0 0 20px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+        }
+        body { 
+            color: var(--text-dark); 
+            line-height: 1.6; 
+            background-color: #edf2f7; 
+            padding-top: 80px; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Make container full width */
+        .container { 
+            width: 100%;
+            max-width: 100%;
+            background: white; 
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
 
         /* === TOP NAVIGATION BAR with Dropdowns === */
         .top-navbar {
@@ -29,7 +51,7 @@
             padding: 0 20px;
         }
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -37,7 +59,7 @@
             padding: 15px 0;
         }
         
-        /* Circular Logo with Overlapping R & S - Filling the Circle */
+        /* Circular Logo with Overlapping R & S */
         .logo-container {
             display: flex;
             align-items: center;
@@ -223,10 +245,11 @@
         .site-header { 
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); 
             color: white; 
-            padding: 3rem 2.5rem; 
+            padding: 4rem 2.5rem; 
             text-align: center;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
         .site-header::before {
             content: "";
@@ -251,6 +274,8 @@
         .header-content {
             position: relative;
             z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .header-logo {
             margin-bottom: 1.5rem;
@@ -332,16 +357,16 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* === DONATION SECTION UPDATED === */
+        /* === DONATION SECTION === */
         .donation-section { 
             background-color: var(--accent-color); 
             color: white; 
             padding: 4rem 2.5rem; 
             text-align: center; 
-            margin: 2rem 2.5rem;
-            border-radius: 15px;
+            margin: 2rem 0;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
         .donation-section::before {
             content: "";
@@ -366,7 +391,7 @@
         .donation-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         .donation-label { 
@@ -417,6 +442,9 @@
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
             gap: 1rem;
             margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .amount-btn {
             padding: 18px 10px;
@@ -471,6 +499,9 @@
             border-radius: 10px;
             margin-bottom: 2.5rem;
             border-left: 5px solid white;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .impact-statement p {
             font-size: 1.2rem;
@@ -554,12 +585,13 @@
         
         /* Quick Actions */
         .quick-actions {
-            padding: 2rem;
+            padding: 2rem 2.5rem;
             background: var(--light-bg);
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
+            width: 100%;
         }
         .action-btn {
             padding: 12px 25px;
@@ -580,43 +612,203 @@
             transform: translateY(-2px);
         }
         
-        /* === EXISTING SECTIONS (Keep as is) === */
-        .mission-section { padding: 4rem 2.5rem; background-color: var(--light-bg); }
-        .section-label { font-size: 1rem; color: var(--secondary-color); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; }
-        .section-heading { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem; }
-        .mission-text { font-size: 1.2rem; max-width: 900px; margin-bottom: 2rem; color: #4a5568; }
-        .core-aim-box { background: white; padding: 2rem; border-radius: 10px; border-left: 6px solid var(--accent-color); margin: 2.5rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .core-aim-box p { font-size: 1.4rem; font-weight: 600; color: var(--primary-color); }
+        /* === EXISTING SECTIONS === */
+        .mission-section, .vision-mission, .objectives-section, .programs-section, .contact-section {
+            padding: 4rem 2.5rem;
+            width: 100%;
+        }
+        .mission-section { 
+            background-color: var(--light-bg); 
+        }
+        .objectives-section { 
+            background-color: #f0fff4; 
+        }
+        .contact-section { 
+            background-color: var(--primary-color); 
+            color: var(--text-light); 
+        }
         
-        .vision-mission { padding: 4rem 2.5rem; text-align: center; }
-        .vm-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; max-width: 1000px; margin: 3rem auto 0; }
-        .vm-card { padding: 2.5rem; border-radius: 10px; background: white; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border-top: 5px solid var(--secondary-color); }
-        .vm-card h3 { color: var(--primary-color); margin-bottom: 1.2rem; font-size: 1.8rem; }
+        .section-label { 
+            font-size: 1rem; 
+            color: var(--secondary-color); 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            margin-bottom: 1rem; 
+            display: block;
+        }
+        .section-heading { 
+            font-size: 2.5rem; 
+            color: var(--primary-color); 
+            margin-bottom: 1.5rem; 
+        }
+        .mission-text { 
+            font-size: 1.2rem; 
+            max-width: 1200px; 
+            margin-bottom: 2rem; 
+            color: #4a5568; 
+        }
+        .core-aim-box { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 10px; 
+            border-left: 6px solid var(--accent-color); 
+            margin: 2.5rem 0; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            max-width: 1200px;
+        }
+        .core-aim-box p { 
+            font-size: 1.4rem; 
+            font-weight: 600; 
+            color: var(--primary-color); 
+        }
         
-        .objectives-section { padding: 4rem 2.5rem; background-color: #f0fff4; }
-        .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
-        .obj-card { background: white; padding: 2.5rem; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); position: relative; padding-top: 3.5rem; }
-        .obj-number { position: absolute; top: -20px; left: 2rem; background: var(--accent-color); color: white; width: 45px; height: 45px; border-radius: 50%; display: grid; place-items: center; font-size: 1.4rem; font-weight: 800; }
-        .obj-card h4 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+        .vm-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 3rem; 
+            max-width: 1200px; 
+            margin: 3rem auto 0; 
+        }
+        .vm-card { 
+            padding: 2.5rem; 
+            border-radius: 10px; 
+            background: white; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06); 
+            border-top: 5px solid var(--secondary-color); 
+        }
+        .vm-card h3 { 
+            color: var(--primary-color); 
+            margin-bottom: 1.2rem; 
+            font-size: 1.8rem; 
+        }
         
-        .programs-section { padding: 4rem 2.5rem; }
-        .programs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .prog-card { background: var(--light-bg); padding: 2rem; border-radius: 8px; border-left: 5px solid var(--secondary-color); transition: transform 0.3s; }
-        .prog-card:hover { transform: translateY(-5px); }
-        .prog-icon { font-size: 2.2rem; color: var(--secondary-color); margin-bottom: 1rem; }
-        .prog-card h5 { color: var(--primary-color); margin-bottom: 0.8rem; font-size: 1.3rem; }
+        .objectives-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 2.5rem; 
+            margin-top: 3rem; 
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .obj-card { 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 10px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
+            position: relative; 
+            padding-top: 3.5rem; 
+        }
+        .obj-number { 
+            position: absolute; 
+            top: -20px; 
+            left: 2rem; 
+            background: var(--accent-color); 
+            color: white; 
+            width: 45px; 
+            height: 45px; 
+            border-radius: 50%; 
+            display: grid; 
+            place-items: center; 
+            font-size: 1.4rem; 
+            font-weight: 800; 
+        }
+        .obj-card h4 { 
+            color: var(--primary-color); 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+        }
         
-        .contact-section { padding: 4rem 2.5rem; background-color: var(--primary-color); color: var(--text-light); }
-        .contact-wrapper { max-width: 1000px; margin: 0 auto; }
-        .contact-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2.5rem; margin: 3rem 0; }
-        .contact-item { display: flex; align-items: flex-start; gap: 1.2rem; }
-        .contact-icon { background: rgba(255,255,255,0.1); width: 55px; height: 55px; border-radius: 50%; display: grid; place-items: center; font-size: 1.5rem; flex-shrink: 0; }
-        .owner-highlight { background: rgba(255,255,255,0.08); padding: 2rem; border-radius: 10px; margin-top: 2rem; border-left: 5px solid var(--accent-color); }
-        .owner-email { color: #90cdf4; font-size: 1.3rem; font-weight: 600; margin-top: 0.5rem; }
+        .programs-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 3rem; 
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .prog-card { 
+            background: var(--light-bg); 
+            padding: 2rem; 
+            border-radius: 8px; 
+            border-left: 5px solid var(--secondary-color); 
+            transition: transform 0.3s; 
+        }
+        .prog-card:hover { 
+            transform: translateY(-5px); 
+        }
+        .prog-icon { 
+            font-size: 2.2rem; 
+            color: var(--secondary-color); 
+            margin-bottom: 1rem; 
+        }
+        .prog-card h5 { 
+            color: var(--primary-color); 
+            margin-bottom: 0.8rem; 
+            font-size: 1.3rem; 
+        }
         
-        .site-footer { text-align: center; padding: 2.5rem; background: #1a202c; color: #a0aec0; font-size: 0.95rem; }
+        .contact-wrapper { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .contact-details { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 2.5rem; 
+            margin: 3rem 0; 
+        }
+        .contact-item { 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 1.2rem; 
+        }
+        .contact-icon { 
+            background: rgba(255,255,255,0.1); 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 50%; 
+            display: grid; 
+            place-items: center; 
+            font-size: 1.5rem; 
+            flex-shrink: 0; 
+        }
+        .owner-highlight { 
+            background: rgba(255,255,255,0.08); 
+            padding: 2rem; 
+            border-radius: 10px; 
+            margin-top: 2rem; 
+            border-left: 5px solid var(--accent-color); 
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .owner-email { 
+            color: #90cdf4; 
+            font-size: 1.3rem; 
+            font-weight: 600; 
+            margin-top: 0.5rem; 
+        }
+        
+        .site-footer { 
+            text-align: center; 
+            padding: 2.5rem; 
+            background: #1a202c; 
+            color: #a0aec0; 
+            font-size: 0.95rem; 
+            width: 100%;
+            margin-top: auto;
+        }
 
-        /* Responsive */
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .nav-container {
+                padding: 15px 2.5rem;
+            }
+        }
+        
         @media (max-width: 992px) {
             .nav-menu {
                 display: none;
@@ -658,21 +850,30 @@
             .nav-container {
                 flex-wrap: wrap;
             }
-            .donation-section {
-                margin: 2rem 1rem;
-            }
             .donation-amounts {
                 grid-template-columns: repeat(3, 1fr);
             }
             .other-amount {
                 grid-column: span 3;
             }
+            .tagline-large, .organization-name { 
+                font-size: 2.5rem; 
+            }
         }
+        
         @media (max-width: 768px) {
-            body { padding-top: 70px; }
-            .container { margin: 0; border-radius: 0; }
-            .tagline-large, .organization-name { font-size: 2.2rem; }
-            .donation-heading { font-size: 2rem; }
+            body { 
+                padding-top: 70px; 
+            }
+            .tagline-large, .organization-name { 
+                font-size: 2.2rem; 
+            }
+            .donation-heading { 
+                font-size: 2rem; 
+            }
+            .section-heading {
+                font-size: 2rem;
+            }
             .donation-amounts {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -687,7 +888,19 @@
                 height: 60px;
                 font-size: 1.8rem;
             }
-            .nav-container { padding: 10px 0; }
+            .nav-container { 
+                padding: 10px 1.5rem; 
+            }
+            .site-header, 
+            .mission-section, 
+            .vision-mission, 
+            .objectives-section, 
+            .programs-section, 
+            .contact-section,
+            .donation-section,
+            .quick-actions {
+                padding: 3rem 1.5rem;
+            }
             .header-logo-circle {
                 width: 100px;
                 height: 100px;
@@ -705,6 +918,7 @@
                 transform: translateX(15px) rotate(8deg);
             }
         }
+        
         @media (max-width: 480px) {
             .donation-amounts {
                 grid-template-columns: repeat(2, 1fr);
@@ -724,6 +938,21 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.5rem;
+            }
+            .tagline-large, .organization-name { 
+                font-size: 1.8rem; 
+            }
+            .section-heading {
+                font-size: 1.8rem;
+            }
+            .quick-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .action-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
             }
         }
     </style>
@@ -904,7 +1133,7 @@
             </div>
         </section>
 
-        <!-- DONATION SECTION (UPDATED) -->
+        <!-- DONATION SECTION -->
         <section class="donation-section" id="donate">
             <div class="donation-content">
                 <span class="donation-label">MAKE A CHARITY DONATION</span>
