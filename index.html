@@ -357,230 +357,389 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* === DONATION SECTION === */
+        /* === UPDATED DONATION SECTION === */
         .donation-section { 
-            background-color: var(--accent-color); 
+            background: linear-gradient(rgba(26, 54, 93, 0.95), rgba(26, 54, 93, 0.98)), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
             color: white; 
-            padding: 4rem 2.5rem; 
-            text-align: center; 
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
+            padding: 5rem 2.5rem; 
             width: 100%;
-        }
-        .donation-section::before {
-            content: "";
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            top: -50px;
-            right: -50px;
-        }
-        .donation-section::after {
-            content: "";
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            bottom: -50px;
-            left: -50px;
-        }
-        .donation-content {
             position: relative;
-            z-index: 1;
+        }
+        
+        .donation-container {
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
         }
+        
+        .donation-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
         .donation-label { 
-            font-size: 1.1rem; 
+            font-size: 1rem; 
             letter-spacing: 3px; 
             margin-bottom: 1rem; 
             display: block; 
             font-weight: 600;
+            color: var(--accent-color);
+            text-transform: uppercase;
         }
         .donation-heading { 
             font-size: 2.5rem; 
             font-weight: 800; 
             margin-bottom: 1.5rem; 
+            color: var(--primary-color);
         }
         .donation-subheading {
             font-size: 1.3rem;
             margin-bottom: 2.5rem;
-            opacity: 0.95;
+            color: #4a5568;
+            line-height: 1.8;
         }
         
-        /* Donation Type Selector */
-        .donation-type-selector {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
+        /* Donation Form */
+        .donation-form {
             margin-bottom: 2.5rem;
         }
+        
+        .donation-type-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
         .donation-type-btn {
-            padding: 12px 30px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50px;
+            padding: 15px 30px;
+            background: #e2e8f0;
+            color: var(--primary-color);
+            border: 2px solid #cbd5e0;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s;
+            flex: 1;
+            min-width: 150px;
         }
         .donation-type-btn.active {
-            background: white;
-            color: var(--accent-color);
-            border-color: white;
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
         }
         
         /* Donation Amount Grid */
         .donation-amounts {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
-            margin-bottom: 2.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 2rem;
         }
         .amount-btn {
-            padding: 18px 10px;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 20px 10px;
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid #e2e8f0;
             border-radius: 10px;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s;
         }
         .amount-btn:hover, .amount-btn.active {
-            background: white;
-            color: var(--accent-color);
-            border-color: white;
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(229, 62, 62, 0.2);
         }
-        .other-amount {
-            grid-column: span 2;
+        
+        .custom-amount {
+            margin: 2rem 0;
+        }
+        .custom-amount label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .custom-amount-input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+        .custom-amount-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.1);
+        }
+        
+        /* Monthly Donation Checkbox */
+        .monthly-donation {
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            gap: 15px;
+            margin: 2rem 0;
+            padding: 20px;
+            background: #f8fafc;
             border-radius: 10px;
-            padding: 0 15px;
-            overflow: hidden;
+            border-left: 4px solid var(--secondary-color);
         }
-        .other-amount input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 1.3rem;
+        .monthly-donation input {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+        .monthly-donation label {
+            font-size: 1.1rem;
             font-weight: 600;
-            padding: 15px 10px;
-            outline: none;
-        }
-        .other-amount input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        .other-amount span {
-            color: white;
-            font-weight: 600;
-            margin-right: 10px;
+            color: var(--primary-color);
+            cursor: pointer;
         }
         
-        /* Impact Statement */
-        .impact-statement {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 2.5rem;
-            border-left: 5px solid white;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        /* Impact Info */
+        .impact-info {
+            background: #f0fff4;
+            border-radius: 15px;
+            padding: 2.5rem;
+            border: 2px solid #c6f6d5;
         }
-        .impact-statement p {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .impact-statement .highlight {
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: #ffd700;
-        }
-        
-        /* Payment Methods */
-        .payment-methods {
-            margin-bottom: 2.5rem;
-        }
-        .payment-methods h3 {
-            font-size: 1.4rem;
+        .impact-info h3 {
+            color: var(--primary-color);
             margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .impact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .impact-item:last-child {
+            border-bottom: none;
+        }
+        .impact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
             color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        .impact-text h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .impact-text p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+        
+        /* Payment Options */
+        .payment-options {
+            margin: 2.5rem 0;
+        }
+        .payment-options h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
         }
         .payment-icons {
             display: flex;
-            justify-content: center;
+            gap: 15px;
             flex-wrap: wrap;
-            gap: 1.5rem;
             margin-bottom: 1.5rem;
         }
         .payment-icon {
-            background: rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 2px solid #e2e8f0;
             width: 70px;
             height: 70px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            color: white;
+            font-size: 2rem;
+            color: var(--primary-color);
             transition: all 0.3s;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
         }
-        .payment-icon:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-        }
-        .payment-labels {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .payment-label {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
+        .payment-icon:hover, .payment-icon.active {
+            border-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        /* Donation Button */
-        .donation-button {
-            display: inline-block;
-            background-color: white;
-            color: var(--accent-color);
-            padding: 18px 50px;
-            border-radius: 50px;
+        /* Donate Button */
+        .donate-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #c53030 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
             font-size: 1.4rem;
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s;
             margin-top: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             border: none;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(229, 62, 62, 0.3);
         }
-        .donation-button:hover {
-            background-color: #f7fafc;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        .donate-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.4);
+        }
+        
+        /* Donation Info Sidebar */
+        .donation-info {
+            color: white;
+        }
+        .donation-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+        .donation-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .testimonial {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2.5rem;
+            border-left: 4px solid var(--accent-color);
+            backdrop-filter: blur(10px);
+        }
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .testimonial-author {
+            font-weight: 600;
+            color: #ffd700;
+        }
+        
+        /* === FAQ SECTION === */
+        .faq-section {
+            padding: 5rem 2.5rem;
+            background: var(--light-bg);
+            width: 100%;
+        }
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .faq-container h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: white;
+            border: none;
+            text-align: left;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .faq-question:hover {
+            background: #f8fafc;
+        }
+        .faq-question.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+        .faq-answer.active {
+            padding: 1.5rem 2rem;
+            max-height: 500px;
+        }
+        .faq-answer p {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .faq-answer p:last-child {
+            margin-bottom: 0;
         }
         
         /* Quick Actions */
@@ -807,6 +966,10 @@
             .nav-container {
                 padding: 15px 2.5rem;
             }
+            .donation-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
         }
         
         @media (max-width: 992px) {
@@ -850,12 +1013,6 @@
             .nav-container {
                 flex-wrap: wrap;
             }
-            .donation-amounts {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .other-amount {
-                grid-column: span 3;
-            }
             .tagline-large, .organization-name { 
                 font-size: 2.5rem; 
             }
@@ -877,9 +1034,6 @@
             .donation-amounts {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .other-amount {
-                grid-column: span 2;
-            }
             .payment-icons {
                 gap: 1rem;
             }
@@ -898,6 +1052,7 @@
             .programs-section, 
             .contact-section,
             .donation-section,
+            .faq-section,
             .quick-actions {
                 padding: 3rem 1.5rem;
             }
@@ -917,6 +1072,9 @@
                 font-size: 88px;
                 transform: translateX(15px) rotate(8deg);
             }
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
@@ -925,11 +1083,9 @@
             }
             .donation-type-selector {
                 flex-direction: column;
-                align-items: center;
             }
             .donation-type-btn {
                 width: 100%;
-                max-width: 200px;
             }
             .payment-icons {
                 gap: 0.8rem;
@@ -953,6 +1109,16 @@
                 width: 100%;
                 max-width: 250px;
                 justify-content: center;
+            }
+            .donation-content {
+                padding: 2rem;
+            }
+            .faq-question {
+                padding: 1.2rem 1.5rem;
+                font-size: 1.1rem;
+            }
+            .faq-answer.active {
+                padding: 1.2rem 1.5rem;
             }
         }
     </style>
@@ -1133,76 +1299,233 @@
             </div>
         </section>
 
-        <!-- DONATION SECTION -->
+        <!-- UPDATED DONATION SECTION -->
         <section class="donation-section" id="donate">
-            <div class="donation-content">
-                <span class="donation-label">MAKE A CHARITY DONATION</span>
-                <h2 class="donation-heading">Support Youth & Vulnerable Children</h2>
-                <p class="donation-subheading">
-                    Your contribution funds vocational training, safe shelter, quality education, and technology programs for marginalized youth.
-                </p>
-                
-                <!-- Donation Type Selector -->
-                <div class="donation-type-selector">
-                    <button class="donation-type-btn active" data-type="monthly">Monthly</button>
-                    <button class="donation-type-btn" data-type="one-off">One off</button>
-                </div>
-                
-                <!-- Donation Amount Grid -->
-                <div class="donation-amounts">
-                    <button class="amount-btn" data-amount="5">$5</button>
-                    <button class="amount-btn" data-amount="10">$10</button>
-                    <button class="amount-btn active" data-amount="15">$15</button>
-                    <button class="amount-btn" data-amount="20">$20</button>
-                    <div class="other-amount">
-                        <span>Other: $</span>
-                        <input type="number" placeholder="Enter amount" min="1" id="otherAmount">
+            <div class="donation-container">
+                <!-- Left Column: Donation Info -->
+                <div class="donation-info">
+                    <h2>Invest in Zimbabwe's Future</h2>
+                    <p>Your donation directly supports youth empowerment programs that create lasting change in marginalized communities. Every dollar you give helps provide education, skills training, and safe shelter for vulnerable children and youth.</p>
+                    
+                    <div class="impact-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Youths Empowered</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">85%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">Communities Served</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Direct Impact</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p>"Thanks to Rise and Shine, I learned coding skills that helped me get a job. Now I can support my family and mentor other young people in my community."</p>
+                        <div class="testimonial-author">- Tinashe, Former Beneficiary</div>
                     </div>
                 </div>
                 
-                <!-- Impact Statement -->
-                <div class="impact-statement">
-                    <p><span class="highlight">$15</span> could provide a child with breakfast and lunch for a week</p>
-                    <p>For every <span class="highlight">$1</span> we spend, helps a child to learn and grow</p>
+                <!-- Right Column: Donation Form -->
+                <div class="donation-content">
+                    <span class="donation-label">MAKE A DIFFERENCE</span>
+                    <h2 class="donation-heading">Support Youth Empowerment</h2>
+                    <p class="donation-subheading">Your contribution provides education, vocational training, and safe shelter for Zimbabwe's most vulnerable youth.</p>
+                    
+                    <!-- Donation Form -->
+                    <div class="donation-form">
+                        <!-- Donation Type -->
+                        <div class="donation-type-selector">
+                            <button class="donation-type-btn active" data-type="one-time">One-time Gift</button>
+                            <button class="donation-type-btn" data-type="monthly">Monthly Support</button>
+                        </div>
+                        
+                        <!-- Donation Amount -->
+                        <div class="donation-amounts">
+                            <button class="amount-btn" data-amount="25">$25</button>
+                            <button class="amount-btn" data-amount="50">$50</button>
+                            <button class="amount-btn active" data-amount="100">$100</button>
+                            <button class="amount-btn" data-amount="250">$250</button>
+                            <button class="amount-btn" data-amount="500">$500</button>
+                            <button class="amount-btn" data-amount="1000">$1,000</button>
+                        </div>
+                        
+                        <!-- Custom Amount -->
+                        <div class="custom-amount">
+                            <label for="customAmount">Or enter your own amount (USD):</label>
+                            <input type="number" id="customAmount" class="custom-amount-input" placeholder="Enter amount" min="1" step="1">
+                        </div>
+                        
+                        <!-- Monthly Donation Option -->
+                        <div class="monthly-donation">
+                            <input type="checkbox" id="makeMonthly">
+                            <label for="makeMonthly">Make this a monthly donation for ongoing impact</label>
+                        </div>
+                        
+                        <!-- Impact Preview -->
+                        <div class="impact-info">
+                            <h3>Your Impact</h3>
+                            <div class="impact-item">
+                                <div class="impact-icon"><i class="fas fa-book"></i></div>
+                                <div class="impact-text">
+                                    <h4>Education Support</h4>
+                                    <p>$50 provides school supplies for 5 children for a full year</p>
+                                </div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-icon"><i class="fas fa-laptop-code"></i></div>
+                                <div class="impact-text">
+                                    <h4>Tech Training</h4>
+                                    <p>$100 covers coding classes for one youth for a month</p>
+                                </div>
+                            </div>
+                            <div class="impact-item">
+                                <div class="impact-icon"><i class="fas fa-home"></i></div>
+                                <div class="impact-text">
+                                    <h4>Safe Shelter</h4>
+                                    <p>$250 provides safe accommodation for a vulnerable child</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Options -->
+                        <div class="payment-options">
+                            <h3>Select Payment Method</h3>
+                            <div class="payment-icons">
+                                <div class="payment-icon active" title="Ecocash">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="payment-icon" title="PayPal">
+                                    <i class="fab fa-paypal"></i>
+                                </div>
+                                <div class="payment-icon" title="Visa">
+                                    <i class="fab fa-cc-visa"></i>
+                                </div>
+                                <div class="payment-icon" title="Mastercard">
+                                    <i class="fab fa-cc-mastercard"></i>
+                                </div>
+                                <div class="payment-icon" title="Bank Transfer">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Donate Button -->
+                        <button class="donate-button" id="donateNowBtn">
+                            <i class="fas fa-heart"></i> Donate Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="faq-section" id="faq">
+            <div class="faq-container">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How will my donation be used?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>100% of your donation directly supports our youth empowerment programs. This includes:</p>
+                        <p>• Education scholarships and school supplies</p>
+                        <p>• Vocational and technical skills training</p>
+                        <p>• Safe shelter and meals for vulnerable children</p>
+                        <p>• Technology and computer literacy programs</p>
+                        <p>• Sports and recreational activities for youth development</p>
+                    </div>
                 </div>
                 
-                <!-- Payment Methods -->
-                <div class="payment-methods">
-                    <h3>Choose Payment Method</h3>
-                    <div class="payment-icons">
-                        <div class="payment-icon" title="Ecocash">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="payment-icon" title="PayPal">
-                            <i class="fab fa-paypal"></i>
-                        </div>
-                        <div class="payment-icon" title="Visa">
-                            <i class="fab fa-cc-visa"></i>
-                        </div>
-                        <div class="payment-icon" title="Mastercard">
-                            <i class="fab fa-cc-mastercard"></i>
-                        </div>
-                        <div class="payment-icon" title="Apple Pay">
-                            <i class="fab fa-apple-pay"></i>
-                        </div>
-                        <div class="payment-icon" title="Bank Transfer">
-                            <i class="fas fa-university"></i>
-                        </div>
-                    </div>
-                    <div class="payment-labels">
-                        <span class="payment-label">Ecocash</span>
-                        <span class="payment-label">PayPal</span>
-                        <span class="payment-label">Visa</span>
-                        <span class="payment-label">Mastercard</span>
-                        <span class="payment-label">Apple Pay</span>
-                        <span class="payment-label">Bank Transfer</span>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I make a recurring monthly donation?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Monthly donations provide sustainable support for our programs. You can select the "Monthly Support" option during the donation process, or check the "Make this a monthly donation" box. Monthly donations help us plan long-term and provide consistent support to the youth we serve.</p>
                     </div>
                 </div>
                 
-                <!-- Donation Button -->
-                <button class="donation-button" id="donateNowBtn">
-                    <i class="fas fa-heart"></i> Make a Donation Today
-                </button>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What payment methods do you accept?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept multiple payment methods to make giving convenient:</p>
+                        <p>• Ecocash (for Zimbabwe-based donors)</p>
+                        <p>• PayPal and major credit cards (Visa, Mastercard)</p>
+                        <p>• Bank transfers (local and international)</p>
+                        <p>• Mobile money payments</p>
+                        <p>All transactions are secure and encrypted for your protection.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Will I receive a receipt for my donation?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we provide official receipts for all donations. For online donations, you'll receive an automated receipt via email immediately. For bank transfers or mobile payments, we issue receipts within 3-5 business days. All donations are tax-deductible in Zimbabwe, and our registration number is CL06692055.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How can I get updates on the impact of my donation?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We provide regular updates to our donors through:</p>
+                        <p>• Monthly email newsletters with program updates</p>
+                        <p>• Annual impact reports</p>
+                        <p>• Stories and testimonials from beneficiaries</p>
+                        <p>• Social media updates on Facebook and Instagram</p>
+                        <p>You can also visit our center in Kadoma to see our work firsthand.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can I donate items instead of money?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we accept in-kind donations including:</p>
+                        <p>• Educational materials (books, stationery, computers)</p>
+                        <p>• Clothing and shoes for youth</p>
+                        <p>• Non-perishable food items</p>
+                        <p>• Sports equipment</p>
+                        <p>• Office furniture and supplies</p>
+                        <p>Please contact us at donations@riseandshine.co.zw to arrange item donations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How can I volunteer or get more involved?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We welcome volunteers in various capacities:</p>
+                        <p>• Skills training (teaching coding, vocational skills)</p>
+                        <p>• Mentoring and tutoring youth</p>
+                        <p>• Event organization and fundraising</p>
+                        <p>• Administrative support</p>
+                        <p>• Professional services (legal, accounting, marketing)</p>
+                        <p>Visit our "Get Involved" section or email volunteer@riseandshine.co.zw to learn about current opportunities.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1213,7 +1536,7 @@
                 <div class="contact-details">
                     <div class="contact-item"><div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div><div><h4>Address</h4><p>Plot 5, Railway 7 Farm<br>Kadoma, Mashonaland West, Zimbabwe</p></div></div>
                     <div class="contact-item"><div class="contact-icon"><i class="fas fa-phone"></i></div><div><h4>Phone</h4><p>+263 242 456 789<br>+263 772 123 456</p></div></div>
-                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Organization Email</h4><p>info@riseandshine.co.zw<br>registrations@riseandshine.co.zw</p></div></div>
+                    <div class="contact-item"><div class="contact-icon"><i class="fas fa-envelope"></i></div><div><h4>Organization Email</h4><p>info@riseandshine.co.zw<br>donations@riseandshine.co.zw</p></div></div>
                 </div>
                 <div class="owner-highlight">
                     <h3><i class="fas fa-user-tie"></i> Contact the Founder & Director</h3>
@@ -1233,6 +1556,7 @@
                 <a href="#get-involved" style="color: #a0aec0; text-decoration: none;">Get Involved</a>
                 <a href="#news" style="color: #a0aec0; text-decoration: none;">News</a>
                 <a href="#contact" style="color: #a0aec0; text-decoration: none;">Contact Us</a>
+                <a href="#faq" style="color: #a0aec0; text-decoration: none;">FAQ</a>
                 <a href="#privacy" style="color: #a0aec0; text-decoration: none;">Privacy Policy</a>
             </div>
             <div style="margin-top: 1.5rem;">
@@ -1331,28 +1655,28 @@
                 btn.addEventListener('click', function() {
                     donationTypeBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    updateDonationSummary();
+                    updateDonationImpact();
                 });
             });
             
             // Donation Amount Selection
             const amountBtns = document.querySelectorAll('.amount-btn');
-            const otherAmountInput = document.getElementById('otherAmount');
+            const customAmountInput = document.getElementById('customAmount');
             
             amountBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     amountBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    otherAmountInput.value = '';
-                    updateDonationSummary();
+                    customAmountInput.value = '';
+                    updateDonationImpact();
                 });
             });
             
-            // Other amount input
-            otherAmountInput.addEventListener('input', function() {
+            // Custom amount input
+            customAmountInput.addEventListener('input', function() {
                 if(this.value) {
                     amountBtns.forEach(b => b.classList.remove('active'));
-                    updateDonationSummary();
+                    updateDonationImpact();
                 }
             });
             
@@ -1360,18 +1684,26 @@
             const paymentIcons = document.querySelectorAll('.payment-icon');
             paymentIcons.forEach(icon => {
                 icon.addEventListener('click', function() {
-                    paymentIcons.forEach(i => i.style.borderColor = 'rgba(255, 255, 255, 0.2)');
-                    this.style.borderColor = '#ffd700';
+                    paymentIcons.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
                 });
+            });
+            
+            // Monthly donation checkbox
+            const monthlyCheckbox = document.getElementById('makeMonthly');
+            monthlyCheckbox.addEventListener('change', function() {
+                updateDonationType();
             });
             
             // Donation button click
             document.getElementById('donateNowBtn').addEventListener('click', function() {
                 const donationType = document.querySelector('.donation-type-btn.active').dataset.type;
-                let amount = document.querySelector('.amount-btn.active')?.dataset.amount || otherAmountInput.value;
+                const isMonthly = monthlyCheckbox.checked;
+                let amount = document.querySelector('.amount-btn.active')?.dataset.amount || customAmountInput.value;
                 
                 if(!amount || amount <= 0) {
                     alert('Please select or enter a valid donation amount.');
+                    customAmountInput.focus();
                     return;
                 }
                 
@@ -1380,22 +1712,77 @@
                     currency: 'USD'
                 });
                 
-                alert(`Thank you for your ${donationType} donation of ${formattedAmount}! You will be redirected to the payment gateway.`);
+                const paymentMethod = document.querySelector('.payment-icon.active').getAttribute('title');
+                const frequency = isMonthly ? 'monthly' : 'one-time';
+                
+                const message = `Thank you for your ${frequency} donation of ${formattedAmount}!\n\nPayment Method: ${paymentMethod}\n\nYou will be redirected to the secure payment gateway.`;
+                
+                alert(message);
                 // In a real implementation, this would redirect to payment gateway
             });
             
-            function updateDonationSummary() {
-                const type = document.querySelector('.donation-type-btn.active').dataset.type;
-                const amount = document.querySelector('.amount-btn.active')?.dataset.amount || otherAmountInput.value;
+            function updateDonationType() {
+                const isMonthly = monthlyCheckbox.checked;
+                const typeBtn = document.querySelector('.donation-type-btn[data-type="monthly"]');
+                const otherBtn = document.querySelector('.donation-type-btn[data-type="one-time"]');
                 
-                if(amount) {
-                    const impactStatement = document.querySelector('.impact-statement p:first-child');
-                    impactStatement.innerHTML = `<span class="highlight">$${amount}</span> could provide a child with breakfast and lunch for ${Math.floor(amount/15) > 1 ? Math.floor(amount/15) + ' weeks' : 'a week'}`;
+                if(isMonthly) {
+                    typeBtn.classList.add('active');
+                    otherBtn.classList.remove('active');
+                } else {
+                    typeBtn.classList.remove('active');
+                    otherBtn.classList.add('active');
                 }
             }
             
-            // Initialize with $15 selected
-            updateDonationSummary();
+            function updateDonationImpact() {
+                let amount = document.querySelector('.amount-btn.active')?.dataset.amount || customAmountInput.value;
+                
+                if(amount) {
+                    const impactItems = document.querySelectorAll('.impact-item');
+                    
+                    // Update impact descriptions based on amount
+                    if(amount >= 50) {
+                        impactItems[0].querySelector('p').textContent = `$${amount} provides school supplies for ${Math.floor(amount/10)} children`;
+                    }
+                    
+                    if(amount >= 100) {
+                        impactItems[1].querySelector('p').textContent = `$${amount} covers coding classes for ${Math.floor(amount/100)} youth${amount >= 200 ? 's' : ''} for a month`;
+                    }
+                    
+                    if(amount >= 250) {
+                        impactItems[2].querySelector('p').textContent = `$${amount} provides safe accommodation for ${Math.floor(amount/250)} vulnerable child${amount >= 500 ? 'ren' : ''}`;
+                    }
+                }
+            }
+            
+            // Initialize with $100 selected
+            updateDonationImpact();
+            
+            // FAQ Toggle Functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = answer.classList.contains('active');
+                    
+                    // Close all FAQ answers
+                    document.querySelectorAll('.faq-answer').forEach(ans => {
+                        ans.classList.remove('active');
+                    });
+                    
+                    // Remove active class from all questions
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                    });
+                    
+                    // Toggle current question and answer
+                    if(!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
         });
         
         // Logo rotation on hover
