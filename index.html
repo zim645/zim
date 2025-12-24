@@ -596,7 +596,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
-            margin: 0.5rem 0 1.5rem 0;
+            margin: 0.5rem 0 2rem 0; /* Increased bottom margin */
         }
         .stat-item {
             background: rgba(255, 255, 255, 0.1);
@@ -624,10 +624,10 @@
             font-weight: 500;
         }
         
-        /* Program Highlight - Enhanced */
+        /* Enhanced Program Highlight Section */
         .program-highlight {
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.8rem; /* Increased */
+            padding: 2rem; /* Increased padding */
             border-radius: 12px;
             margin-top: 1rem;
             backdrop-filter: blur(10px);
@@ -636,30 +636,36 @@
         }
         .program-highlight h3 {
             color: #ffd700;
-            margin-bottom: 1rem; /* Increased */
-            font-size: 1.3rem; /* Larger */
+            margin-bottom: 1.2rem; /* Increased */
+            font-size: 1.4rem; /* Larger */
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .program-highlight h3:before {
             content: "⭐";
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
         .program-highlight ul {
             list-style-type: none;
             padding-left: 0;
             display: flex;
             flex-direction: column;
-            gap: 0.8rem; /* Added gap between items */
+            gap: 0.9rem; /* Increased gap between items */
         }
         .program-highlight li {
             padding-left: 1.8rem; /* Increased */
             position: relative;
-            font-size: 1rem; /* Larger */
+            font-size: 1.05rem; /* Larger */
             line-height: 1.5;
             padding-top: 4px;
             padding-bottom: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.9rem;
+        }
+        .program-highlight li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
         .program-highlight li:before {
             content: "✓";
@@ -667,42 +673,8 @@
             left: 0;
             color: #ffd700;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             top: 2px;
-        }
-        
-        /* Trust Indicators Section - New Section */
-        .trust-indicators {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            border-left: 4px solid var(--accent-color);
-        }
-        .trust-indicators h4 {
-            color: #ffd700;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .trust-indicators h4:before {
-            content: "🔒";
-            font-size: 1rem;
-        }
-        .trust-indicators p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.9;
-            margin-bottom: 0.5rem;
-        }
-        .trust-indicators .registration-info {
-            font-size: 0.85rem;
-            color: #cbd5e0;
-            margin-top: 0.8rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* === FAQ SECTION === */
@@ -1360,7 +1332,7 @@
             </div>
         </section>
 
-        <!-- COMPACT DONATION SECTION WITHOUT IMPACT PREVIEW -->
+        <!-- COMPACT DONATION SECTION WITHOUT TRUST INDICATORS -->
         <section class="donation-section" id="donate">
             <div class="donation-container">
                 <!-- Left Column: Enhanced Donation Info -->
@@ -1401,16 +1373,9 @@
                             <li>Conduct health and wellbeing workshops</li>
                         </ul>
                     </div>
-
-                    <!-- Trust Indicators Section -->
-                    <div class="trust-indicators">
-                        <h4>Your Donation is Secure & Transparent</h4>
-                        <p>All donations are processed securely and 100% of your contribution goes directly to our programs. We provide regular updates on how your donation is making a difference.</p>
-                        <p class="registration-info"><strong>Official Registration:</strong> CL06692055 | Welfare Organisations Act, 1966</p>
-                    </div>
                 </div>
                 
-                <!-- Right Column: Donation Form (Without Impact Preview) -->
+                <!-- Right Column: Donation Form -->
                 <div class="donation-content">
                     <span class="donation-label">MAKE A DIFFERENCE</span>
                     <h2 class="donation-heading">Support Youth Empowerment</h2>
