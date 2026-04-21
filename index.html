@@ -1,3 +1,6 @@
+Here is the updated HTML document with the **logo aligned next to the feature tabs** and a **blue background** for the feature section.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,31 +27,31 @@
             padding: 0 20px;
         }
 
-        /* Logo & Header */
+        /* Header with logo only (no tagline) */
         .logo-header {
             background: white;
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             border-bottom: 1px solid #eee;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            justify-content: center;
         }
 
         /* Overlapping BPH Logo */
         .overlap-logo {
             position: relative;
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .logo-b, .logo-p, .logo-h {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 800;
             position: absolute;
         }
@@ -64,7 +67,7 @@
         .logo-p {
             color: #e67e22;
             transform: rotate(5deg);
-            left: 18px;
+            left: 16px;
             top: 5px;
             z-index: 2;
         }
@@ -72,68 +75,121 @@
         .logo-h {
             color: #1a4d1a;
             transform: rotate(15deg);
-            left: 36px;
+            left: 32px;
             top: 0;
             z-index: 1;
         }
 
+        .logo-text {
+            margin-left: 8px;
+        }
+
         .logo-text h1 {
-            font-size: 1.6rem;
+            font-size: 1.3rem;
             color: #2c3e2f;
             letter-spacing: -0.3px;
         }
 
-        .logo-text p {
-            font-size: 0.8rem;
-            color: #e67e22;
-            font-weight: 500;
-        }
-
-        /* Feature Tabs */
-        .feature-tabs {
-            background: white;
-            border-bottom: 1px solid #eaeaea;
+        /* Blue Background Feature Section - Logo + Tabs aligned */
+        .feature-bar {
+            background: #1e3a5f;
+            padding: 0.8rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            background: white;
         }
 
+        .feature-wrapper {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        /* Small logo in blue bar */
+        .feature-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+        }
+
+        .feature-logo .overlap-logo-mini {
+            position: relative;
+            width: 36px;
+            height: 36px;
+        }
+
+        .feature-logo .mini-b, .feature-logo .mini-p, .feature-logo .mini-h {
+            font-size: 1.3rem;
+            font-weight: 800;
+            position: absolute;
+        }
+
+        .feature-logo .mini-b {
+            color: #ffd966;
+            transform: rotate(-10deg);
+            left: 0;
+            top: 0;
+        }
+
+        .feature-logo .mini-p {
+            color: #ffb74d;
+            transform: rotate(5deg);
+            left: 9px;
+            top: 2px;
+        }
+
+        .feature-logo .mini-h {
+            color: #fff;
+            transform: rotate(15deg);
+            left: 18px;
+            top: 0;
+        }
+
+        .feature-logo span {
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Tabs */
         .tabs-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            padding: 0.8rem 0;
+            gap: 0.3rem;
         }
 
         .tab-btn {
-            background: none;
+            background: rgba(255,255,255,0.15);
             border: none;
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: #666;
+            color: white;
             cursor: pointer;
             border-radius: 30px;
             transition: all 0.2s;
         }
 
         .tab-btn:hover {
-            background: #f0e6d8;
-            color: #e67e22;
+            background: rgba(255,255,255,0.3);
         }
 
         .tab-btn.active {
-            background: #e67e22;
-            color: white;
+            background: #ffb74d;
+            color: #1e3a5f;
         }
 
+        /* Tab Content */
         .tab-content {
-            background: #fefaf5;
+            background: white;
             padding: 1.5rem;
             border-radius: 16px;
             margin: 1.5rem 0;
-            border: 1px solid #f0e6d8;
+            border: 1px solid #e0e0e0;
             display: none;
         }
 
@@ -142,7 +198,7 @@
         }
 
         .tab-content h3 {
-            color: #2c3e2f;
+            color: #1e3a5f;
             margin-bottom: 0.8rem;
         }
 
@@ -270,7 +326,7 @@
 
         /* Contact */
         .contact-bar {
-            background: #2c3e2f;
+            background: #1e3a5f;
             color: white;
             text-align: center;
             padding: 1.5rem;
@@ -293,21 +349,21 @@
             margin-top: 1rem;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
+            .feature-wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
             .hero h2 { font-size: 1.3rem; }
             .section-title { font-size: 1.2rem; }
-            .logo-text h1 { font-size: 1.2rem; }
-            .overlap-logo { width: 60px; height: 60px; }
-            .logo-b, .logo-p, .logo-h { font-size: 2rem; }
-            .logo-p { left: 12px; top: 4px; }
-            .logo-h { left: 26px; }
             .tab-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- Logo Header -->
+<!-- Simple Header with Logo Only -->
 <div class="logo-header">
     <div class="container">
         <div class="logo-container">
@@ -318,21 +374,33 @@
             </div>
             <div class="logo-text">
                 <h1>Binga Poultry Hub</h1>
-                <p>Solar Hatchery · Input Shop · Smallholder Training</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Feature Tabs (Click to reveal) -->
-<div class="feature-tabs">
+<!-- Blue Feature Bar: Logo + Tabs Aligned -->
+<div class="feature-bar">
     <div class="container">
-        <div class="tabs-container">
-            <button class="tab-btn active" data-tab="who">Who We Are</button>
-            <button class="tab-btn" data-tab="board">Board Members</button>
-            <button class="tab-btn" data-tab="news">News</button>
-            <button class="tab-btn" data-tab="events">Events</button>
-            <button class="tab-btn" data-tab="impact">Impact</button>
+        <div class="feature-wrapper">
+            <!-- Mini logo aligned with tabs -->
+            <div class="feature-logo">
+                <div class="overlap-logo-mini">
+                    <span class="mini-b">B</span>
+                    <span class="mini-p">P</span>
+                    <span class="mini-h">H</span>
+                </div>
+                <span>BPH</span>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="who">Who We Are</button>
+                <button class="tab-btn" data-tab="board">Board Members</button>
+                <button class="tab-btn" data-tab="news">News</button>
+                <button class="tab-btn" data-tab="events">Events</button>
+                <button class="tab-btn" data-tab="impact">Impact</button>
+            </div>
         </div>
     </div>
 </div>
@@ -392,7 +460,7 @@
     </div>
 </div>
 
-<!-- Hero Section (line removed) -->
+<!-- Hero Section -->
 <section class="hero">
     <div class="container">
         <h2>Local chicks. Local inputs. Local support.</h2>
@@ -409,8 +477,7 @@
             <div class="card">
                 <h3>🐣 Solar Hatchery</h3>
                 <p>Produces day-old SASSO chicks and 4-week-old growers. Solar-powered — reliable even during grid outages.</p>
-                <p><strong>Output:</strong> Expanding to serve hundreds of farmers monthly.<br>
-                <strong>Advantage:</strong> 4-week-old growers are hardier, with lower on-farm mortality.</p>
+                <p><strong>Advantage:</strong> 4-week-old growers are hardier, with lower on-farm mortality.</p>
             </div>
             <div class="card">
                 <h3>🏪 Agricultural Input Shop</h3>
@@ -444,7 +511,6 @@
             <tr><td>🌾 Low-input foraging</td><td>Naturally forages for food, reducing feed costs</td></tr>
             <tr><td>🍖 Meat quality</td><td>Yellow-skinned, firm texture — preferred in premium markets</td></tr>
         </table>
-        <p style="font-size: 0.85rem; margin-top: 0.8rem;">✅ SASSO genetics are developed by Hendrix Genetics specifically for free-range, tropical environments.</p>
     </section>
 
     <!-- Training Program -->
@@ -526,14 +592,10 @@
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all buttons and contents
             tabBtns.forEach(b => b.classList.remove('active'));
             tabContents.forEach(c => c.classList.remove('active-content'));
             
-            // Add active class to clicked button
             btn.classList.add('active');
-            
-            // Show corresponding content
             const tabId = btn.getAttribute('data-tab');
             const activeContent = document.getElementById(tabId);
             if (activeContent) {
@@ -545,3 +607,4 @@
 
 </body>
 </html>
+```
