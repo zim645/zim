@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Binga Poultry Hub | Solar Hatchery & Smallholder Support</title>
+    <title>Binga Poultry Hub | BPH</title>
     <style>
         * {
             margin: 0;
@@ -34,20 +34,47 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: #e67e22;
-            border-radius: 50%;
+        /* Overlapping BPH Logo */
+        .overlap-logo {
+            position: relative;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
+        }
+
+        .logo-b, .logo-p, .logo-h {
+            font-size: 2.8rem;
+            font-weight: 800;
+            position: absolute;
+        }
+
+        .logo-b {
+            color: #2c3e2f;
+            transform: rotate(-10deg);
+            left: 0;
+            top: 0;
+            z-index: 3;
+        }
+
+        .logo-p {
+            color: #e67e22;
+            transform: rotate(5deg);
+            left: 18px;
+            top: 5px;
+            z-index: 2;
+        }
+
+        .logo-h {
+            color: #1a4d1a;
+            transform: rotate(15deg);
+            left: 36px;
+            top: 0;
+            z-index: 1;
         }
 
         .logo-text h1 {
@@ -62,16 +89,83 @@
             font-weight: 500;
         }
 
+        /* Feature Tabs */
+        .feature-tabs {
+            background: white;
+            border-bottom: 1px solid #eaeaea;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: white;
+        }
+
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0.8rem 0;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: #f0e6d8;
+            color: #e67e22;
+        }
+
+        .tab-btn.active {
+            background: #e67e22;
+            color: white;
+        }
+
+        .tab-content {
+            background: #fefaf5;
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin: 1.5rem 0;
+            border: 1px solid #f0e6d8;
+            display: none;
+        }
+
+        .tab-content.active-content {
+            display: block;
+        }
+
+        .tab-content h3 {
+            color: #2c3e2f;
+            margin-bottom: 0.8rem;
+        }
+
+        .tab-content p, .tab-content li {
+            font-size: 0.9rem;
+            color: #444;
+            margin-bottom: 0.5rem;
+        }
+
+        .tab-content ul {
+            padding-left: 1.2rem;
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #2c3e2f 0%, #1a4d1a 100%);
             color: white;
-            padding: 2.5rem 0;
+            padding: 2rem 0;
             text-align: center;
         }
 
         .hero h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 0.8rem;
         }
 
@@ -94,28 +188,30 @@
 
         /* Sections */
         .section {
-            padding: 2.5rem 0;
+            padding: 2rem 0;
             border-bottom: 1px solid #eaeaea;
         }
 
         .section-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #2c3e2f;
             margin-bottom: 1.2rem;
             padding-left: 0.8rem;
             border-left: 4px solid #e67e22;
         }
 
-        .grid-2 {
+        .grid-2, .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         }
 
         .grid-3 {
-            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
         }
 
         .card {
@@ -128,22 +224,22 @@
 
         .card h3 {
             color: #e67e22;
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
         }
 
         .card p, .card li {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #444;
         }
 
         .card ul {
             padding-left: 1.2rem;
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
         }
 
         .card li {
-            margin: 0.4rem 0;
+            margin: 0.3rem 0;
         }
 
         /* Tables */
@@ -172,24 +268,6 @@
             border-bottom: none;
         }
 
-        /* Button */
-        .btn {
-            display: inline-block;
-            background: #e67e22;
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.85rem;
-            transition: background 0.2s;
-            margin-top: 0.8rem;
-        }
-
-        .btn:hover {
-            background: #d35400;
-        }
-
         /* Contact */
         .contact-bar {
             background: #2c3e2f;
@@ -216,10 +294,14 @@
         }
 
         @media (max-width: 600px) {
-            .hero h2 { font-size: 1.4rem; }
-            .section-title { font-size: 1.3rem; }
+            .hero h2 { font-size: 1.3rem; }
+            .section-title { font-size: 1.2rem; }
             .logo-text h1 { font-size: 1.2rem; }
-            .logo-icon { width: 40px; height: 40px; font-size: 22px; }
+            .overlap-logo { width: 60px; height: 60px; }
+            .logo-b, .logo-p, .logo-h { font-size: 2rem; }
+            .logo-p { left: 12px; top: 4px; }
+            .logo-h { left: 26px; }
+            .tab-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -229,7 +311,11 @@
 <div class="logo-header">
     <div class="container">
         <div class="logo-container">
-            <div class="logo-icon">🐔</div>
+            <div class="overlap-logo">
+                <span class="logo-b">B</span>
+                <span class="logo-p">P</span>
+                <span class="logo-h">H</span>
+            </div>
             <div class="logo-text">
                 <h1>Binga Poultry Hub</h1>
                 <p>Solar Hatchery · Input Shop · Smallholder Training</p>
@@ -238,44 +324,84 @@
     </div>
 </div>
 
-<!-- Hero -->
+<!-- Feature Tabs (Click to reveal) -->
+<div class="feature-tabs">
+    <div class="container">
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="who">Who We Are</button>
+            <button class="tab-btn" data-tab="board">Board Members</button>
+            <button class="tab-btn" data-tab="news">News</button>
+            <button class="tab-btn" data-tab="events">Events</button>
+            <button class="tab-btn" data-tab="impact">Impact</button>
+        </div>
+    </div>
+</div>
+
+<!-- Tab Content Area -->
+<div class="container">
+    <div id="who" class="tab-content active-content">
+        <h3>📖 Who We Are</h3>
+        <p><strong>Binga Poultry Hub (BPH) Limited</strong> is a startup social enterprise based in Binga District, Matabeleland North, Zimbabwe. We are an integrated poultry production and agricultural input supply business serving smallholder farmers.</p>
+        <p>Our model combines a solar-powered hatchery, an agricultural input shop, and practical farmer training. We focus on climate-resilient practices and prioritize women and youth entrepreneurs.</p>
+        <p><strong>Our mission:</strong> To eliminate the agricultural input supply gap in remote Binga District by providing affordable, high-quality day-old chicks, point-of-lay pullets, and supplies locally, while empowering smallholder farmers through science-based training and guaranteed market access.</p>
+    </div>
+
+    <div id="board" class="tab-content">
+        <h3>👥 Board Members</h3>
+        <ul>
+            <li><strong>Mrs. S. Ncube</strong> – Chairperson (Community Development Specialist)</li>
+            <li><strong>Mr. T. Moyo</strong> – Vice Chairperson (Lead Farmer, Binga Cooperative)</li>
+            <li><strong>Dr. K. Dube</strong> – Technical Advisor (Veterinarian, AGRITEX)</li>
+            <li><strong>Ms. L. Sibanda</strong> – Women & Youth Representative (Entrepreneur)</li>
+            <li><strong>Mr. J. Phiri</strong> – Secretary (Agribusiness Consultant)</li>
+        </ul>
+        <p>The Board provides strategic oversight and meets quarterly. Farmer representatives are elected annually.</p>
+    </div>
+
+    <div id="news" class="tab-content">
+        <h3>📰 Latest News</h3>
+        <ul>
+            <li><strong>March 2026:</strong> Solar hatchery reaches full operational capacity – first batch of SASSO chicks distributed to pilot farmers.</li>
+            <li><strong>February 2026:</strong> BPH launches Farmer Training Program in partnership with AGRITEX extension officers.</li>
+            <li><strong>January 2026:</strong> Input shop opens in Binga Centre – farmers no longer need to travel outside the district for feed and vaccines.</li>
+            <li><strong>December 2025:</strong> BPH receives startup support from local development fund for climate-resilient agriculture.</li>
+        </ul>
+    </div>
+
+    <div id="events" class="tab-content">
+        <h3>📅 Upcoming Events</h3>
+        <ul>
+            <li><strong>April 20, 2026:</strong> Brooding Management Training – Siachilaba Village (9am–12pm)</li>
+            <li><strong>May 15, 2026:</strong> Farmer Knowledge Exchange Day – Binga Community Hall (10am–2pm)</li>
+            <li><strong>June 5–6, 2026:</strong> Vaccination Workshop (2 days) – rotating villages</li>
+            <li><strong>July 10, 2026:</strong> Women in Poultry Leadership Forum – Binga Centre</li>
+        </ul>
+        <p>All events are free for BPH members. SMS registration required.</p>
+    </div>
+
+    <div id="impact" class="tab-content">
+        <h3>📊 Our Impact (Startup Phase)</h3>
+        <ul>
+            <li><strong>Farmers served:</strong> 150+ smallholder farmers reached through training and input supply</li>
+            <li><strong>Chicks distributed:</strong> 2,500+ SASSO chicks placed with local farmers</li>
+            <li><strong>Farmers trained:</strong> 120 farmers completed at least one training module</li>
+            <li><strong>Women & youth:</strong> 45% of participating farmers are women or youth</li>
+            <li><strong>Mortality reduction:</strong> Farmers report significantly lower chick mortality compared to previous long-distance sourcing</li>
+            <li><strong>Knowledge sharing:</strong> 4 Knowledge Exchange Days held, 200+ farmers attended</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Hero Section (line removed) -->
 <section class="hero">
     <div class="container">
         <h2>Local chicks. Local inputs. Local support.</h2>
-        <p>No more traveling 100+ km for day-old chicks, feed, or vaccines. BPH brings affordable poultry supplies and training to Binga District.</p>
+        <p>BPH brings affordable poultry supplies, practical training, and guaranteed markets to smallholder farmers in Binga District.</p>
         <div class="badge">🌱 Climate-resilient · 🧑‍🌾 Women & youth focused</div>
     </div>
 </section>
 
 <main class="container">
-
-    <!-- Problem & Solution -->
-    <section class="section">
-        <h2 class="section-title">The Problem We Solve</h2>
-        <div class="grid-2">
-            <div class="card">
-                <h3>⚠️ Before BPH</h3>
-                <ul>
-                    <li>Farmers travel over 100 km to Hwange or Bulawayo</li>
-                    <li>High chick mortality during long-distance transport</li>
-                    <li>No local training or veterinary support</li>
-                    <li>No hardy breeds available for hot climate</li>
-                    <li>Women and youth face barriers due to travel costs</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>✅ After BPH</h3>
-                <ul>
-                    <li>Chicks available locally — minutes away, not hours</li>
-                    <li>Mortality significantly reduced with 4-week-old growers</li>
-                    <li>Practical training delivered at village level</li>
-                    <li>SASSO breed — heat-tolerant & disease-resistant</li>
-                    <li>Special support and outreach for women and youth groups</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
     <!-- Core Operations -->
     <section class="section">
         <h2 class="section-title">Our Core Operations</h2>
@@ -308,7 +434,7 @@
         </div>
     </section>
 
-    <!-- Breed & Climate Feature -->
+    <!-- Breed Feature -->
     <section class="section">
         <h2 class="section-title">Our Breed: SASSO — Built for Binga</h2>
         <table class="info-table">
@@ -325,22 +451,10 @@
     <section class="section">
         <h2 class="section-title">Farmer Training Program</h2>
         <div class="grid-2">
-            <div class="card">
-                <h3>🐤 Brooding Management</h3>
-                <p>Temperature control, litter management, day-old chick care, and health monitoring. The single most critical phase for chick survival.</p>
-            </div>
-            <div class="card">
-                <h3>💊 Health & Biosecurity</h3>
-                <p>Newcastle disease vaccination, recognizing sick birds, basic hygiene protocols, and preventing disease spread.</p>
-            </div>
-            <div class="card">
-                <h3>🌽 Local Feed Formulation</h3>
-                <p>Using maize, sunflower cake, and locally available ingredients to reduce feed costs while maintaining nutrition.</p>
-            </div>
-            <div class="card">
-                <h3>📝 Record Keeping</h3>
-                <p>Simple paper-based or phone-based records for mortality, weight gain, and feed consumption.</p>
-            </div>
+            <div class="card"><h3>🐤 Brooding Management</h3><p>Temperature control, litter management, day-old chick care. The most critical phase for survival.</p></div>
+            <div class="card"><h3>💊 Health & Biosecurity</h3><p>Newcastle vaccination, recognizing sick birds, basic hygiene protocols.</p></div>
+            <div class="card"><h3>🌽 Local Feed Formulation</h3><p>Using maize, sunflower cake, and local ingredients to reduce feed costs.</p></div>
+            <div class="card"><h3>📝 Record Keeping</h3><p>Simple paper or phone-based records for mortality, weight, and feed.</p></div>
         </div>
     </section>
 
@@ -348,120 +462,86 @@
     <section class="section">
         <h2 class="section-title">Membership Benefits</h2>
         <div class="grid-2">
-            <div class="card">
-                <h3>🌾 Community Member (Free)</h3>
-                <ul>
-                    <li>SMS alerts for chick hatch dates and training events</li>
-                    <li>Discounts on paid training modules</li>
-                    <li>Access to the input shop</li>
-                    <li>Quarterly knowledge exchange gatherings</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>⭐ Farmer Member</h3>
-                <ul>
-                    <li>All Community Member benefits</li>
-                    <li>Priority access to chick purchases</li>
-                    <li>One free training module per year</li>
-                    <li>Voting rights in farmer advisory meetings</li>
-                    <li>Eligibility for contract farming pilot</li>
-                </ul>
-                <a href="#" class="btn">Learn about joining →</a>
-            </div>
+            <div class="card"><h3>🌾 Community Member (Free)</h3><ul><li>SMS alerts for chick hatch dates and training</li><li>Discounts on paid training</li><li>Access to input shop</li><li>Quarterly knowledge exchange gatherings</li></ul></div>
+            <div class="card"><h3>⭐ Farmer Member</h3><ul><li>All Community benefits</li><li>Priority chick purchase</li><li>One free training module per year</li><li>Voting rights in farmer advisory meetings</li><li>Eligibility for contract farming pilot</li></ul></div>
         </div>
     </section>
 
-    <!-- Contract Farming Feature -->
+    <!-- Contract Farming -->
     <section class="section">
         <h2 class="section-title">Contract Farming Pilot</h2>
         <div class="card">
             <p>BPH is launching a smallholder contract farming (out-grower) pilot for committed farmers in Binga District.</p>
-            <ul style="margin-top: 0.8rem;">
-                <li><strong>BPH provides:</strong> SASSO chicks, feed, vaccines, and technical support</li>
-                <li><strong>Farmer provides:</strong> Secure housing, water, daily care, and follows training protocols</li>
-                <li><strong>BPH guarantees:</strong> Market for all healthy birds at harvest time</li>
-                <li><strong>Performance bonus:</strong> Additional payment for farmers with high survival rates</li>
-                <li><strong>Focus:</strong> Women and youth farmers are prioritized for pilot participation</li>
-            </ul>
-            <a href="#" class="btn">Express interest in contract farming →</a>
+            <ul><li><strong>BPH provides:</strong> SASSO chicks, feed, vaccines, technical support</li><li><strong>Farmer provides:</strong> Secure housing, water, daily care, follows training</li><li><strong>BPH guarantees:</strong> Market for all healthy birds at harvest</li><li><strong>Performance bonus:</strong> Additional payment for high survival rates</li><li><strong>Focus:</strong> Women and youth prioritized for pilot</li></ul>
         </div>
     </section>
 
-    <!-- Climate Resilience Features -->
+    <!-- Climate Resilience -->
     <section class="section">
         <h2 class="section-title">Climate-Resilient Features</h2>
         <div class="grid-2">
-            <div class="card">
-                <h3>☀️ Solar-Powered Operations</h3>
-                <p>Hatchery runs on solar energy — no dependence on unreliable grid power. Low carbon footprint.</p>
-            </div>
-            <div class="card">
-                <h3>🐔 Heat-Tolerant Breeds</h3>
-                <p>SASSO chickens are specifically selected for hot, dry conditions common in Binga District.</p>
-            </div>
-            <div class="card">
-                <h3>💧 Water-Efficient Training</h3>
-                <p>Farmers learn water conservation techniques for both poultry and feed crops.</p>
-            </div>
-            <div class="card">
-                <h3>🌾 Local Feed Sources</h3>
-                <p>Promoting drought-tolerant feed crops (sorghum, millet) and reduced dependence on imported feed.</p>
-            </div>
+            <div class="card"><h3>☀️ Solar-Powered</h3><p>Hatchery runs on solar — no grid dependence.</p></div>
+            <div class="card"><h3>🐔 Heat-Tolerant Breeds</h3><p>SASSO chickens for hot, dry conditions.</p></div>
+            <div class="card"><h3>💧 Water-Efficient</h3><p>Training on water conservation.</p></div>
+            <div class="card"><h3>🌾 Local Feed</h3><p>Drought-tolerant crops promoted.</p></div>
         </div>
     </section>
 
-    <!-- Knowledge Sharing Features -->
+    <!-- Knowledge Sharing -->
     <section class="section">
         <h2 class="section-title">Knowledge Sharing</h2>
         <div class="grid-2">
-            <div class="card">
-                <h3>📱 SMS Alerts</h3>
-                <p>Weekly tips, disease alerts, and training reminders sent directly to farmers' phones.</p>
-            </div>
-            <div class="card">
-                <h3>📄 Technical Briefs</h3>
-                <p>One-page, picture-based guides on practical topics — available free at the input shop.</p>
-            </div>
-            <div class="card">
-                <h3>🗣️ Farmer Exchange Days</h3>
-                <p>Quarterly gatherings where farmers share successes, challenges, and solutions with each other.</p>
-            </div>
-            <div class="card">
-                <h3>👥 WhatsApp Community</h3>
-                <p>Group chat for farmers to ask questions, share photos of problems, and receive rapid advice.</p>
-            </div>
+            <div class="card"><h3>📱 SMS Alerts</h3><p>Weekly tips and alerts.</p></div>
+            <div class="card"><h3>📄 Technical Briefs</h3><p>One-page picture guides.</p></div>
+            <div class="card"><h3>🗣️ Farmer Exchange Days</h3><p>Quarterly gatherings.</p></div>
+            <div class="card"><h3>👥 WhatsApp Community</h3><p>Rapid advice and Q&A.</p></div>
         </div>
     </section>
 
-    <!-- Women & Youth Features -->
+    <!-- Women & Youth -->
     <section class="section">
         <h2 class="section-title">Women & Youth Empowerment</h2>
         <div class="card">
-            <ul>
-                <li><strong>Minimum 40% participation</strong> target for women and youth in all BPH programs</li>
-                <li><strong>Flexible training schedules</strong> to accommodate caregiving responsibilities</li>
-                <li><strong>Group contracts available</strong> for women's farming cooperatives</li>
-                <li><strong>Youth apprenticeship program</strong> in hatchery and shop operations</li>
-                <li><strong>Women's leadership track</strong> in the Farmer Advisory Group</li>
-            </ul>
+            <ul><li><strong>40% participation target</strong> for women and youth</li><li><strong>Flexible training schedules</strong></li><li><strong>Group contracts for women's cooperatives</strong></li><li><strong>Youth apprenticeship program</strong></li><li><strong>Women's leadership track</strong> in Farmer Advisory Group</li></ul>
         </div>
     </section>
 
-    <!-- Contact & Location -->
+    <!-- Contact -->
     <div class="contact-bar">
         <p><strong>📍 Binga District, Matabeleland North, Zimbabwe</strong></p>
-        <p>📞 +263 XX XXX XXXX (call or SMS) | 📧 info@bingapoultryhub.org</p>
-        <p>🕒 Shop hours: Monday–Saturday, 8am – 4pm | Hatchery visits by appointment</p>
-        <p style="margin-top: 0.8rem;">📱 Join our WhatsApp group for weekly tips, alerts, and farmer support</p>
+        <p>📞 +263 XX XXX XXXX | 📧 info@bingapoultryhub.org</p>
+        <p>🕒 Shop: Mon–Sat, 8am–4pm | Hatchery by appointment</p>
+        <p>📱 Join our WhatsApp for weekly tips</p>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <p>© 2026 Binga Poultry Hub (BPH) Limited — Solar hatchery | Local inputs | Science-led smallholder training</p>
-        <p style="margin-top: 0.3rem;">No more long-distance travel. Quality chicks and supplies, right here in Binga District.</p>
     </footer>
-
 </main>
+
+<script>
+    // Tab switching functionality
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons and contents
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active-content'));
+            
+            // Add active class to clicked button
+            btn.classList.add('active');
+            
+            // Show corresponding content
+            const tabId = btn.getAttribute('data-tab');
+            const activeContent = document.getElementById(tabId);
+            if (activeContent) {
+                activeContent.classList.add('active-content');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
