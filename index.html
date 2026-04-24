@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Binga Poultry Hub | BPH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>BingaFresh - Local Farms from Lake Kariba to Zimbabwe</title>
     <style>
         * {
             margin: 0;
@@ -13,598 +12,314 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            background-color: #f5f7fb;
+            color: #1a2a3a;
             line-height: 1.5;
-            color: #2c2c2c;
-            background-color: #fefaf5;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header with logo only */
-        .logo-header {
-            background: white;
-            padding: 1rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .logo-container {
+        /* Navigation */
+        .navbar {
+            background-color: #0f3b2c;
+            color: white;
+            padding: 1rem 2rem;
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Overlapping BPH Logo with Blue Circle */
-        .overlap-logo {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 0 3px #1e3a5f, 0 0 0 6px #e67e22;
-        }
-
-        .logo-b, .logo-p, .logo-h {
-            font-size: 2.5rem;
-            font-weight: 800;
-            position: absolute;
-        }
-
-        .logo-b {
-            color: #2c3e2f;
-            transform: rotate(-10deg);
-            left: 12px;
-            top: 18px;
-            z-index: 3;
-        }
-
-        .logo-p {
-            color: #e67e22;
-            transform: rotate(5deg);
-            left: 28px;
-            top: 22px;
-            z-index: 2;
-        }
-
-        .logo-h {
-            color: #1a4d1a;
-            transform: rotate(15deg);
-            left: 44px;
-            top: 18px;
-            z-index: 1;
-        }
-
-        .logo-text {
-            margin-left: 15px;
-        }
-
-        .logo-text h1 {
-            font-size: 1.3rem;
-            color: #2c3e2f;
-            letter-spacing: -0.3px;
-        }
-
-        /* Blue Background Feature Section */
-        .feature-bar {
-            background: #1e3a5f;
-            padding: 0.8rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .feature-wrapper {
-            display: flex;
+            justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
-        /* Small logo in blue bar */
-        .feature-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.15);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: -0.5px;
         }
 
-        .feature-logo .overlap-logo-mini {
-            position: relative;
-            width: 36px;
-            height: 36px;
+        .logo span {
+            color: #f5b042;
         }
 
-        .feature-logo .mini-b, .feature-logo .mini-p, .feature-logo .mini-h {
-            font-size: 1.3rem;
-            font-weight: 800;
-            position: absolute;
-        }
-
-        .feature-logo .mini-b {
-            color: #ffd966;
-            transform: rotate(-10deg);
-            left: 2px;
-            top: 6px;
-        }
-
-        .feature-logo .mini-p {
-            color: #ffb74d;
-            transform: rotate(5deg);
-            left: 11px;
-            top: 9px;
-        }
-
-        .feature-logo .mini-h {
-            color: #fff;
-            transform: rotate(15deg);
-            left: 20px;
-            top: 6px;
-        }
-
-        .feature-logo span {
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Tabs */
-        .tabs-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem;
-        }
-
-        .tab-btn {
-            background: rgba(255,255,255,0.15);
-            border: none;
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            border-radius: 30px;
-            transition: all 0.2s;
-        }
-
-        .tab-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        .tab-btn.active {
-            background: #ffb74d;
-            color: #1e3a5f;
-        }
-
-        /* Tab Content */
-        .tab-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 16px;
-            margin: 1.5rem 0;
-            border: 1px solid #e0e0e0;
-            display: none;
-        }
-
-        .tab-content.active-content {
-            display: block;
-        }
-
-        .tab-content h3 {
-            color: #1e3a5f;
-            margin-bottom: 0.8rem;
-        }
-
-        .tab-content p, .tab-content li {
-            font-size: 0.9rem;
-            color: #444;
-            margin-bottom: 0.5rem;
-        }
-
-        .tab-content ul {
-            padding-left: 1.2rem;
+        .badge {
+            background-color: #2d6a4f;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #2c3e2f 0%, #1a4d1a 100%);
+            background: linear-gradient(135deg, #1b4d3e 0%, #0f3b2c 100%);
             color: white;
-            padding: 2rem 0;
             text-align: center;
+            padding: 3rem 1rem;
         }
 
-        .hero h2 {
-            font-size: 1.6rem;
-            margin-bottom: 0.8rem;
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .hero p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .badge {
-            display: inline-block;
-            background: #e67e22;
-            padding: 0.3rem 1rem;
+        /* Filters / Categories */
+        .categories-bar {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1.5rem 1rem;
+            background-color: white;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .cat-btn {
+            background-color: #f1f5f9;
+            border: none;
+            padding: 0.4rem 1rem;
             border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-top: 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        /* Sections */
-        .section {
-            padding: 2rem 0;
-            border-bottom: 1px solid #eaeaea;
+        .cat-btn.active {
+            background-color: #0f3b2c;
+            color: white;
         }
 
-        .section-title {
-            font-size: 1.4rem;
-            color: #2c3e2f;
-            margin-bottom: 1.2rem;
-            padding-left: 0.8rem;
-            border-left: 4px solid #e67e22;
+        /* Farm Grid */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        .grid-2, .grid-3 {
+        .farms-grid {
             display: grid;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Farm Card */
+        .farm-card {
+            background-color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .farm-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            background: linear-gradient(145deg, #cbd5e1, #e2e8f0);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .farm-name {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        .rating {
+            color: #f5b042;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .location {
+            color: #5b6e8c;
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.75rem 0;
+        }
+
+        .category-tag {
+            background-color: #eef2ff;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #1f4a3c;
+        }
+
+        .description {
+            color: #2d3a4b;
+            font-size: 0.9rem;
+            margin: 0.75rem 0;
+            line-height: 1.4;
+        }
+
+        .products {
+            font-size: 0.8rem;
+            color: #4b5563;
+            margin: 0.5rem 0;
+            border-top: 1px solid #edf2f7;
+            padding-top: 0.75rem;
+        }
+
+        .badge-card {
+            background-color: #0f3b2c;
+            color: white;
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
             margin-top: 0.5rem;
         }
 
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        }
-
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.3rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #f0e6d8;
-        }
-
-        .card h3 {
-            color: #e67e22;
-            font-size: 1.1rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .card p, .card li {
-            font-size: 0.85rem;
-            color: #444;
-        }
-
-        .card ul {
-            padding-left: 1.2rem;
-            margin-top: 0.3rem;
-        }
-
-        .card li {
-            margin: 0.3rem 0;
-        }
-
-        /* Tables */
-        .info-table {
-            width: 100%;
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #f0e6d8;
-            font-size: 0.85rem;
-        }
-
-        .info-table td {
-            padding: 0.8rem;
-            border-bottom: 1px solid #f0e6d8;
-            vertical-align: top;
-        }
-
-        .info-table td:first-child {
-            font-weight: 600;
-            background-color: #fefaf5;
-            width: 35%;
-        }
-
-        .info-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Contact */
-        .contact-bar {
-            background: #1e3a5f;
-            color: white;
+        footer {
             text-align: center;
-            padding: 1.5rem;
-            border-radius: 16px;
-            margin: 1.5rem 0;
+            padding: 2rem;
+            color: #5b6e8c;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 2rem;
         }
 
-        .contact-bar p {
-            margin: 0.3rem 0;
-            font-size: 0.85rem;
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 0.7rem;
-            color: #888;
-            border-top: 1px solid #eee;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 700px) {
-            .feature-wrapper {
+        @media (max-width: 640px) {
+            .navbar {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 0.8rem;
+                text-align: center;
             }
-            .hero h2 { font-size: 1.3rem; }
-            .section-title { font-size: 1.2rem; }
-            .tab-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
-            .overlap-logo { width: 60px; height: 60px; }
-            .logo-b, .logo-p, .logo-h { font-size: 1.8rem; }
-            .logo-b { left: 8px; top: 12px; }
-            .logo-p { left: 20px; top: 15px; }
-            .logo-h { left: 32px; top: 12px; }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
 <body>
 
-<!-- Header with Logo Circled in Blue -->
-<div class="logo-header">
-    <div class="container">
-        <div class="logo-container">
-            <div class="overlap-logo">
-                <span class="logo-b">B</span>
-                <span class="logo-p">P</span>
-                <span class="logo-h">H</span>
-            </div>
-            <div class="logo-text">
-                <h1>Binga Poultry Hub</h1>
-            </div>
-        </div>
+<nav class="navbar">
+    <div class="logo">🌾 Binga<span>Fresh</span></div>
+    <div style="display: flex; gap: 1rem; align-items: center;">
+        <span class="badge">🇿🇼 Zimbabwe</span>
+        <span>🐟 From Lake Kariba to your table</span>
     </div>
+</nav>
+
+<div class="hero">
+    <h1>Find a local farm in Binga</h1>
+    <p>Fresh kapenta, mangoes, and traditional foods — delivered from the shores of Lake Kariba to every province of Zimbabwe.</p>
 </div>
 
-<!-- Blue Feature Bar: Logo + Tabs Aligned -->
-<div class="feature-bar">
-    <div class="container">
-        <div class="feature-wrapper">
-            <div class="feature-logo">
-                <div class="overlap-logo-mini">
-                    <span class="mini-b">B</span>
-                    <span class="mini-p">P</span>
-                    <span class="mini-h">H</span>
-                </div>
-                <span>BPH</span>
-            </div>
-            <div class="tabs-container">
-                <button class="tab-btn active" data-tab="who">Who We Are</button>
-                <button class="tab-btn" data-tab="board">Board Members</button>
-                <button class="tab-btn" data-tab="news">News</button>
-                <button class="tab-btn" data-tab="events">Events</button>
-                <button class="tab-btn" data-tab="impact">Impact</button>
-            </div>
-        </div>
-    </div>
+<div class="categories-bar">
+    <button class="cat-btn active" data-cat="all">All farms</button>
+    <button class="cat-btn" data-cat="Fish">Fish & Seafood</button>
+    <button class="cat-btn" data-cat="Produce">Produce</button>
+    <button class="cat-btn" data-cat="Organic">Organic</button>
+    <button class="cat-btn" data-cat="Grains">Grains & Preserves</button>
 </div>
 
-<!-- Tab Content Area -->
 <div class="container">
-    <div id="who" class="tab-content active-content">
-        <h3>📖 Who We Are</h3>
-        <p><strong>Binga Poultry Hub (BPH) Limited</strong> is a startup social enterprise founded by <strong>Funny Munkuli</strong>, based in Binga District, Matabeleland North, Zimbabwe. We are an integrated poultry production and agricultural input supply business serving smallholder farmers.</p>
-        <p>Our model combines a solar-powered hatchery, an agricultural input shop, and practical farmer training. We focus on climate-resilient practices and prioritize women and youth entrepreneurs.</p>
-        <p><strong>Our mission:</strong> To eliminate the agricultural input supply gap in remote Binga District by providing affordable, high-quality day-old chicks, point-of-lay pullets, and supplies locally, while empowering smallholder farmers through science-based training and guaranteed market access.</p>
-    </div>
-
-    <div id="board" class="tab-content">
-        <h3>👥 Board Members</h3>
-        <p><strong>Founder & Managing Director:</strong> Funny Munkuli</p>
-        <p>The Board of Directors includes experienced professionals from agricultural development, veterinary science, and community banking. Specific member names are available upon request.</p>
-        <p>The Board provides strategic oversight and meets quarterly. Farmer representatives are elected annually from the BPH membership.</p>
-    </div>
-
-    <div id="news" class="tab-content">
-        <h3>📰 Latest News</h3>
-        <ul>
-            <li><strong>March 2026:</strong> Solar hatchery reaches full operational capacity – first batch of SASSO chicks distributed to pilot farmers.</li>
-            <li><strong>February 2026:</strong> BPH launches Farmer Training Program in partnership with AGRITEX extension officers.</li>
-            <li><strong>January 2026:</strong> Input shop opens in Binga Centre – farmers no longer need to travel outside the district for feed and vaccines.</li>
-            <li><strong>December 2025:</strong> BPH receives startup support from local development fund for climate-resilient agriculture.</li>
-        </ul>
-    </div>
-
-    <div id="events" class="tab-content">
-        <h3>📅 Upcoming Events</h3>
-        <ul>
-            <li><strong>April 20, 2026:</strong> Brooding Management Training – Siachilaba Village (9am–12pm)</li>
-            <li><strong>May 15, 2026:</strong> Farmer Knowledge Exchange Day – Binga Community Hall (10am–2pm)</li>
-            <li><strong>June 5–6, 2026:</strong> Vaccination Workshop (2 days) – rotating villages</li>
-            <li><strong>July 10, 2026:</strong> Women in Poultry Leadership Forum – Binga Centre</li>
-        </ul>
-        <p>All events are free for BPH members. SMS registration required.</p>
-    </div>
-
-    <div id="impact" class="tab-content">
-        <h3>📊 Our Impact (Startup Phase)</h3>
-        <ul>
-            <li><strong>Farmers served:</strong> 150+ smallholder farmers reached through training and input supply</li>
-            <li><strong>Chicks distributed:</strong> 2,500+ SASSO chicks placed with local farmers</li>
-            <li><strong>Farmers trained:</strong> 120 farmers completed at least one training module</li>
-            <li><strong>Women & youth:</strong> 45% of participating farmers are women or youth</li>
-            <li><strong>Mortality reduction:</strong> Farmers report significantly lower chick mortality compared to previous long-distance sourcing</li>
-            <li><strong>Knowledge sharing:</strong> 4 Knowledge Exchange Days held, 200+ farmers attended</li>
-        </ul>
+    <div class="farms-grid" id="farmsGrid">
+        <!-- Cards will be inserted here via JavaScript, but we also generate static fallback -->
     </div>
 </div>
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="container">
-        <h2>Local chicks. Local inputs. Local support.</h2>
-        <p>BPH brings affordable poultry supplies, practical training, and guaranteed markets to smallholder farmers in Binga District.</p>
-        <div class="badge">🌱 Climate-resilient · 🧑‍🌾 Women & youth focused</div>
-    </div>
-</section>
-
-<main class="container">
-    <!-- Core Operations -->
-    <section class="section">
-        <h2 class="section-title">Our Core Operations</h2>
-        <div class="grid-3">
-            <div class="card">
-                <h3>🐣 Solar Hatchery</h3>
-                <p>Produces day-old SASSO chicks and 4-week-old growers. Solar-powered — reliable even during grid outages.</p>
-                <p><strong>Advantage:</strong> 4-week-old growers are hardier, with lower on-farm mortality.</p>
-            </div>
-            <div class="card">
-                <h3>🏪 Agricultural Input Shop</h3>
-                <p>One-stop shop for smallholder farmers in Binga District.</p>
-                <ul>
-                    <li>Chicken feeds (starter, grower, layer)</li>
-                    <li>Vaccines and veterinary medicines</li>
-                    <li>Maize seeds and fertilizers</li>
-                    <li>Feeders, drinkers, brooding equipment</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>📚 Training & Extension</h3>
-                <p>Practical, science-based training delivered in local languages (Tonga, Ndebele, English).</p>
-                <ul>
-                    <li>Village-based learning sessions</li>
-                    <li>Demonstration flocks</li>
-                    <li>Take-home checklists and picture guides</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Breed Feature -->
-    <section class="section">
-        <h2 class="section-title">Our Breed: SASSO — Built for Binga</h2>
-        <table class="info-table">
-            <tr><td>🌡️ Heat tolerance</td><td>Thrives in temperatures up to 35°C — ideal for Binga's climate</td></tr>
-            <tr><td>🛡️ Disease resistance</td><td>Bred specifically for low-input tropical farming systems</td></tr>
-            <tr><td>🍗🥚 Dual-purpose</td><td>Excellent for both meat production and egg laying</td></tr>
-            <tr><td>🌾 Low-input foraging</td><td>Naturally forages for food, reducing feed costs</td></tr>
-            <tr><td>🍖 Meat quality</td><td>Yellow-skinned, firm texture — preferred in premium markets</td></tr>
-        </table>
-    </section>
-
-    <!-- Training Program -->
-    <section class="section">
-        <h2 class="section-title">Farmer Training Program</h2>
-        <div class="grid-2">
-            <div class="card"><h3>🐤 Brooding Management</h3><p>Temperature control, litter management, day-old chick care. The most critical phase for survival.</p></div>
-            <div class="card"><h3>💊 Health & Biosecurity</h3><p>Newcastle vaccination, recognizing sick birds, basic hygiene protocols.</p></div>
-            <div class="card"><h3>🌽 Local Feed Formulation</h3><p>Using maize, sunflower cake, and local ingredients to reduce feed costs.</p></div>
-            <div class="card"><h3>📝 Record Keeping</h3><p>Simple paper or phone-based records for mortality, weight, and feed.</p></div>
-        </div>
-    </section>
-
-    <!-- Membership Features -->
-    <section class="section">
-        <h2 class="section-title">Membership Benefits</h2>
-        <div class="grid-2">
-            <div class="card"><h3>🌾 Community Member (Free)</h3><ul><li>SMS alerts for chick hatch dates and training</li><li>Discounts on paid training</li><li>Access to input shop</li><li>Quarterly knowledge exchange gatherings</li></ul></div>
-            <div class="card"><h3>⭐ Farmer Member</h3><ul><li>All Community benefits</li><li>Priority chick purchase</li><li>One free training module per year</li><li>Voting rights in farmer advisory meetings</li><li>Eligibility for contract farming pilot</li></ul></div>
-        </div>
-    </section>
-
-    <!-- Contract Farming -->
-    <section class="section">
-        <h2 class="section-title">Contract Farming Pilot</h2>
-        <div class="card">
-            <p>BPH is launching a smallholder contract farming (out-grower) pilot for committed farmers in Binga District.</p>
-            <ul><li><strong>BPH provides:</strong> SASSO chicks, feed, vaccines, technical support</li><li><strong>Farmer provides:</strong> Secure housing, water, daily care, follows training</li><li><strong>BPH guarantees:</strong> Market for all healthy birds at harvest</li><li><strong>Performance bonus:</strong> Additional payment for high survival rates</li><li><strong>Focus:</strong> Women and youth prioritized for pilot</li></ul>
-        </div>
-    </section>
-
-    <!-- Climate Resilience -->
-    <section class="section">
-        <h2 class="section-title">Climate-Resilient Features</h2>
-        <div class="grid-2">
-            <div class="card"><h3>☀️ Solar-Powered</h3><p>Hatchery runs on solar — no grid dependence.</p></div>
-            <div class="card"><h3>🐔 Heat-Tolerant Breeds</h3><p>SASSO chickens for hot, dry conditions.</p></div>
-            <div class="card"><h3>💧 Water-Efficient</h3><p>Training on water conservation.</p></div>
-            <div class="card"><h3>🌾 Local Feed</h3><p>Drought-tolerant crops promoted.</p></div>
-        </div>
-    </section>
-
-    <!-- Knowledge Sharing -->
-    <section class="section">
-        <h2 class="section-title">Knowledge Sharing</h2>
-        <div class="grid-2">
-            <div class="card"><h3>📱 SMS Alerts</h3><p>Weekly tips and alerts.</p></div>
-            <div class="card"><h3>📄 Technical Briefs</h3><p>One-page picture guides.</p></div>
-            <div class="card"><h3>🗣️ Farmer Exchange Days</h3><p>Quarterly gatherings.</p></div>
-            <div class="card"><h3>👥 WhatsApp Community</h3><p>Rapid advice and Q&A.</p></div>
-        </div>
-    </section>
-
-    <!-- Women & Youth -->
-    <section class="section">
-        <h2 class="section-title">Women & Youth Empowerment</h2>
-        <div class="card">
-            <ul><li><strong>40% participation target</strong> for women and youth</li><li><strong>Flexible training schedules</strong></li><li><strong>Group contracts for women's cooperatives</strong></li><li><strong>Youth apprenticeship program</strong></li><li><strong>Women's leadership track</strong> in Farmer Advisory Group</li></ul>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <div class="contact-bar">
-        <p><strong>📍 Binga District, Matabeleland North, Zimbabwe</strong></p>
-        <p>📞 +263 XX XXX XXXX | 📧 info@bingapoultryhub.org</p>
-        <p>🕒 Shop: Mon–Sat, 8am–4pm | Hatchery by appointment</p>
-        <p>📱 Join our WhatsApp for weekly tips</p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem;">Founded by Funny Munkuli</p>
-    </div>
-
-    <footer class="footer">
-        <p>© 2026 Binga Poultry Hub (BPH) Limited — Solar hatchery | Local inputs | Science-led smallholder training</p>
-        <p>Founded by Funny Munkuli</p>
-    </footer>
-</main>
+<footer>
+    🇺🇸 Inspired by Locally Grown (USDA supported) — Adapted for Binga, Zimbabwe 🇿🇼 <br>
+    🚚 Serving Harare, Bulawayo, Mutare, Gweru & nationwide.
+</footer>
 
 <script>
-    // Tab switching functionality
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
+    // Farm data passed from Python (Flask)
+    const farmsData = {{ farms | tojson }};
 
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active-content'));
-            
-            btn.classList.add('active');
-            const tabId = btn.getAttribute('data-tab');
-            const activeContent = document.getElementById(tabId);
-            if (activeContent) {
-                activeContent.classList.add('active-content');
-            }
+    // Function to get an emoji/product image placeholder based on categories
+    function getPlaceholderEmoji(farm) {
+        if (farm.categories.includes('Fish')) return '🐟';
+        if (farm.categories.includes('Produce')) return '🥭';
+        if (farm.name.includes('Dried Foods')) return '🥬';
+        return '🌾';
+    }
+
+    // Render all farms (with optional filtering)
+    function renderFarms(category = 'all') {
+        const grid = document.getElementById('farmsGrid');
+        if (!grid) return;
+
+        const filtered = category === 'all' 
+            ? farmsData 
+            : farmsData.filter(farm => farm.categories.includes(category));
+
+        if (filtered.length === 0) {
+            grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">No farms found in this category. Check back soon — new producers join from Binga every week!</div>`;
+            return;
+        }
+
+        grid.innerHTML = filtered.map(farm => `
+            <a href="#" class="farm-card" onclick="return false;">
+                <div class="card-image">
+                    ${getPlaceholderEmoji(farm)} ${farm.name.split(' ')[0]}
+                </div>
+                <div class="card-content">
+                    <div class="farm-name">
+                        ${farm.name}
+                        ${farm.rating ? `<span class="rating">⭐ ${farm.rating} (${farm.reviews} reviews)</span>` : ''}
+                    </div>
+                    <div class="location">📍 ${farm.location}</div>
+                    <div class="categories">
+                        ${farm.categories.map(cat => `<span class="category-tag">${cat}</span>`).join('')}
+                    </div>
+                    <div class="description">${farm.description}</div>
+                    <div class="products">
+                        ✨ Popular: ${farm.products.slice(0, 3).join(' · ')}
+                    </div>
+                    ${farm.badge ? `<div class="badge-card">${farm.badge}</div>` : ''}
+                </div>
+            </a>
+        `).join('');
+    }
+
+    // Set up category filter buttons
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const category = this.getAttribute('data-cat');
+            renderFarms(category);
         });
     });
-</script>
 
+    // Initial render
+    renderFarms('all');
+</script>
 </body>
 </html>
-```
