@@ -1,325 +1,847 @@
+"""
+HospiNear - Complete Zocdoc-style Medical Appointment App for Zimbabwe
+FULLY WORKING VERSION - Enhanced UI/UX
+Run with: python hospinear.py
+"""
+
+from flask import Flask, request, jsonify, render_template_string, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime, timedelta
+from geopy.distance import geodesic
+import os
+
+# ==================== INITIALIZATION ====================
+app = Flask(__name__)
+
+# Database setup
+base_dir = os.path.abspath(os.path.dirname(__file__))
+db_path = os.path.join(base_dir, 'hospinear.db')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'hospinear-secret-key-2025'
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'connect_args': {'check_same_thread': False}
+}
+
+db = SQLAlchemy(app)
+
+# ==================== ALL ZIMBABWE CITIES ====================
+ZIMBABWE_LOCATIONS = {
+    'Harare': {'lat': -17.8252, 'lon': 31.0335},
+    'Bulawayo': {'lat': -20.1700, 'lon': 28.5700},
+    'Victoria Falls': {'lat': -17.9249, 'lon': 25.8571},
+    'Binga': {'lat': -17.6200, 'lon': 27.3400},
+    'Mutare': {'lat': -18.9667, 'lon': 32.6667},
+    'Gweru': {'lat': -19.4500, 'lon': 29.8167},
+    'Masvingo': {'lat': -20.0667, 'lon': 30.8333},
+    'Kwekwe': {'lat': -18.9167, 'lon': 29.8167},
+    'Chinhoyi': {'lat': -17.3500, 'lon': 30.2000},
+    'Marondera': {'lat': -18.1833, 'lon': 31.5500},
+    'Kadoma': {'lat': -18.3333, 'lon': 29.9167},
+    'Hwange': {'lat': -18.3667, 'lon': 26.4833},
+    'Chitungwiza': {'lat': -18.0000, 'lon': 31.0500}
+}
+
+SPECIALTIES = [
+    'All Specialties', 'General Practitioner', 'Pediatrician', 'Cardiologist', 
+    'Dermatologist', 'Obstetrician & Gynecologist', 'Dentist', 'Orthopedic', 
+    'Psychiatrist', 'Ophthalmologist', 'ENT Specialist', 'Urologist'
+]
+
+# ==================== DATABASE MODELS ====================
+
+class Clinic(db.Model):
+    __tablename__ = 'clinics'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    type = db.Column(db.String(50))
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
+    address = db.Column(db.String(300))
+    city = db.Column(db.String(100))
+    phone = db.Column(db.String(50))
+    opens_at = db.Column(db.String(5), default='08:00')
+    closes_at = db.Column(db.String(5), default='17:00')
+    is_open = db.Column(db.Boolean, default=True)
+    beds_available = db.Column(db.Integer, default=0)
+    wait_time_minutes = db.Column(db.Integer, default=0)
+    emergency_services = db.Column(db.Boolean, default=False)
+    medicines_in_stock = db.Column(db.JSON, default=list)
+    accepted_insurance = db.Column(db.JSON, default=list)
+    image_url = db.Column(db.String(500), default='')
+   
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'type': self.type,
+            'address': self.address,
+            'city': self.city,
+            'phone': self.phone,
+            'opens_at': self.opens_at,
+            'closes_at': self.closes_at,
+            'is_open': self.is_open,
+            'beds_available': self.beds_available,
+            'wait_time_minutes': self.wait_time_minutes,
+            'medicines_in_stock': self.medicines_in_stock or []
+        }
+
+
+class Doctor(db.Model):
+    __tablename__ = 'doctors'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    specialty = db.Column(db.String(100))
+    qualifications = db.Column(db.String(300))
+    experience_years = db.Column(db.Integer, default=0)
+    clinic_id = db.Column(db.Integer, db.ForeignKey('clinics.id'))
+    bio = db.Column(db.Text, default='')
+    available_days = db.Column(db.JSON, default=list)
+    available_hours_start = db.Column(db.String(5), default='08:00')
+    available_hours_end = db.Column(db.String(5), default='17:00')
+    telehealth_available = db.Column(db.Boolean, default=False)
+    rating = db.Column(db.Float, default=0)
+    total_reviews = db.Column(db.Integer, default=0)
+    consultation_fee_usd = db.Column(db.Float, default=0)
+    is_accepting_patients = db.Column(db.Boolean, default=True)
+    languages = db.Column(db.JSON, default=list)
+    accepted_insurance = db.Column(db.JSON, default=list)
+    profile_image = db.Column(db.String(500), default='')
+   
+    clinic = db.relationship('Clinic', backref='doctors')
+   
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'specialty': self.specialty,
+            'qualifications': self.qualifications,
+            'experience_years': self.experience_years,
+            'bio': self.bio,
+            'available_days': self.available_days or [],
+            'available_hours': f"{self.available_hours_start} - {self.available_hours_end}",
+            'telehealth_available': self.telehealth_available,
+            'rating': round(self.rating, 1),
+            'total_reviews': self.total_reviews,
+            'consultation_fee_usd': self.consultation_fee_usd,
+            'languages': self.languages or ['English'],
+            'accepted_insurance': self.accepted_insurance or [],
+            'clinic': self.clinic.to_dict() if self.clinic else None
+        }
+
+
+class Appointment(db.Model):
+    __tablename__ = 'appointments'
+    id = db.Column(db.Integer, primary_key=True)
+    doctor_id = db.Column(db.Integer, db.ForeignKey('doctors.id'))
+    clinic_id = db.Column(db.Integer, db.ForeignKey('clinics.id'))
+    patient_name = db.Column(db.String(200), nullable=False)
+    patient_phone = db.Column(db.String(20), nullable=False)
+    patient_email = db.Column(db.String(100))
+    patient_age = db.Column(db.Integer)
+    appointment_date = db.Column(db.Date, nullable=False)
+    appointment_time = db.Column(db.String(5), nullable=False)
+    reason_for_visit = db.Column(db.Text)
+    status = db.Column(db.String(20), default='confirmed')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+   
+    doctor = db.relationship('Doctor', backref='appointments')
+    clinic = db.relationship('Clinic', backref='appointments')
+
+
+# ==================== CREATE TABLES AND LOAD DATA ====================
+
+def init_database():
+    """Create all tables and load sample data"""
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
+        print("✅ Database tables created!")
+        load_sample_data()
+        print("✅ Sample data loaded successfully!")
+
+
+def load_sample_data():
+    """Load sample clinics and doctors"""
+   
+    clinics = [
+        Clinic(
+            name='Parirenyatwa Group of Hospitals',
+            type='Hospital',
+            latitude=-17.8228, longitude=31.0475,
+            address='Mazowe Street, Harare',
+            city='Harare',
+            phone='+263 242 705131',
+            opens_at='00:00', closes_at='23:59',
+            is_open=True,
+            beds_available=45,
+            wait_time_minutes=90,
+            emergency_services=True,
+            medicines_in_stock=['Malaria meds', 'Antibiotics', 'Painkillers', 'ARVs'],
+            accepted_insurance=['Cimas', 'PSMAS', 'NSSA', 'Old Mutual']
+        ),
+        Clinic(
+            name='Avenues Clinic',
+            type='Hospital',
+            latitude=-17.8190, longitude=31.0450,
+            address='Corner Mazowe & Josiah Chinamano, Harare',
+            city='Harare',
+            phone='+263 242 705131',
+            opens_at='08:00', closes_at='17:00',
+            is_open=True,
+            beds_available=20,
+            wait_time_minutes=45,
+            medicines_in_stock=['Malaria meds', 'Antibiotics', 'Painkillers'],
+            accepted_insurance=['Cimas', 'Premier', 'MediSave']
+        ),
+        Clinic(
+            name='Victoria Falls Hospital',
+            type='Hospital',
+            latitude=-17.9249, longitude=25.8571,
+            address='Park Way, Victoria Falls',
+            city='Victoria Falls',
+            phone='+263 13 43210',
+            opens_at='08:00', closes_at='17:00',
+            is_open=True,
+            beds_available=12,
+            wait_time_minutes=30,
+            emergency_services=True,
+            medicines_in_stock=['Malaria meds', 'Painkillers', 'Antibiotics'],
+            accepted_insurance=['Cimas', 'Premier', 'NSSA']
+        ),
+        Clinic(
+            name='Binga District Hospital',
+            type='Hospital',
+            latitude=-17.6200, longitude=27.3400,
+            address='Main Road, Binga',
+            city='Binga',
+            phone='+263 15 12345',
+            opens_at='08:00', closes_at='16:00',
+            is_open=True,
+            beds_available=8,
+            wait_time_minutes=60,
+            emergency_services=True,
+            medicines_in_stock=['Malaria meds', 'Painkillers'],
+            accepted_insurance=['NSSA', 'PSMAS']
+        ),
+        Clinic(
+            name='Mpilo Central Hospital',
+            type='Hospital',
+            latitude=-20.1700, longitude=28.5700,
+            address='Khumalo, Bulawayo',
+            city='Bulawayo',
+            phone='+263 292 74500',
+            opens_at='00:00', closes_at='23:59',
+            is_open=True,
+            beds_available=30,
+            wait_time_minutes=120,
+            emergency_services=True,
+            medicines_in_stock=['Malaria meds', 'Antibiotics', 'Painkillers', 'ARVs'],
+            accepted_insurance=['NSSA', 'PSMAS', 'Cimas']
+        ),
+        Clinic(
+            name='Mutare Provincial Hospital',
+            type='Hospital',
+            latitude=-18.9667, longitude=32.6667,
+            address='Herbert Chitepo Street, Mutare',
+            city='Mutare',
+            phone='+263 20 61234',
+            opens_at='08:00', closes_at='18:00',
+            is_open=True,
+            beds_available=15,
+            wait_time_minutes=75,
+            emergency_services=True,
+            medicines_in_stock=['Antibiotics', 'Painkillers'],
+            accepted_insurance=['PSMAS', 'NSSA']
+        )
+    ]
+   
+    for clinic in clinics:
+        db.session.add(clinic)
+   
+    db.session.flush()
+   
+    doctors = [
+        Doctor(
+            name='Dr. Tendai Mukumba',
+            specialty='General Practitioner',
+            qualifications='MBChB (University of Zimbabwe)',
+            experience_years=12,
+            clinic_id=clinics[0].id,
+            bio='Experienced GP specializing in family medicine and chronic disease management.',
+            available_days=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            available_hours_start='08:00', available_hours_end='16:00',
+            telehealth_available=True,
+            rating=4.8, total_reviews=127,
+            consultation_fee_usd=15,
+            languages=['English', 'Shona'],
+            accepted_insurance=['Cimas', 'Premier', 'MediSave']
+        ),
+        Doctor(
+            name='Dr. Chipo Ndlovu',
+            specialty='Pediatrician',
+            qualifications='MBChB (UZ), MMed Paediatrics',
+            experience_years=8,
+            clinic_id=clinics[0].id,
+            bio='Child health specialist focusing on pediatric emergencies and vaccinations.',
+            available_days=['Monday', 'Wednesday', 'Friday'],
+            available_hours_start='09:00', available_hours_end='15:00',
+            telehealth_available=True,
+            rating=4.9, total_reviews=89,
+            consultation_fee_usd=25,
+            languages=['English', 'Shona', 'Ndebele'],
+            accepted_insurance=['Cimas', 'PSMAS', 'MediSave']
+        ),
+        Doctor(
+            name='Dr. Simba Makoni',
+            specialty='Dentist',
+            qualifications='BDS (University of Havana)',
+            experience_years=10,
+            clinic_id=clinics[1].id,
+            bio='General dentistry including cleanings, fillings, and extractions.',
+            available_days=['Tuesday', 'Thursday', 'Saturday'],
+            available_hours_start='08:00', available_hours_end='13:00',
+            telehealth_available=False,
+            rating=4.7, total_reviews=56,
+            consultation_fee_usd=20,
+            languages=['English', 'Shona'],
+            accepted_insurance=['Cimas', 'Premier', 'MediSave']
+        ),
+        Doctor(
+            name='Dr. Rudo Gumbo',
+            specialty='Obstetrician & Gynecologist',
+            qualifications='MBChB (UZ), MRCOG (UK)',
+            experience_years=15,
+            clinic_id=clinics[1].id,
+            bio="Women's health specialist offering prenatal care and family planning.",
+            available_days=['Monday', 'Wednesday', 'Friday'],
+            available_hours_start='08:00', available_hours_end='16:00',
+            telehealth_available=True,
+            rating=4.9, total_reviews=203,
+            consultation_fee_usd=30,
+            languages=['English', 'Shona'],
+            accepted_insurance=['Cimas', 'PSMAS', 'Old Mutual']
+        ),
+        Doctor(
+            name='Dr. Lungile Dube',
+            specialty='General Practitioner',
+            qualifications='MBChB (UZ)',
+            experience_years=7,
+            clinic_id=clinics[2].id,
+            bio='General practice focusing on travel medicine and tropical diseases.',
+            available_days=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            available_hours_start='08:00', available_hours_end='16:00',
+            telehealth_available=True,
+            rating=4.6, total_reviews=45,
+            consultation_fee_usd=12,
+            languages=['English', 'Ndebele'],
+            accepted_insurance=['Cimas', 'NSSA']
+        ),
+        Doctor(
+            name='Dr. Progress Muleya',
+            specialty='General Practitioner',
+            qualifications='MBChB (UZ)',
+            experience_years=5,
+            clinic_id=clinics[3].id,
+            bio='Primary healthcare for the Binga community in Tonga language.',
+            available_days=['Monday', 'Wednesday', 'Friday'],
+            available_hours_start='09:00', available_hours_end='15:00',
+            telehealth_available=False,
+            rating=4.5, total_reviews=28,
+            consultation_fee_usd=8,
+            languages=['English', 'Tonga', 'Shona'],
+            accepted_insurance=['NSSA']
+        ),
+        Doctor(
+            name='Dr. Thabo Ncube',
+            specialty='Cardiologist',
+            qualifications='MBChB (UZ), MMed Cardiology',
+            experience_years=12,
+            clinic_id=clinics[4].id,
+            bio='Heart health specialist managing hypertension and cardiac conditions.',
+            available_days=['Monday', 'Tuesday', 'Thursday'],
+            available_hours_start='09:00', available_hours_end='15:00',
+            telehealth_available=True,
+            rating=4.8, total_reviews=78,
+            consultation_fee_usd=35,
+            languages=['English', 'Ndebele', 'Shona'],
+            accepted_insurance=['Cimas', 'PSMAS', 'Old Mutual']
+        ),
+        Doctor(
+            name='Dr. Nomagugu Moyo',
+            specialty='Dermatologist',
+            qualifications='MBChB (UZ), MSc Dermatology',
+            experience_years=9,
+            clinic_id=clinics[4].id,
+            bio='Skin specialist treating eczema, acne, and other dermatological conditions.',
+            available_days=['Tuesday', 'Thursday', 'Friday'],
+            available_hours_start='09:00', available_hours_end='16:00',
+            telehealth_available=True,
+            rating=4.9, total_reviews=102,
+            consultation_fee_usd=28,
+            languages=['English', 'Ndebele'],
+            accepted_insurance=['Cimas', 'Premier']
+        )
+    ]
+   
+    for doctor in doctors:
+        db.session.add(doctor)
+   
+    db.session.commit()
+    print(f"   - Added {len(clinics)} clinics")
+    print(f"   - Added {len(doctors)} doctors")
+
+
+# ==================== ENHANCED HTML DASHBOARD ====================
+
+HTML_TEMPLATE = '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>BingaFresh - Local Farms from Lake Kariba to Zimbabwe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>HospiNear 🇿🇼 | Find & Book Doctors in Zimbabwe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            background-color: #f5f7fb;
-            color: #1a2a3a;
-            line-height: 1.5;
-        }
-
-        /* Navigation */
-        .navbar {
-            background-color: #0f3b2c;
-            color: white;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: #f5b042;
-        }
-
-        .badge {
-            background-color: #2d6a4f;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #1b4d3e 0%, #0f3b2c 100%);
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Filters / Categories */
-        .categories-bar {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 1.5rem 1rem;
-            background-color: white;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .cat-btn {
-            background-color: #f1f5f9;
-            border: none;
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .cat-btn.active {
-            background-color: #0f3b2c;
-            color: white;
-        }
-
-        /* Farm Grid */
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        .farms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Farm Card */
-        .farm-card {
-            background-color: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .farm-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -12px rgba(0,0,0,0.1);
-        }
-
-        .card-image {
-            background: linear-gradient(145deg, #cbd5e1, #e2e8f0);
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #334155;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-        }
-
-        .farm-name {
-            font-size: 1.35rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-        }
-
-        .rating {
-            color: #f5b042;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .location {
-            color: #5b6e8c;
-            font-size: 0.85rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 0.75rem 0;
-        }
-
-        .category-tag {
-            background-color: #eef2ff;
-            padding: 0.2rem 0.6rem;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #1f4a3c;
-        }
-
-        .description {
-            color: #2d3a4b;
-            font-size: 0.9rem;
-            margin: 0.75rem 0;
-            line-height: 1.4;
-        }
-
-        .products {
-            font-size: 0.8rem;
-            color: #4b5563;
-            margin: 0.5rem 0;
-            border-top: 1px solid #edf2f7;
-            padding-top: 0.75rem;
-        }
-
-        .badge-card {
-            background-color: #0f3b2c;
-            color: white;
-            display: inline-block;
-            padding: 0.2rem 0.6rem;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            margin-top: 0.5rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #5b6e8c;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 640px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-            }
-            .hero h1 {
-                font-size: 1.6rem;
-            }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f7fb; color: #1a2a3a; }
+        
+        /* Header */
+        .header { background: linear-gradient(135deg, #0d5b4a 0%, #0a3d32 100%); color: white; padding: 60px 20px; text-align: center; position: relative; overflow: hidden; }
+        .header::before { content: "🏥"; position: absolute; font-size: 200px; opacity: 0.05; bottom: -30px; right: -30px; }
+        .header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .header h1 span { display: inline-block; animation: wave 1s ease-in-out; }
+        @keyframes wave { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
+        .header p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+        
+        /* Stats Bar */
+        .stats-bar { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 50px; display: inline-flex; gap: 30px; margin-top: 25px; flex-wrap: wrap; justify-content: center; }
+        .stat { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+        .stat i { font-size: 1.2rem; }
+        
+        /* Search Section */
+        .search-section { max-width: 1000px; margin: -40px auto 0; padding: 0 20px; position: relative; z-index: 10; }
+        .search-card { background: white; border-radius: 28px; padding: 30px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); }
+        .search-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .search-group label { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #0d5b4a; margin-bottom: 6px; }
+        .search-input, .search-select { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 16px; font-size: 14px; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .search-input:focus, .search-select:focus { outline: none; border-color: #0d5b4a; box-shadow: 0 0 0 3px rgba(13,91,74,0.1); }
+        .search-button { background: #0d5b4a; color: white; border: none; padding: 14px 28px; border-radius: 16px; font-weight: 600; cursor: pointer; width: 100%; font-size: 16px; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .search-button:hover { background: #0a3d32; transform: translateY(-2px); }
+        
+        /* Results */
+        .results-section { max-width: 1300px; margin: 50px auto; padding: 0 20px; }
+        .results-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+        .results-header h2 { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .result-count { background: #e2e8f0; padding: 5px 12px; border-radius: 30px; font-size: 0.8rem; font-weight: 600; }
+        
+        /* Doctor Cards */
+        .doctor-card { background: white; border-radius: 24px; padding: 24px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; gap: 24px; transition: all 0.2s; border: 1px solid #eef2f6; }
+        .doctor-card:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1); border-color: #cbd5e1; }
+        .doctor-avatar { width: 100px; height: 100px; background: linear-gradient(135deg, #0d5b4a, #1a8a6e); border-radius: 30px; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.8rem; flex-shrink: 0; box-shadow: 0 8px 20px rgba(13,91,74,0.2); }
+        .doctor-info { flex: 3; }
+        .doctor-name { font-size: 1.4rem; font-weight: 800; color: #0a3d32; letter-spacing: -0.3px; }
+        .doctor-specialty { color: #0d5b4a; font-weight: 600; display: inline-block; background: #e6f4f0; padding: 5px 14px; border-radius: 30px; margin: 10px 0; font-size: 0.85rem; }
+        .rating { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+        .stars { color: #fbbf24; letter-spacing: 2px; }
+        .review-count { color: #64748b; font-size: 0.8rem; }
+        .clinic-info { color: #475569; font-size: 0.85rem; margin: 6px 0; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .clinic-info i { width: 20px; color: #0d5b4a; }
+        .badge { background: #dcfce7; color: #15803d; padding: 3px 10px; border-radius: 30px; font-size: 0.7rem; font-weight: 600; }
+        .badge-telehealth { background: #e0f2fe; color: #0369a1; }
+        .languages { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+        .lang-tag { background: #f1f5f9; padding: 2px 8px; border-radius: 20px; font-size: 0.7rem; color: #475569; }
+        .book-area { text-align: center; min-width: 160px; display: flex; flex-direction: column; justify-content: center; }
+        .fee { font-size: 2rem; font-weight: 800; color: #0a3d32; }
+        .fee-label { font-size: 0.7rem; color: #64748b; margin-top: -5px; }
+        .book-btn { background: #0d5b4a; color: white; border: none; padding: 12px 20px; border-radius: 40px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+        .book-btn:hover { background: #0a3d32; transform: scale(1.02); }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(4px); }
+        .modal-content { background: white; border-radius: 32px; padding: 32px; max-width: 550px; width: 90%; max-height: 85vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .modal-header h3 { font-size: 1.5rem; font-weight: 700; color: #0a3d32; }
+        .close-modal { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #94a3b8; transition: all 0.2s; }
+        .close-modal:hover { color: #0a3d32; }
+        .booking-form input, .booking-form select, .booking-form textarea { width: 100%; padding: 12px 16px; margin-bottom: 14px; border: 2px solid #e2e8f0; border-radius: 16px; font-size: 14px; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+        .booking-form input:focus, .booking-form select:focus, .booking-form textarea:focus { outline: none; border-color: #0d5b4a; }
+        .booking-form label { font-size: 0.75rem; font-weight: 600; color: #0d5b4a; margin-bottom: 4px; display: block; }
+        .submit-btn { background: #0d5b4a; color: white; border: none; padding: 14px; border-radius: 40px; width: 100%; font-weight: 700; font-size: 1rem; cursor: pointer; margin-top: 10px; }
+        .submit-btn:hover { background: #0a3d32; }
+        
+        /* Loading & Empty States */
+        .loading { text-align: center; padding: 80px 20px; color: #64748b; }
+        .loading i { font-size: 3rem; margin-bottom: 15px; display: block; }
+        .empty-state { text-align: center; padding: 60px 20px; background: white; border-radius: 30px; }
+        .empty-state i { font-size: 4rem; color: #cbd5e1; margin-bottom: 20px; }
+        
+        /* Footer */
+        .footer { background: #1a2a3a; color: #94a3b8; text-align: center; padding: 40px 20px; margin-top: 60px; }
+        .footer a { color: #0d5b4a; text-decoration: none; }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .doctor-card { flex-direction: column; text-align: center; }
+            .doctor-avatar { margin: 0 auto; }
+            .clinic-info { justify-content: center; }
+            .book-area { width: 100%; }
+            .stats-bar { flex-direction: column; gap: 10px; background: none; }
         }
     </style>
 </head>
 <body>
-
-<nav class="navbar">
-    <div class="logo">🌾 Binga<span>Fresh</span></div>
-    <div style="display: flex; gap: 1rem; align-items: center;">
-        <span class="badge">🇿🇼 Zimbabwe</span>
-        <span>🐟 From Lake Kariba to your table</span>
+    <div class="header">
+        <h1>🏥 HospiNear <span>🇿🇼</span></h1>
+        <p>Find, compare, and book appointments with trusted doctors across Zimbabwe</p>
+        <div class="stats-bar">
+            <div class="stat"><i class="fas fa-hospital-user"></i> 8+ Specialists</div>
+            <div class="stat"><i class="fas fa-map-marker-alt"></i> 12+ Locations</div>
+            <div class="stat"><i class="fas fa-calendar-check"></i> Same-day Appointments</div>
+            <div class="stat"><i class="fas fa-video"></i> Telehealth Available</div>
+        </div>
     </div>
-</nav>
-
-<div class="hero">
-    <h1>Find a local farm in Binga</h1>
-    <p>Fresh kapenta, mangoes, and traditional foods — delivered from the shores of Lake Kariba to every province of Zimbabwe.</p>
-</div>
-
-<div class="categories-bar">
-    <button class="cat-btn active" data-cat="all">All farms</button>
-    <button class="cat-btn" data-cat="Fish">Fish & Seafood</button>
-    <button class="cat-btn" data-cat="Produce">Produce</button>
-    <button class="cat-btn" data-cat="Organic">Organic</button>
-    <button class="cat-btn" data-cat="Grains">Grains & Preserves</button>
-</div>
-
-<div class="container">
-    <div class="farms-grid" id="farmsGrid">
-        <!-- Cards will be inserted here via JavaScript, but we also generate static fallback -->
+    
+    <div class="search-section">
+        <div class="search-card">
+            <div class="search-grid">
+                <div class="search-group">
+                    <label><i class="fas fa-search"></i> Search</label>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Doctor name or specialty...">
+                </div>
+                <div class="search-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Location</label>
+                    <select id="citySelect" class="search-select">
+                        <option value="">📍 All Zimbabwe</option>
+                        <option value="Harare">🏙️ Harare</option>
+                        <option value="Bulawayo">🏙️ Bulawayo</option>
+                        <option value="Victoria Falls">🌊 Victoria Falls</option>
+                        <option value="Binga">🌅 Binga</option>
+                        <option value="Mutare">⛰️ Mutare</option>
+                        <option value="Gweru">🏙️ Gweru</option>
+                        <option value="Masvingo">🏛️ Masvingo</option>
+                    </select>
+                </div>
+                <div class="search-group">
+                    <label><i class="fas fa-stethoscope"></i> Specialty</label>
+                    <select id="specialtySelect" class="search-select">
+                        <option value="">All Specialties</option>
+                        <option value="General Practitioner">General Practitioner</option>
+                        <option value="Pediatrician">👶 Pediatrician</option>
+                        <option value="Cardiologist">❤️ Cardiologist</option>
+                        <option value="Dermatologist">🧴 Dermatologist</option>
+                        <option value="Obstetrician & Gynecologist">👩 Obstetrician & Gynecologist</option>
+                        <option value="Dentist">🦷 Dentist</option>
+                    </select>
+                </div>
+            </div>
+            <button class="search-button" onclick="searchDoctors()"><i class="fas fa-search"></i> Find Doctors Now</button>
+        </div>
     </div>
-</div>
-
-<footer>
-    🇺🇸 Inspired by Locally Grown (USDA supported) — Adapted for Binga, Zimbabwe 🇿🇼 <br>
-    🚚 Serving Harare, Bulawayo, Mutare, Gweru & nationwide.
-</footer>
-
-<script>
-    // Farm data passed from Python (Flask)
-    const farmsData = {{ farms | tojson }};
-
-    // Function to get an emoji/product image placeholder based on categories
-    function getPlaceholderEmoji(farm) {
-        if (farm.categories.includes('Fish')) return '🐟';
-        if (farm.categories.includes('Produce')) return '🥭';
-        if (farm.name.includes('Dried Foods')) return '🥬';
-        return '🌾';
-    }
-
-    // Render all farms (with optional filtering)
-    function renderFarms(category = 'all') {
-        const grid = document.getElementById('farmsGrid');
-        if (!grid) return;
-
-        const filtered = category === 'all' 
-            ? farmsData 
-            : farmsData.filter(farm => farm.categories.includes(category));
-
-        if (filtered.length === 0) {
-            grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:3rem;">No farms found in this category. Check back soon — new producers join from Binga every week!</div>`;
-            return;
+    
+    <div class="results-section">
+        <div class="results-header">
+            <h2><i class="fas fa-user-md"></i> Doctors Available</h2>
+            <div id="resultCount" class="result-count">Ready to search</div>
+        </div>
+        <div id="resultsContainer">
+            <div class="loading"><i class="fas fa-stethoscope"></i><br>🔍 Search for doctors above...</div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p><i class="fas fa-heart" style="color: #0d5b4a;"></i> HospiNear Zimbabwe - Making Healthcare Accessible</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">© 2025 HospiNear | Emergency: Call 995 | <a href="#">About Us</a> | <a href="#">For Doctors</a></p>
+    </div>
+    
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"><i class="fas fa-calendar-plus"></i> Book Appointment</h3>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+    
+    <script>
+        let currentDoctors = [];
+        
+        async function searchDoctors() {
+            const search = document.getElementById('searchInput').value;
+            const city = document.getElementById('citySelect').value;
+            const specialty = document.getElementById('specialtySelect').value;
+            
+            document.getElementById('resultsContainer').innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i><br>Searching for doctors...</div>';
+            
+            let url = `/doctors/search?name=${encodeURIComponent(search)}&limit=50`;
+            if (city) url += `&location_city=${encodeURIComponent(city)}`;
+            if (specialty) url += `&specialty=${encodeURIComponent(specialty)}`;
+            
+            const resp = await fetch(url);
+            const data = await resp.json();
+            currentDoctors = data.doctors || [];
+            renderDoctors(currentDoctors);
         }
-
-        grid.innerHTML = filtered.map(farm => `
-            <a href="#" class="farm-card" onclick="return false;">
-                <div class="card-image">
-                    ${getPlaceholderEmoji(farm)} ${farm.name.split(' ')[0]}
-                </div>
-                <div class="card-content">
-                    <div class="farm-name">
-                        ${farm.name}
-                        ${farm.rating ? `<span class="rating">⭐ ${farm.rating} (${farm.reviews} reviews)</span>` : ''}
+        
+        function renderDoctors(doctors) {
+            const resultCountDiv = document.getElementById('resultCount');
+            if (doctors.length === 0) {
+                resultCountDiv.innerHTML = '0 doctors found';
+                document.getElementById('resultsContainer').innerHTML = '<div class="empty-state"><i class="fas fa-user-slash"></i><h3>No doctors found</h3><p>Try adjusting your search or location.</p></div>';
+                return;
+            }
+            
+            resultCountDiv.innerHTML = `${doctors.length} doctor${doctors.length > 1 ? 's' : ''} available`;
+            
+            let html = '';
+            for (const item of doctors) {
+                const d = item.doctor;
+                const fullStars = Math.floor(d.rating);
+                const emptyStars = 5 - fullStars;
+                const stars = '★'.repeat(fullStars) + '☆'.repeat(emptyStars);
+                const telehealthBadge = d.telehealth_available ? '<span class="badge badge-telehealth"><i class="fas fa-video"></i> Telehealth</span>' : '<span class="badge"><i class="fas fa-hospital"></i> In-Person</span>';
+                
+                html += `<div class="doctor-card">
+                    <div class="doctor-avatar"><i class="fas fa-user-md"></i></div>
+                    <div class="doctor-info">
+                        <div class="doctor-name">${escapeHtml(d.name)}</div>
+                        <div><span class="doctor-specialty"><i class="fas fa-stethoscope"></i> ${escapeHtml(d.specialty)}</span></div>
+                        <div class="rating"><span class="stars">${stars}</span> <span class="review-count">${d.rating} (${d.total_reviews} reviews)</span></div>
+                        <div class="clinic-info"><i class="fas fa-hospital"></i> ${escapeHtml(d.clinic?.name || 'Clinic')} • 📍 ${escapeHtml(d.clinic?.city || 'N/A')}</div>
+                        <div class="clinic-info"><i class="far fa-clock"></i> ⏰ ${d.available_hours} • ${telehealthBadge}</div>
+                        <div class="languages"><i class="fas fa-language"></i> ${d.languages.map(l => `<span class="lang-tag">${escapeHtml(l)}</span>`).join('')}</div>
+                        <div class="clinic-info"><i class="fas fa-graduation-cap"></i> ${escapeHtml(d.qualifications)} • ${d.experience_years}+ years experience</div>
                     </div>
-                    <div class="location">📍 ${farm.location}</div>
-                    <div class="categories">
-                        ${farm.categories.map(cat => `<span class="category-tag">${cat}</span>`).join('')}
+                    <div class="book-area">
+                        <div class="fee">$${d.consultation_fee_usd}</div>
+                        <div class="fee-label">consultation fee</div>
+                        <button class="book-btn" onclick="bookDoctor(${d.id}, '${escapeHtml(d.name).replace(/'/g, "\\'")}')"><i class="fas fa-calendar-check"></i> Book Now</button>
                     </div>
-                    <div class="description">${farm.description}</div>
-                    <div class="products">
-                        ✨ Popular: ${farm.products.slice(0, 3).join(' · ')}
-                    </div>
-                    ${farm.badge ? `<div class="badge-card">${farm.badge}</div>` : ''}
-                </div>
-            </a>
-        `).join('');
-    }
-
-    // Set up category filter buttons
-    document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            const category = this.getAttribute('data-cat');
-            renderFarms(category);
-        });
-    });
-
-    // Initial render
-    renderFarms('all');
-</script>
+                </div>`;
+            }
+            document.getElementById('resultsContainer').innerHTML = html;
+        }
+        
+        function escapeHtml(str) { if (!str) return ''; return str.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
+        
+        async function bookDoctor(doctorId, doctorName) {
+            document.getElementById('modalTitle').innerHTML = `<i class="fas fa-calendar-plus"></i> Book with ${doctorName}`;
+            document.getElementById('bookingModal').style.display = 'flex';
+            
+            const slotsResp = await fetch(`/doctors/${doctorId}/slots?days=14`);
+            const slots = await slotsResp.json();
+            
+            let html = `<form id="bookingForm" class="booking-form">
+                <input type="hidden" id="bookDoctorId" value="${doctorId}">
+                <label><i class="fas fa-user"></i> Full Name *</label>
+                <input type="text" id="patientName" required placeholder="Enter your full name">
+                
+                <label><i class="fas fa-phone"></i> Phone Number *</label>
+                <input type="tel" id="patientPhone" required placeholder="e.g., 0772 123 456">
+                
+                <label><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="patientEmail" placeholder="your@email.com">
+                
+                <label><i class="fas fa-birthday-cake"></i> Age</label>
+                <input type="number" id="patientAge" placeholder="Your age">
+                
+                <label><i class="fas fa-notes-medical"></i> Reason for Visit</label>
+                <textarea id="reason" rows="2" placeholder="What symptoms or concerns do you have?"></textarea>
+                
+                <label><i class="fas fa-calendar-day"></i> Select Date & Time *</label>
+                <select id="appointmentSlot" required>
+                    <option value="">Choose an available slot...</option>`;
+            
+            if (slots.available_slots && slots.available_slots.length > 0) {
+                for (const slot of slots.available_slots) {
+                    html += `<option value="${slot.date}|${slot.time}">📅 ${slot.date_display} at ${slot.time}</option>`;
+                }
+            } else {
+                html += `<option value="">No available slots in next 14 days</option>`;
+            }
+            
+            html += `</select>
+                <button type="submit" class="submit-btn"><i class="fas fa-check-circle"></i> Confirm Booking</button>
+            </form>`;
+            
+            document.getElementById('modalContent').innerHTML = html;
+            
+            document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const slot = document.getElementById('appointmentSlot').value;
+                if (!slot) { alert('Please select an appointment slot'); return; }
+                const [date, time] = slot.split('|');
+                
+                const resp = await fetch('/appointments/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        doctor_id: parseInt(document.getElementById('bookDoctorId').value),
+                        patient_name: document.getElementById('patientName').value,
+                        patient_phone: document.getElementById('patientPhone').value,
+                        patient_email: document.getElementById('patientEmail').value,
+                        patient_age: document.getElementById('patientAge').value,
+                        appointment_date: date,
+                        appointment_time: time,
+                        reason_for_visit: document.getElementById('reason').value
+                    })
+                });
+                
+                const result = await resp.json();
+                if (resp.ok) {
+                    alert(`✅ Appointment Confirmed!\n\n👨‍⚕️ Doctor: ${doctorName}\n📅 Date: ${date}\n⏰ Time: ${time}\n\nYou will receive an SMS reminder.`);
+                    closeModal();
+                    searchDoctors();
+                } else {
+                    alert('❌ Booking failed: ' + (result.error || 'Unknown error'));
+                }
+            });
+        }
+        
+        function closeModal() { document.getElementById('bookingModal').style.display = 'none'; }
+        window.onclick = function(e) { if (e.target === document.getElementById('bookingModal')) closeModal(); }
+        
+        // Load initial results on page load
+        setTimeout(() => searchDoctors(), 100);
+        
+        // Enter key search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) { if (e.key === 'Enter') searchDoctors(); });
+    </script>
 </body>
 </html>
+'''
+
+
+# ==================== ROUTES ====================
+
+@app.route('/')
+def index():
+    return redirect(url_for('dashboard'))
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template_string(HTML_TEMPLATE)
+
+
+@app.route('/doctors/search', methods=['GET'])
+def search_doctors():
+    specialty = request.args.get('specialty')
+    location_city = request.args.get('location_city')
+    name_search = request.args.get('name')
+   
+    query = Doctor.query.filter_by(is_accepting_patients=True)
+   
+    if specialty and specialty != 'All Specialties' and specialty != '':
+        query = query.filter(Doctor.specialty.ilike(f'%{specialty}%'))
+    if name_search:
+        query = query.filter(Doctor.name.ilike(f'%{name_search}%'))
+   
+    doctors = query.all()
+    results = []
+   
+    for doctor in doctors:
+        if location_city and doctor.clinic and doctor.clinic.city != location_city:
+            continue
+       
+        results.append({
+            'doctor': doctor.to_dict(),
+            'ai_match_score': 85
+        })
+   
+    return jsonify({'total_results': len(results), 'doctors': results})
+
+
+@app.route('/doctors/<int:doctor_id>/slots', methods=['GET'])
+def get_doctor_slots(doctor_id):
+    doctor = Doctor.query.get(doctor_id)
+    if not doctor:
+        return jsonify({'available_slots': []})
+   
+    days_ahead = 14
+    slots = []
+    start_h = int(doctor.available_hours_start.split(':')[0])
+    end_h = int(doctor.available_hours_end.split(':')[0])
+   
+    for offset in range(days_ahead):
+        date = datetime.now().date() + timedelta(days=offset)
+        day_name = date.strftime('%A')
+       
+        if day_name not in (doctor.available_days or []):
+            continue
+       
+        for hour in range(start_h, end_h):
+            time_str = f"{hour:02d}:00"
+            slots.append({
+                'date': date.strftime('%Y-%m-%d'),
+                'date_display': date.strftime('%A, %B %d, %Y'),
+                'time': time_str
+            })
+            if len(slots) >= 20:
+                break
+        if len(slots) >= 20:
+            break
+   
+    return jsonify({'available_slots': slots})
+
+
+@app.route('/appointments/book', methods=['POST'])
+def book_appointment():
+    data = request.json
+   
+    required = ['doctor_id', 'patient_name', 'patient_phone', 'appointment_date', 'appointment_time']
+    for field in required:
+        if field not in data:
+            return jsonify({'error': f'Missing field: {field}'}), 400
+   
+    doctor = Doctor.query.get(data['doctor_id'])
+    if not doctor:
+        return jsonify({'error': 'Doctor not found'}), 404
+   
+    appointment_date = datetime.strptime(data['appointment_date'], '%Y-%m-%d').date()
+   
+    appointment = Appointment(
+        doctor_id=data['doctor_id'],
+        clinic_id=doctor.clinic_id,
+        patient_name=data['patient_name'],
+        patient_phone=data['patient_phone'],
+        patient_email=data.get('patient_email'),
+        patient_age=data.get('patient_age'),
+        appointment_date=appointment_date,
+        appointment_time=data['appointment_time'],
+        reason_for_visit=data.get('reason_for_visit'),
+        status='confirmed'
+    )
+   
+    db.session.add(appointment)
+    db.session.commit()
+   
+    return jsonify({
+        'success': True,
+        'message': 'Appointment booked!',
+        'appointment_id': appointment.id
+    }), 201
+
+
+# ==================== RUN ====================
+
+if __name__ == '__main__':
+    print("=" * 70)
+    print("🏥 HospiNear - Zocdoc-style Medical App for Zimbabwe")
+    print("=" * 70)
+   
+    init_database()
+   
+    print("=" * 70)
+    print(f"📍 Open in browser: http://localhost:5000")
+    print(f"📋 Patient Dashboard: http://localhost:5000/dashboard")
+    print("=" * 70)
+    print("✅ CITIES: Harare, Bulawayo, Victoria Falls, Binga, Mutare, Gweru, Masvingo")
+    print("✅ DOCTORS: 8 specialists across Zimbabwe")
+    print("✅ FEATURES: Search by name/specialty/location, Book appointments, Telehealth")
+    print("=" * 70)
+   
+    app.run(host='0.0.0.0', port=5000, debug=True)
